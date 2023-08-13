@@ -1,0 +1,213 @@
+.home {
+  .body {
+    display: flex;
+    flex-direction: row;
+    width: 1100px;
+    margin-left: auto;
+    margin-right: auto;
+    min-height: calc(100vh - 186px);
+    justify-content: center;
+    align-items: center;
+    .logo {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .content {
+      h1 {
+        color: #000;
+        font-family: Inter;
+        font-size: 96px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: normal;
+      }
+      span {
+        margin-top: 24px;
+        color: #0a2a42;
+        font-family: Inter;
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 24px;
+      }
+
+      &__glance {
+        margin-top: 48px;
+        display: flex;
+        flex-direction: row;
+
+        &__item {
+          h3 {
+            color: #000;
+            font-family: Inter;
+            font-size: 24px;
+            font-style: normal;
+            font-weight: 600;
+            line-height: 24px;
+          }
+
+          span {
+            color: #0a2a42;
+            font-family: Inter;
+            font-size: 18px;
+            font-style: normal;
+            font-weight: 400;
+            line-height: 27px;
+          }
+        }
+      }
+    }
+  }
+}
+
+.plans {
+  background-color: #b5b76b;
+  padding-top: 24px;
+  padding-bottom: 24px;
+  .logo {
+    img {
+      height: 301px;
+      position: absolute;
+      top: -40px;
+      left: 30px;
+    }
+  }
+  .body {
+    width: 1100px;
+    min-height: calc(100vh - 186px);
+    margin-left: auto;
+    margin-right: auto;
+    h1 {
+      margin-top: 83px;
+      margin-bottom: 48px;
+    }
+    .plan_box {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      margin-bottom: 90px;
+      &_detail {
+        width: 462px;
+        height: 285px;
+        border-radius: 30px;
+        background: #d9d9d9;
+        position: relative;
+        &_join {
+          position: absolute;
+          bottom: 32px;
+          right: 38px;
+          background-color: white;
+        }
+      }
+    }
+
+    .team_people {
+      border-radius: 100%;
+      width: 181px;
+      height: 181px;
+      margin-right: 100px;
+      border: 5px solid black;
+    }
+  }
+}
+
+.teams {
+  background-color: #c24646;
+  padding-top: 24px;
+  padding-bottom: 24px;
+  .logo {
+    img {
+      height: 301px;
+      position: absolute;
+      top: -40px;
+      left: 30px;
+    }
+  }
+  .body {
+    min-height: calc(100vh - 186px);
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    justify-content: space-evenly;
+
+    .team_people {
+      margin-top: 130px;
+      border-radius: 100%;
+      width: 181px;
+      height: 181px;
+      &:hover {
+        border: 5px solid black;
+      }
+    }
+  }
+}
+
+.contact {
+  background-color: #09626e;
+  padding-top: 24px;
+  padding-bottom: 24px;
+  .body {
+    display: flex;
+    justify-content: space-around;
+    min-height: calc(100vh - 210px);
+    .map {
+      h1 {
+        color: #fff;
+        font-family: Abhaya Libre ExtraBold;
+        font-size: 40px;
+        font-style: normal;
+        font-weight: 800;
+        line-height: 28px;
+        margin-top: 69px;
+      }
+      h2 {
+        color: #fff;
+        font-family: Abhaya Libre ExtraBold;
+        font-size: 36px;
+        font-style: normal;
+        font-weight: 800;
+        line-height: 28px; /* 77.778% */
+        margin-top: 27px;
+      }
+    }
+
+    .form-container {
+		margin-top: 25px;
+		margin-bottom: 35px;
+      .form-element {
+        display: flex;
+        flex-direction: column;
+		margin-top: 18px;
+        label {
+          color: #fff;
+          font-family: Abhaya Libre ExtraBold;
+          font-size: 24px;
+          font-style: normal;
+          font-weight: 800;
+          line-height: 28px; /* 116.667% */
+        }
+        input {
+          display: flex;
+          width: 245px;
+          padding: 10px 15px;
+          flex-direction: column;
+          align-items: flex-start;
+          border-radius: 5px;
+          border: 1px solid #e2e1e5;
+          background: #fff;
+        }
+        textarea {
+          display: flex;
+          width: 245px;
+          padding: 10px 15px;
+          flex-direction: column;
+          align-items: flex-start;
+          border-radius: 5px;
+          border: 1px solid #e2e1e5;
+          background: #fff;
+        }
+      }
+    }
+  }
+}

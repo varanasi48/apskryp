@@ -67,6 +67,7 @@ app.post('/register', (request, response) => {
         email: request.body.email,
         mobile: request.body.mobile,
         name: request.body.name,
+		type: request.body.type,
         password: hash,
       })
 

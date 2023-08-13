@@ -6,7 +6,8 @@ frontend:
         - npm ci
     build:
       commands:
-        - npm start
+        - npm run build
+        
   artifacts:
     # IMPORTANT - Please verify your build output directory
     baseDirectory: src

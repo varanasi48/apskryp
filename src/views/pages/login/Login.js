@@ -1,6 +1,16 @@
 import React from 'react'
 import { CButton, CCol } from '@coreui/react'
 
+//database
+
+const mongoose=require('mongoose')
+const uri = 'mongodb+srv://varanasi48:Varanasi89*@cluster0.4dosq9v.mongodb.net/?retryWrites=true&w=majority'
+
+const connect=()=>{
+  const db= mongoose.connect(uri)
+  
+}
+
 const Login = () => {
   return (
     <div className="l_container ">
@@ -13,11 +23,11 @@ const Login = () => {
             <div className="l_body__form">
               <div className="l_body__form__user">
                 <span className="fs-3 block">Username</span>
-                <input type="text" placeholder="Phone Number" />
+                <input type="text" placeholder="Phone Number" name="username" />
               </div>
               <div className="l_body__form__pwd">
                 <span className="fs-3 block">Password</span>
-                <input type="password" placeholder="Password" />
+                <input type="password" placeholder="Password" name="password" />
               </div>
 
               <div>

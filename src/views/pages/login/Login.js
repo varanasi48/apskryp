@@ -1,6 +1,9 @@
 import React from 'react'
 import { CButton, CCol } from '@coreui/react'
 
+const name=this.set
+const password=null
+
 //database
 
 const mongoose=require('mongoose')

@@ -35,6 +35,7 @@ app.post('/login', (request, response) => {
           //   return success response
           response.status(200).send({
             message: 'Login Successful',
+			usertype: user.type,
             email: user.email,
             token,
           })

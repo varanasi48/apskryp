@@ -1,4 +1,4 @@
-const dbConnect = require('./backend/database')
+const dbConnect = require('./database')
 
 dbConnect()
 // login endpoint

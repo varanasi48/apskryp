@@ -1,10 +1,13 @@
+
 const dbConnect = require('./database')
 
+
 dbConnect()
+console.log("connected")
 // login endpoint
 app.post('/login', (request, response) => {
   // check if email exists
-  User.findOne({ email: request.body.email })
+  User.findOne({ Phone: request.body.phone })
 
     // if email exists
     .then((user) => {

@@ -1,74 +1,96 @@
 import React from 'react'
 import {
-  CBreadcrumb,
-  CBreadcrumbItem,
   CCard,
   CCardBody,
   CCardHeader,
   CCol,
   CRow,
-  CLink,
+  CTable,
+  CTableBody,
+  CTableCaption,
+  CTableDataCell,
+  CTableHead,
+  CTableHeaderCell,
+  CTableRow,
 } from '@coreui/react'
 import { DocsExample } from 'src/components'
 
-const Breadcrumbs = () => {
+const Tables = () => {
   return (
     <CRow>
+      
+        
       <CCol xs={12}>
         <CCard className="mb-4">
           <CCardHeader>
-            <strong>React Breadcrumb</strong>
+            <strong>Payment Details</strong> 
           </CCardHeader>
           <CCardBody>
-            <p className="text-medium-emphasis small">
-              The breadcrumb navigation provides links back to each previous page the user navigated
-              through and shows the current location in a website or an application. You don’t have
-              to add separators, because they automatically added in CSS through{' '}
-              <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/::before">
-                {' '}
-                <code>::before</code>
-              </a>{' '}
-              and{' '}
-              <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/content">
-                {' '}
-                <code>content</code>
-              </a>
-              .
-            </p>
-            <DocsExample href="components/breadcrumb">
-              <CBreadcrumb>
-                <CBreadcrumbItem>
-                  <CLink href="#">Home</CLink>
-                </CBreadcrumbItem>
-                <CBreadcrumbItem active>Library</CBreadcrumbItem>
-              </CBreadcrumb>
-              <CBreadcrumb>
-                <CBreadcrumbItem>
-                  <CLink href="#">Home</CLink>
-                </CBreadcrumbItem>
-                <CBreadcrumbItem>
-                  <CLink href="#">Library</CLink>
-                </CBreadcrumbItem>
-                <CBreadcrumbItem active>Data</CBreadcrumbItem>
-              </CBreadcrumb>
-              <CBreadcrumb>
-                <CBreadcrumbItem>
-                  <CLink href="#">Home</CLink>
-                </CBreadcrumbItem>
-                <CBreadcrumbItem>
-                  <CLink href="#">Library</CLink>
-                </CBreadcrumbItem>
-                <CBreadcrumbItem>
-                  <CLink href="#">Data</CLink>
-                </CBreadcrumbItem>
-                <CBreadcrumbItem active>Bootstrap</CBreadcrumbItem>
-              </CBreadcrumb>
-            </DocsExample>
+            
+           
+              <CTable>
+                <CTableHead>
+                  <CTableRow>
+                    <CTableHeaderCell scope="col">Class</CTableHeaderCell>
+                    <CTableHeaderCell scope="col">Heading</CTableHeaderCell>
+                    <CTableHeaderCell scope="col">Heading</CTableHeaderCell>
+                  </CTableRow>
+                </CTableHead>
+                <CTableBody>
+                  <CTableRow>
+                    <CTableHeaderCell scope="row">Default</CTableHeaderCell>
+                    <CTableDataCell>Cell</CTableDataCell>
+                    <CTableDataCell>Cell</CTableDataCell>
+                  </CTableRow>
+                  <CTableRow color="primary">
+                    <CTableHeaderCell scope="row">Primary</CTableHeaderCell>
+                    <CTableDataCell>Cell</CTableDataCell>
+                    <CTableDataCell>Cell</CTableDataCell>
+                  </CTableRow>
+                  <CTableRow color="secondary">
+                    <CTableHeaderCell scope="row">Secondary</CTableHeaderCell>
+                    <CTableDataCell>Cell</CTableDataCell>
+                    <CTableDataCell>Cell</CTableDataCell>
+                  </CTableRow>
+                  <CTableRow color="success">
+                    <CTableHeaderCell scope="row">Success</CTableHeaderCell>
+                    <CTableDataCell>Cell</CTableDataCell>
+                    <CTableDataCell>Cell</CTableDataCell>
+                  </CTableRow>
+                  <CTableRow color="danger">
+                    <CTableHeaderCell scope="row">Danger</CTableHeaderCell>
+                    <CTableDataCell>Cell</CTableDataCell>
+                    <CTableDataCell>Cell</CTableDataCell>
+                  </CTableRow>
+                  <CTableRow color="warning">
+                    <CTableHeaderCell scope="row">Warning</CTableHeaderCell>
+                    <CTableDataCell>Cell</CTableDataCell>
+                    <CTableDataCell>Cell</CTableDataCell>
+                  </CTableRow>
+                  <CTableRow color="info">
+                    <CTableHeaderCell scope="row">Info</CTableHeaderCell>
+                    <CTableDataCell>Cell</CTableDataCell>
+                    <CTableDataCell>Cell</CTableDataCell>
+                  </CTableRow>
+                  <CTableRow color="light">
+                    <CTableHeaderCell scope="row">Light</CTableHeaderCell>
+                    <CTableDataCell>Cell</CTableDataCell>
+                    <CTableDataCell>Cell</CTableDataCell>
+                  </CTableRow>
+                  <CTableRow color="dark">
+                    <CTableHeaderCell scope="row">Dark</CTableHeaderCell>
+                    <CTableDataCell>Cell</CTableDataCell>
+                    <CTableDataCell>Cell</CTableDataCell>
+                  </CTableRow>
+                </CTableBody>
+              </CTable>
+            
           </CCardBody>
         </CCard>
       </CCol>
-    </CRow>
+      
+          </CRow>
   )
 }
 
-export default Breadcrumbs
+export default Tables

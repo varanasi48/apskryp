@@ -18,7 +18,7 @@ const Home = () => {
           <div className="content__glance">
             <div className="content__glance__item">
               <h3>3200 Investors </h3>
-              <span>Servers with almost 100% up time.</span>
+              <span>Our reliability and commitment has attracted 3200 investors even before we launcht he project</span>
             </div>
 
             <div className="content__glance__item">

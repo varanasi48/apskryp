@@ -27,7 +27,7 @@ const Login = () => {
 
               <div>
                 <CCol xs={6} className="l_body__form__btn">
-                  <CButton color="primary" className="px-4" type="submit" href="#/dashboard">
+                  <CButton color="primary" className="px-4" type="submit" href="#/base/accordion">
                     Login!
                   </CButton>
                 </CCol>

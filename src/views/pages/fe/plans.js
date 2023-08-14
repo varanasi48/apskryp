@@ -17,13 +17,13 @@ const Plans = () => {
           <div className="plan_box_detail">
           <h2 > Plan-A</h2>
           <h4>Plan Details</h4>
-            <a href="#/contact-us" className="btn btn-light plan_box_detail_join">
+            <a href="#/register" className="btn btn-light plan_box_detail_join">
              
               Join Us
             </a>
           </div>
           <div className="plan_box_detail">
-            <a href="#/contact-us" className="btn btn-light plan_box_detail_join">
+            <a href="#/register" className="btn btn-light plan_box_detail_join">
               Join Us
             </a>
           </div>

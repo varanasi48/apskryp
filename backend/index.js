@@ -117,6 +117,38 @@ app.get('/users', async (req, res) => {
   }
 })
 
+app.post('/fetch-users', async (req, res) => {
+  try {
+    const token = req.headers.authorization.split(' ')[1]
+    const decoded = jwt.verify(token, process.env.JWT_SECRET)
+
+    const count = parseInt(req.query.count) || 10
+    const start = parseInt(req.query.start) || 0
+    let filterConditions = req.body || {}
+
+    switch (decoded.usertype) {
+      case 'admin':
+        filterConditions.usertype = { $ne: 'admin' }
+        break
+      case 'branch_manager':
+        filterConditions.registeredBy = decoded.id
+        break
+      default:
+        return res.status(401).send('Unauthorized user type.')
+    }
+
+    const users = await User.find(filterConditions).skip(start).limit(count).sort('createdAt')
+
+    res.status(200).json(users)
+  } catch (error) {
+    if (error.name === 'TokenExpiredError' || error.name === 'JsonWebTokenError') {
+      return res.status(401).send('Invalid token')
+    }
+    console.error('Error fetching users:', error)
+    res.status(500).send('Internal Server Error.')
+  }
+})
+
 const PORT = process.env.PORT || 3001
 
 app.listen(PORT, () => {

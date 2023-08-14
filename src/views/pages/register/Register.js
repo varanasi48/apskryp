@@ -7,12 +7,13 @@ import {
   CContainer,
   CForm,
   CFormInput,
+  CFormSelect,
   CInputGroup,
   CInputGroupText,
   CRow,
 } from '@coreui/react'
 import CIcon from '@coreui/icons-react'
-import { cilLockLocked, cilUser } from '@coreui/icons'
+import { cilLockLocked, cilMobile, cilUser } from '@coreui/icons'
 
 const Register = () => {
   return (
@@ -29,7 +30,13 @@ const Register = () => {
                     <CInputGroupText>
                       <CIcon icon={cilUser} />
                     </CInputGroupText>
-                    <CFormInput placeholder="Username" autoComplete="username" />
+                    <CFormInput placeholder="Full Name" autoComplete="full name" />
+                  </CInputGroup>
+                  <CInputGroup className="mb-3">
+                    <CInputGroupText>
+                      <CIcon icon={cilMobile} />
+                    </CInputGroupText>
+                    <CFormInput placeholder="Phone number" autoComplete="mobile" />
                   </CInputGroup>
                   <CInputGroup className="mb-3">
                     <CInputGroupText>@</CInputGroupText>
@@ -54,6 +61,13 @@ const Register = () => {
                       placeholder="Repeat password"
                       autoComplete="new-password"
                     />
+                  </CInputGroup>
+                  <CInputGroup className="mb-4">
+                    <CFormSelect size="lg" className="mb-3" aria-label="Large select example">
+                      <option>Select User Type</option>
+                      <option value="investor">Investor</option>
+                      <option value="branch_manager">Branch manager</option>
+                    </CFormSelect>
                   </CInputGroup>
                   <div className="d-grid">
                     <CButton color="success">Create Account</CButton>

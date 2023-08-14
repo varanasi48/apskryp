@@ -13,8 +13,7 @@ const Home = () => {
         <div className="content">
           <h1>Life is Beautiful</h1>
           <span>
-            Makers is a Figma Plugin to help you build and publish sites directly in Figma. No code
-            required.
+            
           </span>
           <div className="content__glance">
             <div className="content__glance__item">

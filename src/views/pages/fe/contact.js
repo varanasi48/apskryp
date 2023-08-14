@@ -1,14 +1,45 @@
 import React, { useState } from 'react'
 import Header from '../common/header'
 import Footer from '../common/footer'
+import { Link } from 'react-router-dom';
 
-
+const initialFormData = Object.freeze({
+  name: "",
+  phone: "",
+  email:"",
+  message:""
+});
 
 
 
 
 
 const Contact = () => {
+  const [formData, updateFormData] = React.useState(initialFormData);
+  const handleChange = (e) => {
+    updateFormData({
+      ...formData,
+  
+      // Trimming any whitespace
+      [e.target.name]: e.target.value.trim()
+    });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    console.log(formData);
+    // ... submit to API or something
+    <Link
+  to={{
+    pathname: "backend/contacthandle",
+    state: formData // your data array of objects
+  }}
+></Link>
+    
+  };
+  
+
+
   return (
     
     <div className="contact">
@@ -25,22 +56,22 @@ const Contact = () => {
         <div className="form-container">
           <div className="form-element">
             <label>Name</label>
-            <input type="text"  name="name" placeholder="Enter name" />
+            <input type="text"  name="name" onChange={handleChange} placeholder="Enter name" />
           </div>
           <div className="form-element">
             <label>Phone</label>
-            <input type="tel"  name="phone" placeholder="Enter phone" />
+            <input type="tel"  name="phone" onChange={handleChange} placeholder="Enter phone" />
           </div>
           <div className="form-element">
             <label>Email</label>
-            <input type="email"  name="email" placeholder="Enter email" />
+            <input type="email"  name="email" onChange={handleChange} placeholder="Enter email" />
           </div>
           <div className="form-element">
             <label>Message</label>
-            <textarea rows={4}  name="message" placeholder="Type your message here" />
+            <textarea rows={4}  name="message" onChange={handleChange} placeholder="Type your message here" />
           </div>
           <div className="form-element">
-            <button className="btn btn-primary" >Submit</button>
+            <button className="btn btn-primary" onClick={handleSubmit} >Submit</button>
           </div>
         </div>
       </div>

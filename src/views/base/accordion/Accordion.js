@@ -17,10 +17,7 @@ import { DocsExample } from 'src/components'
 
 const Tables = () => {
   return (
-    
-      
-        
-      
+               
         <CCard className="mb-4">
           <CCardHeader>
             <strong>Investor Details</strong> 

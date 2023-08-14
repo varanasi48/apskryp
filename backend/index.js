@@ -3,6 +3,7 @@ const express = require('express')
 const mongoose = require('mongoose')
 const jwt = require('jsonwebtoken')
 const bcrypt = require('bcryptjs')
+const cors = require('cors');
 
 const db = require('./models')
 
@@ -12,7 +13,8 @@ const User = db.User
 const app = express()
 
 app.use(express.json())
-
+// Allow requests from all origins
+app.use(cors());
 // Connect to MongoDB
 mongoose.connect(process.env.DB_URL, {
   useNewUrlParser: true,

@@ -18,6 +18,7 @@ const Plans = React.lazy(() => import('./views/pages/fe/plans'))
 const Teams = React.lazy(() => import('./views/pages/fe/teams'))
 const Contact = React.lazy(() => import('./views/pages/fe/contact'))
 const Register = React.lazy(() => import('./views/pages/register/Register'))
+const Dashboard = React.lazy(() => import('./views/dashboard/Dashboard'))
 const Page404 = React.lazy(() => import('./views/pages/page404/Page404'))
 const Page500 = React.lazy(() => import('./views/pages/page500/Page500'))
 
@@ -35,6 +36,7 @@ class App extends Component {
             <Route path="/plans" name="Home" element={<Plans />} />
             <Route path="/teams" name="Home" element={<Teams />} />
             <Route path="/contact-us" name="Home" element={<Contact />} />
+            <Route path="/dashboard" name="Home" element={<Dashboard />} />
             <Route path="*" name="Home" element={<DefaultLayout />} />
           </Routes>
         </Suspense>

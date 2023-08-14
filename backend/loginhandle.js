@@ -1,7 +1,6 @@
 
 const dbConnect = require('./database')
 
-
 dbConnect()
 console.log("connected")
 // login endpoint

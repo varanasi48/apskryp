@@ -37,7 +37,6 @@ const Register = () => {
 
   const handleInputChange = (event) => {
     const { name, value } = event.target
-    console.log({ name, value })
     setFormData((prevData) => ({
       ...prevData,
       [name]: value,
@@ -70,7 +69,7 @@ const Register = () => {
       })
 
       setMessage('Registration successful for ' + formData.name)
-	  
+
       setFormData({
         name: '',
         phoneno: '',

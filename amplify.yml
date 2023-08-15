@@ -7,7 +7,7 @@ frontend:
     build:
       commands:
         - npm run build
-        - node index.js
+        - node ./backend/index.js
                 
   artifacts:
     # IMPORTANT - Please verify your build output directory

@@ -25,7 +25,7 @@ const Login = () => {
       localStorage.setItem('userData', JSON.stringify(response.data))
       axios.defaults.headers.common['Authorization'] = `Bearer ${response.data.token}`
       setUser(response.data)
-	  navigate(`${API_URL}/#/dashboard`);
+	  navigate(`/dashboard/s`);
     } catch (err) {
       // Handle the error by updating the error state
       setError(err.response.data)

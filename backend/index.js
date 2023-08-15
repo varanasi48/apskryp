@@ -74,6 +74,7 @@ app.post('/register', async (req, res) => {
       email: req.body.email,
       password: hashedPassword,
       usertype: req.body.usertype,
+      nominee: req.body.nominee,
       registeredBy: decoded.id,
     })
 

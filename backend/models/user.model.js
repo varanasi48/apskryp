@@ -7,6 +7,7 @@ const UserSchema = new Schema(
     phoneno: String,
     email: { type: String, unique: true },
     password: String,
+    nominee: String,
     usertype: {
       type: String,
       enum: ['investor', 'branch_manager', 'admin'],

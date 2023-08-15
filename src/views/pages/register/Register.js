@@ -33,6 +33,7 @@ const Register = () => {
     password: '',
     re_password: '',
     usertype: '',
+    nominee: '',
   })
 
   const handleInputChange = (event) => {
@@ -55,7 +56,7 @@ const Register = () => {
         return false
       }
     }
-    if (formData.password != formData.re_password) {
+    if (formData.password !== formData.re_password) {
       setError("Passwords don't match")
       return false
     }
@@ -77,8 +78,8 @@ const Register = () => {
         password: '',
         re_password: '',
         usertype: '',
+        nominee: '',
       })
-
     } catch (err) {
       setError(err.response.data.message)
     }
@@ -154,6 +155,18 @@ const Register = () => {
                       name="re_password"
                       onChange={handleInputChange}
                       value={formData.re_password}
+                    />
+                  </CInputGroup>
+                  <CInputGroup className="mb-3">
+                    <CInputGroupText>
+                      <CIcon icon={cilUser} />
+                    </CInputGroupText>
+                    <CFormInput
+                      placeholder="Enter Nominee"
+                      autoComplete="nominee"
+                      name="nominee"
+                      onChange={handleInputChange}
+                      value={formData.nominee}
                     />
                   </CInputGroup>
                   <CInputGroup className="mb-4">

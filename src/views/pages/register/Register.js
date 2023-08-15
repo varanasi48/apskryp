@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import {
+  CAlert,
   CButton,
   CCard,
   CCardBody,
@@ -13,14 +14,18 @@ import {
   CRow,
 } from '@coreui/react'
 import CIcon from '@coreui/icons-react'
+import axios from 'axios'
 import { cilLockLocked, cilMobile, cilUser } from '@coreui/icons'
 
 const Register = () => {
+  const API_URL = process.env.REACT_APP_API_URL
   // Retrieve data from localStorage
   const userData = localStorage.getItem('userData')
     ? JSON.parse(localStorage.getItem('userData'))
     : null
 
+  const [error, setError] = useState('')
+  const [message, setMessage] = useState('')
   const [formData, setFormData] = useState({
     name: '',
     phoneno: '',
@@ -30,46 +35,91 @@ const Register = () => {
     usertype: '',
   })
 
-  const handleSubmit = (event) => {
-    event.preventDefault()
-    // Access form data using event.target
-    const updatedFormData = {
-      name: event.target.firstName.value,
-      phoneno: event.target.lastName.value,
-      email: event.target.email.value,
-      password: event.target.password.value,
-      re_password: event.target.re_password.value,
-      usertype: event.target.usertype.value,
-    }
-console.log(updatedFormData);
-    // Update state with the new form data
-    setFormData(updatedFormData)
+  const handleInputChange = (event) => {
+    const { name, value } = event.target
+    console.log({ name, value })
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }))
   }
+
+  const handleSubmit = async (event) => {
+    event.preventDefault()
+    for (const key in formData) {
+      if (
+        formData.hasOwnProperty(key) &&
+        typeof formData[key] === 'string' &&
+        formData[key].trim() === ''
+      ) {
+        setError('Please fill all the fields')
+        return false
+      }
+    }
+    if (formData.password != formData.re_password) {
+      setError("Passwords don't match")
+      return false
+    }
+	setError("");
+    try {
+      // Send data to the register API with JWT token in header
+      await axios.post(`${API_URL}/register`, formData, {
+        headers: {
+          Authorization: `Bearer ${userData.token}}`,
+        },
+      })
+      console.log(`Bearer ${userData.token}}`)
+      setMessage('Registration successful for ' + formData.name)
+    } catch (err) {
+      setError(err.response.data.message)
+    }
+  }
+
   return (
     <div className="bg-light min-vh-100 d-flex flex-row align-items-center">
       <CContainer>
         <CRow className="justify-content-center">
           <CCol md={9} lg={7} xl={6}>
             <CCard className="mx-4">
+              {message && <CAlert color="success">{message}</CAlert>}
+              {error && <CAlert color="danger">{error}</CAlert>}
               <CCardBody className="p-4">
-                <CForm>
+                <CForm method="post">
                   <h1>Register</h1>
                   <p className="text-medium-emphasis">Create your account</p>
                   <CInputGroup className="mb-3">
                     <CInputGroupText>
                       <CIcon icon={cilUser} />
                     </CInputGroupText>
-                    <CFormInput placeholder="Full Name" autoComplete="full name" name="name" />
+                    <CFormInput
+                      placeholder="Full Name"
+                      autoComplete="full name"
+                      name="name"
+                      onChange={handleInputChange}
+                      value={formData.name}
+                    />
                   </CInputGroup>
                   <CInputGroup className="mb-3">
                     <CInputGroupText>
                       <CIcon icon={cilMobile} />
                     </CInputGroupText>
-                    <CFormInput placeholder="Phone number" autoComplete="mobile" name="phoneno" />
+                    <CFormInput
+                      placeholder="Phone number"
+                      autoComplete="mobile"
+                      name="phoneno"
+                      onChange={handleInputChange}
+                      value={formData.phoneno}
+                    />
                   </CInputGroup>
                   <CInputGroup className="mb-3">
                     <CInputGroupText>@</CInputGroupText>
-                    <CFormInput placeholder="Email" autoComplete="email" name="email" />
+                    <CFormInput
+                      placeholder="Email"
+                      autoComplete="email"
+                      name="email"
+                      onChange={handleInputChange}
+                      value={formData.email}
+                    />
                   </CInputGroup>
                   <CInputGroup className="mb-3">
                     <CInputGroupText>
@@ -80,6 +130,8 @@ console.log(updatedFormData);
                       placeholder="Password"
                       autoComplete="new-password"
                       name="password"
+                      onChange={handleInputChange}
+                      value={formData.password}
                     />
                   </CInputGroup>
                   <CInputGroup className="mb-4">
@@ -91,6 +143,8 @@ console.log(updatedFormData);
                       placeholder="Repeat password"
                       autoComplete="new-password"
                       name="re_password"
+                      onChange={handleInputChange}
+                      value={formData.re_password}
                     />
                   </CInputGroup>
                   <CInputGroup className="mb-4">
@@ -100,8 +154,9 @@ console.log(updatedFormData);
                         className="mb-3"
                         aria-label="Large select example"
                         name="usertype"
+                        onChange={handleInputChange}
                       >
-                        <option>Select User Type</option>
+                        <option value="">Select User Type</option>
                         <option value="investor">Investor</option>
                         <option value="branch_manager">Branch manager</option>
                       </CFormSelect>
@@ -112,14 +167,21 @@ console.log(updatedFormData);
                         className="mb-3"
                         aria-label="Large select example"
                         name="usertype"
+                        onChange={handleInputChange}
                       >
-                        <option>Select User Type</option>
+                        <option value="">Select User Type</option>
                         <option value="investor">Investor</option>
                       </CFormSelect>
                     )}
                   </CInputGroup>
                   <div className="d-grid">
-                    <CButton color="success" onClick={handleSubmit}>
+                    <CButton
+                      color="primary"
+                      className="px-4"
+                      type="submit"
+                      onSubmit={handleSubmit}
+                      onClick={handleSubmit}
+                    >
                       Create Account
                     </CButton>
                   </div>

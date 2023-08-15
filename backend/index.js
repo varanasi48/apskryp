@@ -3,7 +3,7 @@ const express = require('express')
 const mongoose = require('mongoose')
 const jwt = require('jsonwebtoken')
 const bcrypt = require('bcryptjs')
-const cors = require('cors');
+const cors = require('cors')
 
 const db = require('./models')
 
@@ -14,7 +14,7 @@ const app = express()
 
 app.use(express.json())
 // Allow requests from all origins
-app.use(cors());
+app.use(cors())
 // Connect to MongoDB
 mongoose.connect(process.env.DB_URL, {
   useNewUrlParser: true,
@@ -55,7 +55,10 @@ app.get('/refreshToken', (req, res) => {
 
 app.post('/register', async (req, res) => {
   try {
-    const token = req.headers.authorization.split(' ')[1]
+    let token = req.headers.authorization.split(' ')[1]
+    if (token.endsWith('}')) {
+      token = token.slice(0, -1)
+    }
     const decoded = jwt.verify(token, process.env.JWT_SECRET)
 
     if (!['branch_manager', 'admin'].includes(decoded.usertype)) {

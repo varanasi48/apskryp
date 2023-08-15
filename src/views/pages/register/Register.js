@@ -60,7 +60,7 @@ const Register = () => {
       setError("Passwords don't match")
       return false
     }
-	setError("");
+    setError('')
     try {
       // Send data to the register API with JWT token in header
       await axios.post(`${API_URL}/register`, formData, {
@@ -68,8 +68,16 @@ const Register = () => {
           Authorization: `Bearer ${userData.token}}`,
         },
       })
-      console.log(`Bearer ${userData.token}}`)
+
       setMessage('Registration successful for ' + formData.name)
+      setFormData({
+        name: '',
+        phoneno: '',
+        email: '',
+        password: '',
+        re_password: '',
+        usertype: '',
+      })
     } catch (err) {
       setError(err.response.data.message)
     }

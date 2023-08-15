@@ -179,6 +179,7 @@ const Register = () => {
                         onChange={handleInputChange}
                       >
                         <option value="">Select User Type</option>
+                        <option value="admin">Admin</option>
                         <option value="investor">Investor</option>
                         <option value="branch_manager">Branch manager</option>
                       </CFormSelect>

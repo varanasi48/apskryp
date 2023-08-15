@@ -70,6 +70,7 @@ const Register = () => {
       })
 
       setMessage('Registration successful for ' + formData.name)
+	  
       setFormData({
         name: '',
         phoneno: '',
@@ -78,6 +79,7 @@ const Register = () => {
         re_password: '',
         usertype: '',
       })
+
     } catch (err) {
       setError(err.response.data.message)
     }

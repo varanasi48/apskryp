@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import {
   CAlert,
   CButton,
@@ -46,30 +46,41 @@ const Register = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault()
-    for (const key in formData) {
+    const formSubmitted = { ...formData }
+	
+    if (userData.usertype === 'branch_manager') {
+      formSubmitted.usertype = 'investor'
+    }
+    if (userData.usertype !== 'investor') {
+      formSubmitted.status = true
+    } else {
+      formSubmitted.status = false
+    }
+	
+    for (const key in formSubmitted) {
       if (
-        formData.hasOwnProperty(key) &&
-        typeof formData[key] === 'string' &&
-        formData[key].trim() === ''
+        formSubmitted.hasOwnProperty(key) &&
+        typeof formSubmitted[key] === 'string' &&
+        formSubmitted[key].trim() === ''
       ) {
         setError('Please fill all the fields')
         return false
       }
     }
-    if (formData.password !== formData.re_password) {
+    if (formSubmitted.password !== formData.re_password) {
       setError("Passwords don't match")
       return false
     }
     setError('')
     try {
       // Send data to the register API with JWT token in header
-      await axios.post(`${API_URL}/register`, formData, {
+      await axios.post(`${API_URL}/register`, formSubmitted, {
         headers: {
           Authorization: `Bearer ${userData.token}}`,
         },
       })
-
-      setMessage('Registration successful for ' + formData.name)
+	  
+      setMessage('Registration successful for ' + formSubmitted.name)
 
       setFormData({
         name: '',
@@ -185,16 +196,7 @@ const Register = () => {
                       </CFormSelect>
                     )}
                     {userData && userData.usertype === 'branch_manager' && (
-                      <CFormSelect
-                        size="lg"
-                        className="mb-3"
-                        aria-label="Large select example"
-                        name="usertype"
-                        onChange={handleInputChange}
-                      >
-                        <option value="">Select User Type</option>
-                        <option value="investor">Investor</option>
-                      </CFormSelect>
+                      <input type="hidden" name="usertype" value="investor" />
                     )}
                   </CInputGroup>
                   <div className="d-grid">

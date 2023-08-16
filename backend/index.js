@@ -75,6 +75,7 @@ app.post('/register', async (req, res) => {
       password: hashedPassword,
       usertype: req.body.usertype,
       nominee: req.body.nominee,
+      status: req.body.status,
       registeredBy: decoded.id,
     })
 
@@ -84,6 +85,18 @@ app.post('/register', async (req, res) => {
     if (err.name === 'TokenExpiredError' || err.name === 'JsonWebTokenError') {
       return res.status(401).send('Invalid token')
     }
+
+    if (err?.code === 11000) {
+      // MongoDB unique constraint error
+      if (err?.keyPattern && err?.keyPattern?.email) {
+        return res.status(400).send('Email already exists')
+      }
+      if (err?.keyPattern && err?.keyPattern?.phoneno) {
+        return res.status(400).send('Phone number already exists')
+      }
+    }
+	
+	
     res.status(500).send('Server error')
   }
 })

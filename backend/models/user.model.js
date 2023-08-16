@@ -4,10 +4,11 @@ const Schema = mongoose.Schema
 const UserSchema = new Schema(
   {
     name: String,
-    phoneno: String,
+    phoneno: { type: String, unique: true },
     email: { type: String, unique: true },
     password: String,
     nominee: String,
+	status: { type: Boolean, default: false },
     usertype: {
       type: String,
       enum: ['investor', 'branch_manager', 'admin'],

@@ -10,6 +10,13 @@ const db = require('./models')
 dotenv.config()
 const User = db.User
 
+const { Date, Math } = require("core-js");
+
+
+
+
+
+
 const app = express()
 
 app.use(express.json())
@@ -20,6 +27,7 @@ mongoose.connect(process.env.DB_URL, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 })
+
 
 app.post('/login', async (req, res) => {
   try {
@@ -69,6 +77,7 @@ app.post('/register', async (req, res) => {
     const hashedPassword = await bcrypt.hash(req.body.password, salt)
 
     const newUser = new User({
+      userid:req.body.userid,
       name: req.body.name,
       phoneno: req.body.phoneno,
       email: req.body.email,
@@ -80,7 +89,7 @@ app.post('/register', async (req, res) => {
     })
 
     await newUser.save()
-    res.status(201).send('User registered successfully')
+    res.status(201).send('User registered successfully.')
   } catch (err) {
     if (err.name === 'TokenExpiredError' || err.name === 'JsonWebTokenError') {
       return res.status(401).send('Invalid token')

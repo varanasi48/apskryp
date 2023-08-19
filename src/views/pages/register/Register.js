@@ -16,6 +16,25 @@ import {
 import CIcon from '@coreui/icons-react'
 import axios from 'axios'
 import { cilLockLocked, cilMobile, cilUser } from '@coreui/icons'
+const { Date, Math } = require("core-js");
+
+ 
+var num=Math.random()*9000
+
+//const dt=Date.now();
+const date= new Date();
+let month=date.getMonth()+1;
+if(month<10){
+    month='0'+month
+}
+
+let year=date.getFullYear();
+
+var id="LBF"+parseInt(num)+month+year
+
+
+
+
 
 const Register = () => {
   const API_URL = process.env.REACT_APP_API_URL
@@ -27,6 +46,7 @@ const Register = () => {
   const [error, setError] = useState('')
   const [message, setMessage] = useState('')
   const [formData, setFormData] = useState({
+    userid:id,
     name: '',
     phoneno: '',
     email: '',
@@ -34,7 +54,12 @@ const Register = () => {
     re_password: '',
     usertype: '',
     nominee: '',
+    //nomineedate:'',
+
   })
+ 
+  
+
 
   const handleInputChange = (event) => {
     const { name, value } = event.target
@@ -80,9 +105,10 @@ const Register = () => {
         },
       })
 	  
-      setMessage('Registration successful for ' + formSubmitted.name)
+      setMessage('Registration successful for ' + formSubmitted.userid)
 
       setFormData({
+        userid:id,
         name: '',
         phoneno: '',
         email: '',
@@ -90,6 +116,7 @@ const Register = () => {
         re_password: '',
         usertype: '',
         nominee: '',
+        //nomineedate:'',
       })
     } catch (err) {
       setError(err.response.data.message)
@@ -115,11 +142,24 @@ const Register = () => {
                     <CFormInput
                       placeholder="Full Name"
                       autoComplete="full name"
+                      name="userid"
+                      onChange={handleInputChange}
+                      value={formData.userid}
+                    />
+                  </CInputGroup>
+                  <CInputGroup className="mb-3">
+                    <CInputGroupText>
+                      <CIcon icon={cilUser} />
+                    </CInputGroupText>
+                    <CFormInput
+                      placeholder="Full Name"
+                      autoComplete="full name"
                       name="name"
                       onChange={handleInputChange}
                       value={formData.name}
                     />
                   </CInputGroup>
+                  
                   <CInputGroup className="mb-3">
                     <CInputGroupText>
                       <CIcon icon={cilMobile} />
@@ -199,6 +239,7 @@ const Register = () => {
                       <input type="hidden" name="usertype" value="investor" />
                     )}
                   </CInputGroup>
+                  
                   <div className="d-grid">
                     <CButton
                       color="primary"

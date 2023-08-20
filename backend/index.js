@@ -36,11 +36,11 @@ app.post('/login', async (req, res) => {
       return res.status(400).send('Invalid credentials')
     }
     const token = jwt.sign(
-      { usertype: user.usertype, phoneno: user.phoneno, id: user._id },
+      { usertype: user.usertype, phoneno: user.phoneno, id: user._id, userid: user.userid  },
       process.env.JWT_SECRET,
       { expiresIn: '30m' },
     )
-    res.json({ name: user.name, phoneno: user.phoneno, usertype: user.usertype, token })
+    res.json({ name: user.name, phoneno: user.phoneno, usertype: user.usertype, token, userid: user.userid })
   } catch (err) {
     res.status(500).send('Server error')
   }

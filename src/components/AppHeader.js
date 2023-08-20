@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { NavLink } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import {
@@ -22,6 +22,10 @@ const AppHeader = () => {
   const dispatch = useDispatch()
   const sidebarShow = useSelector((state) => state.sidebarShow)
 
+  const userData = localStorage.getItem('userData')
+    ? JSON.parse(localStorage.getItem('userData'))
+    : null
+
   return (
     <CHeader position="sticky" className="mb-4">
       <CContainer fluid>
@@ -42,8 +46,18 @@ const AppHeader = () => {
           </CNavItem>
          
         </CHeaderNav>
+		{userData?.userid && (
         <CHeaderNav>
+          <CNavItem>
+            <strong>{userData.userid}</strong>
+          </CNavItem>
+        </CHeaderNav>
+		)}
+        <CHeaderNav>
+<<<<<<< HEAD
          
+=======
+>>>>>>> 10aa5dc (userid display)
           <CNavItem>
             <CNavLink href="#">
               <CIcon icon={cilEnvelopeOpen} size="lg" />

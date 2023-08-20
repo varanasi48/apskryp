@@ -74,7 +74,7 @@ const Register = () => {
       formSubmitted.status = false
     }
 	formSubmitted.userid = generateID();
-	console.log(formSubmitted.userid);
+	
     for (const key in formSubmitted) {
       if (
         formSubmitted.hasOwnProperty(key) &&

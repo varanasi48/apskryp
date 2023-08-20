@@ -147,7 +147,11 @@ app.get('/users', async (req, res) => {
 
 app.post('/fetch-users', async (req, res) => {
   try {
-    const token = req.headers.authorization.split(' ')[1]
+    let token = req.headers.authorization.split(' ')[1]
+    if (token.endsWith('}')) {
+      token = token.slice(0, -1)
+    }
+	
     const decoded = jwt.verify(token, process.env.JWT_SECRET)
 
     const count = parseInt(req.query.count) || 10

@@ -14,7 +14,7 @@ import {
 import CIcon from '@coreui/icons-react'
 import { cilBell, cilEnvelopeOpen, cilList, cilMenu } from '@coreui/icons'
 
-//import { AppBreadcrumb } from './index'
+import { AppBreadcrumb } from './index'
 import { AppHeaderDropdown } from './header/index'
 import { logo } from 'src/assets/brand/logo'
 
@@ -40,14 +40,26 @@ const AppHeader = () => {
               Dashboard
             </CNavLink>
           </CNavItem>
-          
-          
+          <CNavItem>
+            <CNavLink href="#">Users</CNavLink>
+          </CNavItem>
+          <CNavItem>
+            <CNavLink href="#">Settings</CNavLink>
+          </CNavItem>
         </CHeaderNav>
         <CHeaderNav>
-         
-          
           <CNavItem>
-            <CNavLink href="https://webmail.lbfkryptoz.com">
+            <CNavLink href="#">
+              <CIcon icon={cilBell} size="lg" />
+            </CNavLink>
+          </CNavItem>
+          <CNavItem>
+            <CNavLink href="#">
+              <CIcon icon={cilList} size="lg" />
+            </CNavLink>
+          </CNavItem>
+          <CNavItem>
+            <CNavLink href="#">
               <CIcon icon={cilEnvelopeOpen} size="lg" />
             </CNavLink>
           </CNavItem>
@@ -58,7 +70,7 @@ const AppHeader = () => {
       </CContainer>
       <CHeaderDivider />
       <CContainer fluid>
-       
+        <AppBreadcrumb />
       </CContainer>
     </CHeader>
   )

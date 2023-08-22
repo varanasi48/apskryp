@@ -1,96 +1,99 @@
 import React from 'react'
-import {
-  CCard,
-  CCardBody,
-  CCardHeader,
-  CCol,
-  CRow,
-  CTable,
-  CTableBody,
-  CTableCaption,
-  CTableDataCell,
-  CTableHead,
-  CTableHeaderCell,
-  CTableRow,
-} from '@coreui/react'
+import { CCard, CCardBody, CCardHeader, CCol, CFormSelect, CRow } from '@coreui/react'
 import { DocsExample } from 'src/components'
 
-const Tables = () => {
+const Select = () => {
   return (
     <CRow>
-      
-        
       <CCol xs={12}>
         <CCard className="mb-4">
           <CCardHeader>
-            <strong>Approvals</strong> 
+            <strong>React Select</strong> <small>Default</small>
           </CCardHeader>
           <CCardBody>
-            
-            <DocsExample href="components/table#variants">
-              <CTable>
-                <CTableHead>
-                  <CTableRow>
-                    <CTableHeaderCell scope="col">Class</CTableHeaderCell>
-                    <CTableHeaderCell scope="col">Heading</CTableHeaderCell>
-                    <CTableHeaderCell scope="col">Heading</CTableHeaderCell>
-                  </CTableRow>
-                </CTableHead>
-                <CTableBody>
-                  <CTableRow>
-                    <CTableHeaderCell scope="row">Default</CTableHeaderCell>
-                    <CTableDataCell>Cell</CTableDataCell>
-                    <CTableDataCell>Cell</CTableDataCell>
-                  </CTableRow>
-                  <CTableRow color="primary">
-                    <CTableHeaderCell scope="row">Primary</CTableHeaderCell>
-                    <CTableDataCell>Cell</CTableDataCell>
-                    <CTableDataCell>Cell</CTableDataCell>
-                  </CTableRow>
-                  <CTableRow color="secondary">
-                    <CTableHeaderCell scope="row">Secondary</CTableHeaderCell>
-                    <CTableDataCell>Cell</CTableDataCell>
-                    <CTableDataCell>Cell</CTableDataCell>
-                  </CTableRow>
-                  <CTableRow color="success">
-                    <CTableHeaderCell scope="row">Success</CTableHeaderCell>
-                    <CTableDataCell>Cell</CTableDataCell>
-                    <CTableDataCell>Cell</CTableDataCell>
-                  </CTableRow>
-                  <CTableRow color="danger">
-                    <CTableHeaderCell scope="row">Danger</CTableHeaderCell>
-                    <CTableDataCell>Cell</CTableDataCell>
-                    <CTableDataCell>Cell</CTableDataCell>
-                  </CTableRow>
-                  <CTableRow color="warning">
-                    <CTableHeaderCell scope="row">Warning</CTableHeaderCell>
-                    <CTableDataCell>Cell</CTableDataCell>
-                    <CTableDataCell>Cell</CTableDataCell>
-                  </CTableRow>
-                  <CTableRow color="info">
-                    <CTableHeaderCell scope="row">Info</CTableHeaderCell>
-                    <CTableDataCell>Cell</CTableDataCell>
-                    <CTableDataCell>Cell</CTableDataCell>
-                  </CTableRow>
-                  <CTableRow color="light">
-                    <CTableHeaderCell scope="row">Light</CTableHeaderCell>
-                    <CTableDataCell>Cell</CTableDataCell>
-                    <CTableDataCell>Cell</CTableDataCell>
-                  </CTableRow>
-                  <CTableRow color="dark">
-                    <CTableHeaderCell scope="row">Dark</CTableHeaderCell>
-                    <CTableDataCell>Cell</CTableDataCell>
-                    <CTableDataCell>Cell</CTableDataCell>
-                  </CTableRow>
-                </CTableBody>
-              </CTable>
+            <DocsExample href="forms/select">
+              <CFormSelect aria-label="Default select example">
+                <option>Open this select menu</option>
+                <option value="1">One</option>
+                <option value="2">Two</option>
+                <option value="3">Three</option>
+              </CFormSelect>
             </DocsExample>
           </CCardBody>
         </CCard>
       </CCol>
-      
-          </CRow>
+      <CCol xs={12}>
+        <CCard className="mb-4">
+          <CCardHeader>
+            <strong>React Select</strong> <small>Sizing</small>
+          </CCardHeader>
+          <CCardBody>
+            <p className="text-medium-emphasis small">
+              You may also choose from small and large custom selects to match our similarly sized
+              text inputs.
+            </p>
+            <DocsExample href="forms/select#sizing">
+              <CFormSelect size="lg" className="mb-3" aria-label="Large select example">
+                <option>Open this select menu</option>
+                <option value="1">One</option>
+                <option value="2">Two</option>
+                <option value="3">Three</option>
+              </CFormSelect>
+              <CFormSelect size="sm" className="mb-3" aria-label="Small select example">
+                <option>Open this select menu</option>
+                <option value="1">One</option>
+                <option value="2">Two</option>
+                <option value="3">Three</option>
+              </CFormSelect>
+            </DocsExample>
+            <p className="text-medium-emphasis small">
+              The <code>multiple</code> attribute is also supported:
+            </p>
+            <DocsExample href="forms/select#sizing">
+              <CFormSelect size="lg" multiple aria-label="Multiple select example">
+                <option>Open this select menu</option>
+                <option value="1">One</option>
+                <option value="2">Two</option>
+                <option value="3">Three</option>
+              </CFormSelect>
+            </DocsExample>
+            <p className="text-medium-emphasis small">
+              As is the <code>htmlSize</code> property:
+            </p>
+            <DocsExample href="forms/select#sizing">
+              <CFormSelect size="lg" multiple aria-label="Multiple select example">
+                <option>Open this select menu</option>
+                <option value="1">One</option>
+                <option value="2">Two</option>
+                <option value="3">Three</option>
+              </CFormSelect>
+            </DocsExample>
+          </CCardBody>
+        </CCard>
+      </CCol>
+      <CCol xs={12}>
+        <CCard className="mb-4">
+          <CCardHeader>
+            <strong>React Select</strong> <small>Disabled</small>
+          </CCardHeader>
+          <CCardBody>
+            <p className="text-medium-emphasis small">
+              Add the <code>disabled</code> boolean attribute on a select to give it a grayed out
+              appearance and remove pointer events.
+            </p>
+            <DocsExample href="forms/select#disabled">
+              <CFormSelect aria-label="Disabled select example" disabled>
+                <option>Open this select menu</option>
+                <option value="1">One</option>
+                <option value="2">Two</option>
+                <option value="3">Three</option>
+              </CFormSelect>
+            </DocsExample>
+          </CCardBody>
+        </CCard>
+      </CCol>
+    </CRow>
   )
 }
 
-export default Tables
+export default Select

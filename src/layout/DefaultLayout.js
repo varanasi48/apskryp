@@ -1,7 +1,15 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { AppContent, AppSidebar, AppFooter, AppHeader } from '../components/index'
 
 const DefaultLayout = () => {
+  useEffect(() => {
+    const userData = localStorage.getItem('userData')
+      ? JSON.parse(localStorage.getItem('userData'))
+      : null
+    if (!userData) {
+      window.location.href = '/'
+    }
+  }, [])
   return (
     <div>
       <AppSidebar />

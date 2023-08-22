@@ -9,7 +9,7 @@ import DocsLink from './DocsLink'
 import DocsExample from './DocsExample'
 
 export {
-  AppBreadcrumb,
+  //AppBreadcrumb,
   AppContent,
   AppFooter,
   AppHeader,

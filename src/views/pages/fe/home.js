@@ -17,15 +17,11 @@ const Home = () => {
           </span>
           <div className="content__glance">
             <div className="content__glance__item">
-              <h3>3200 Investors </h3>
-              <span>Our reliability and commitment has attracted 3200 investors even before we launcht he project</span>
+              <a href='/#/about'><h3>Start the amazing journey  </h3></a>
+              
             </div>
 
-            <div className="content__glance__item">
-              <h3>200K</h3>
-              <span>Lines of code created to deliver this to you.</span>
             </div>
-          </div>
         </div>
       </div>
       <Footer />

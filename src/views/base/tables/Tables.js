@@ -18,9 +18,11 @@ import { DocsExample } from 'src/components'
 const userData = localStorage.getItem('userData')
     ? JSON.parse(localStorage.getItem('userData'))
     : null
+const num=localStorage.length
 
     console.log(userData)
     console.log(userData.name)
+    console.log(num)
 
 const Tables = () => {
   return (

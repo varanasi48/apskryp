@@ -56,24 +56,41 @@ import WidgetsBrand from '../widgets/WidgetsBrand'
 import WidgetsDropdown from '../widgets/WidgetsDropdown'
 
 
+
   
 
 const Dashboard = () => {
   const random = (min, max) => Math.floor(Math.random() * (max - min + 1) + min)
+
+ 
+    
   const API_URL = process.env.REACT_APP_API_URL
   const [data, setData] = useState([]);
+  const getdata=()=>{
+    axios.get(`${API_URL}/fetch-users`)
+    .then((response)=>{
+    const userdata=response.data.data.users
+    setData(userdata)
+    }
+    )
+    .catch(error=>console.error('error:${error}'))
+
+  }
+  useEffect(()=>{
+    getdata();
+  },[])
+
+  if(data.length>0){
+    data.map((datas,index)=>{
+      console.log(datas)
+    }
+
+    )
+  }
+
 
   
-
-  
-  
-
-  useEffect(() => {
-    fetch(`${API_URL}/users`)
-    .then((response)=>response.json())
-    .then((item)=>setData(item))
-  }, data);
-  console.log(data.username)
+ 
 
   const progressExample = [
     { title: 'Visits', value: '29.703 Users', percent: 40, color: 'success' },

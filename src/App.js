@@ -16,6 +16,7 @@ const Login = React.lazy(() => import('./views/pages/login/Login'))
 const Logout = React.lazy(() => import('./views/pages/login/Logout'))
 const Loginsamp = React.lazy(() => import('./views/pages/login/loginsamp'))
 const Home = React.lazy(() => import('./views/pages/fe/home'))
+const About = React.lazy(() => import('./views/pages/fe/about'))
 const Plans = React.lazy(() => import('./views/pages/fe/plans'))
 const Teams = React.lazy(() => import('./views/pages/fe/teams'))
 const Contact = React.lazy(() => import('./views/pages/fe/contact'))
@@ -36,6 +37,7 @@ class App extends Component {
             <Route exact path="/404" name="Page 404" element={<Page404 />} />
             <Route exact path="/500" name="Page 500" element={<Page500 />} />
             <Route path="/" name="Home" element={<Home />} />
+            <Route path="/about" name="Home" element={<About />} />
             <Route path="/plans" name="Home" element={<Plans />} />
             <Route path="/teams" name="Home" element={<Teams />} />
             <Route path="/contact-us" name="Home" element={<Contact />} />

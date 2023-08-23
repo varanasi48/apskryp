@@ -46,21 +46,18 @@ const AppHeader = () => {
           </CNavItem>
          
         </CHeaderNav>
-		{userData?.userid && (
+		
         <CHeaderNav>
           <CNavItem>
             <strong>{userData.userid}</strong>
           </CNavItem>
         </CHeaderNav>
-		)}
+		
         <CHeaderNav>
-<<<<<<< HEAD
-         
-=======
->>>>>>> 10aa5dc (userid display)
           <CNavItem>
             <CNavLink href="#">
               <CIcon icon={cilEnvelopeOpen} size="lg" />
+              <strong>{userData.name}</strong>
             </CNavLink>
           </CNavItem>
         </CHeaderNav>

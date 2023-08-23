@@ -1,4 +1,5 @@
-import React from 'react'
+import React ,{ useState,useEffect }from 'react'
+import axios from "axios"
 
 import {
   CAvatar,
@@ -54,8 +55,25 @@ import avatar6 from 'src/assets/images/avatars/6.jpg'
 import WidgetsBrand from '../widgets/WidgetsBrand'
 import WidgetsDropdown from '../widgets/WidgetsDropdown'
 
+
+  
+
 const Dashboard = () => {
   const random = (min, max) => Math.floor(Math.random() * (max - min + 1) + min)
+  const API_URL = process.env.REACT_APP_API_URL
+  const [data, setData] = useState([]);
+
+  
+
+  
+  
+
+  useEffect(() => {
+    fetch(`${API_URL}/users`)
+    .then((response)=>response.json())
+    .then((item)=>setData(item))
+  }, data);
+  console.log(data.username)
 
   const progressExample = [
     { title: 'Visits', value: '29.703 Users', percent: 40, color: 'success' },

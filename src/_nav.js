@@ -72,7 +72,7 @@ const _nav = [
       {
         component: CNavItem,
         name: 'Register',
-        to: '/forms/form-control',
+        to: '/register',
       },
       {
         component: CNavItem,

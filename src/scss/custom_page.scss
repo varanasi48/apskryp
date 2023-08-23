@@ -62,7 +62,7 @@
 }
 
 .plans {
-  background-color: #b5b76b;
+  background-color: #070115;
   padding-top: 24px;
   padding-bottom: 24px;
   .logo {
@@ -87,11 +87,13 @@
       flex-direction: row;
       justify-content: space-between;
       margin-bottom: 90px;
+      box-shadow:10px;
+      box-shadow: #a9e160;
       &_detail {
         width: 462px;
         height: 285px;
         border-radius: 30px;
-        background: #d9d9d9;
+        background: #4e0303;
         position: relative;
         &_join {
           position: absolute;

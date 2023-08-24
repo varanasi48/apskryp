@@ -25,7 +25,16 @@ const Login = () => {
       localStorage.setItem('userData', JSON.stringify(response.data))
       axios.defaults.headers.common['Authorization'] = `Bearer ${response.data.token}`
       setUser(response.data)
-	  navigate(`/dashboard`);
+	  
+    console.log(response.data.usertype)
+    if(response.data.usertype=='admin'){
+      navigate(`/dashboard`);
+      
+    }
+    else{
+      navigate(`/dashboard`);
+
+    }
     } catch (err) {
       // Handle the error by updating the error state
       setError(err.response.data)

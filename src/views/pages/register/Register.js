@@ -15,7 +15,8 @@ import {
 } from '@coreui/react'
 import CIcon from '@coreui/icons-react'
 import axios from 'axios'
-import { cilLockLocked, cilMobile, cilUser } from '@coreui/icons'
+import { cilLockLocked, cilMobile, cilMoney, cilUser } from '@coreui/icons'
+import { number } from 'prop-types'
 const { Date, Math } = require('core-js')
 
 
@@ -50,6 +51,10 @@ const Register = () => {
     re_password: '',
     usertype: '',
     nominee: '',
+    plan:'',
+   
+    
+   
     //nomineedate:'',
   })
 
@@ -74,6 +79,7 @@ const Register = () => {
       formSubmitted.status = false
     }
 	formSubmitted.userid = generateID();
+  
 	
     for (const key in formSubmitted) {
       if (
@@ -98,7 +104,7 @@ const Register = () => {
         },
       })
 
-      setMessage('Registration successful for ' + formSubmitted.userid)
+      setMessage('Registration successful for ' + formSubmitted.userid+formSubmitted.plan)
 
       setFormData({
         name: '',
@@ -108,8 +114,11 @@ const Register = () => {
         re_password: '',
         usertype: '',
         nominee: '',
+        plan:'',
+        
         //nomineedate:'',
       })
+      console.log(formData)
     } catch (err) {
       setError(err.response.data.message)
     }
@@ -218,8 +227,21 @@ const Register = () => {
                     {userData && userData.usertype === 'branch_manager' && (
                       <input type="hidden" name="usertype" value="investor" />
                     )}
-                  </CInputGroup>
-
+                   
+                  </CInputGroup>  
+                  <CInputGroup className="mb-3">
+                    <CInputGroupText>
+                      <CIcon icon={cilMobile} />
+                    </CInputGroupText>
+                    <CFormInput
+                      placeholder="Plan"
+                      autoComplete="mobile"
+                      name="plan"
+                      onChange={handleInputChange}
+                      value={formData.plan}
+                    />
+                  </CInputGroup>         
+                 
                   <div className="d-grid">
                     <CButton
                       color="primary"

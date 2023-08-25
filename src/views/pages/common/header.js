@@ -23,6 +23,7 @@ import OutlinedInput from '@mui/material/OutlinedInput';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
+import { Navigate } from 'react-router-dom';
 
 
 
@@ -99,7 +100,9 @@ const options_district_TG = [
 
 ];
 
-
+function go(){
+  Navigate('/#/login')
+}
 
 const Header = () => {
 
@@ -204,7 +207,7 @@ const Header = () => {
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose}>Cancel</Button>
-          <Button onClick={handleClose}>Ok</Button>
+          <Button href='/#/login'>Ok</Button>
         </DialogActions>
       </Dialog>
     </div>

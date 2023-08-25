@@ -52,7 +52,7 @@ const Register = () => {
     usertype: '',
     nominee: '',
     plan:'',
-   
+    investment:number,
     
    
     //nomineedate:'',
@@ -79,7 +79,6 @@ const Register = () => {
       formSubmitted.status = false
     }
 	formSubmitted.userid = generateID();
-  
 	
     for (const key in formSubmitted) {
       if (
@@ -104,7 +103,7 @@ const Register = () => {
         },
       })
 
-      setMessage('Registration successful for ' + formSubmitted.userid+formSubmitted.plan)
+      setMessage('Registration successful for ' + formSubmitted.userid)
 
       setFormData({
         name: '',
@@ -115,7 +114,7 @@ const Register = () => {
         usertype: '',
         nominee: '',
         plan:'',
-        
+        investmment:'',
         //nomineedate:'',
       })
       console.log(formData)
@@ -228,20 +227,45 @@ const Register = () => {
                       <input type="hidden" name="usertype" value="investor" />
                     )}
                    
-                  </CInputGroup>  
-                  <CInputGroup className="mb-3">
-                    <CInputGroupText>
-                      <CIcon icon={cilMobile} />
-                    </CInputGroupText>
-                    <CFormInput
-                      placeholder="Plan"
-                      autoComplete="mobile"
-                      name="plan"
-                      onChange={handleInputChange}
-                      value={formData.plan}
-                    />
-                  </CInputGroup>         
-                 
+                  </CInputGroup>
+                  <CInputGroup className="mb-4">
+                    {formData && formData.usertype === 'investor' && (
+                      <CFormSelect
+                        size="lg"
+                        className="mb-3"
+                        aria-label="Large select example"
+                        name="plan"
+                        onChange={handleInputChange}
+                        required
+                      >
+                        <option value="">Select Plan</option>
+                        <option value="Plan-A">Plan-A</option>
+                        <option value="Plan-B">Plan-b</option>
+                        
+                      </CFormSelect>
+                    )}
+                                       
+                  </CInputGroup>
+                  
+                    {formData && formData.usertype === 'investor' && (
+                       <CInputGroup className="mb-4">
+                       <CInputGroupText>
+                         <CIcon icon={cilMoney} />
+                       </CInputGroupText>
+                       <CFormInput
+                         type="number"
+                         placeholder="Enter Investment Amount"
+                         autoComplete="Investment"
+                         name="investment"
+                         onChange={handleInputChange}
+                         value={formData.investmment}
+                       />
+                     </CInputGroup>
+                     
+                    )}
+                                       
+                  
+
                   <div className="d-grid">
                     <CButton
                       color="primary"

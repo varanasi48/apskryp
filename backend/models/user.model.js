@@ -1,5 +1,5 @@
 const mongoose = require('mongoose')
-const { string } = require('prop-types')
+
 const Schema = mongoose.Schema
 
 const UserSchema = new Schema(
@@ -13,10 +13,12 @@ const UserSchema = new Schema(
 	status: { type: Boolean, default: false },
     usertype: {
       type: String,
-      enum: ['investor', 'branch_manager', 'admin'],
-      
+      enum: ['investor', 'branch_manager', 'admin'],       
       required: true,
     },
+   
+     plan:String,
+
     registeredBy: {
       type: Schema.Types.ObjectId,
       ref: 'User',

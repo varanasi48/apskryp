@@ -11,10 +11,7 @@ dotenv.config()
 const User = db.User
 
 const { Date, Math } = require("core-js");
-
-
-
-
+const { Navigate } = require('react-router-dom')
 
 
 const app = express()
@@ -40,7 +37,7 @@ app.post('/login', async (req, res) => {
       process.env.JWT_SECRET,
       { expiresIn: '30m' },
     )
-    res.json({ name: user.name, phoneno: user.phoneno, usertype: user.usertype, token, userid: user.userid })
+    res.json({ name: user.name, phoneno: user.phoneno, usertype: user.usertype, token, userid: user.userid})
   } catch (err) {
     res.status(500).send('Server error')
   }
@@ -62,6 +59,7 @@ app.get('/refreshToken', (req, res) => {
 })
 
 app.post('/register', async (req, res) => {
+  console.log(req.body)
   try {
     let token = req.headers.authorization.split(' ')[1]
     if (token.endsWith('}')) {
@@ -75,6 +73,7 @@ app.post('/register', async (req, res) => {
 
     const salt = await bcrypt.genSalt(10)
     const hashedPassword = await bcrypt.hash(req.body.password, salt)
+    
 
     const newUser = new User({
       userid:req.body.userid,
@@ -83,13 +82,21 @@ app.post('/register', async (req, res) => {
       email: req.body.email,
       password: hashedPassword,
       usertype: req.body.usertype,
+      
+      
+      
       nominee: req.body.nominee,
+      
+
       status: req.body.status,
+
       registeredBy: decoded.id,
     })
 
     await newUser.save()
     res.status(201).send('User registered successfully.')
+    Navigate('http://localhost:3000/#/upload')
+    
   } catch (err) {
     if (err.name === 'TokenExpiredError' || err.name === 'JsonWebTokenError') {
       return res.status(401).send('Invalid token')

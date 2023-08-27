@@ -15,7 +15,9 @@ import {
 } from '@coreui/react'
 import { DocsExample } from 'src/components'
 
+
 const Navs = () => {
+
   return (
     <CRow>
       <CCol xs={12}>

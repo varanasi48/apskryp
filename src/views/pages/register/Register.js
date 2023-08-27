@@ -17,6 +17,7 @@ import CIcon from '@coreui/icons-react'
 import axios from 'axios'
 import { cilLockLocked, cilMobile, cilMoney, cilUser } from '@coreui/icons'
 import { number } from 'prop-types'
+import { Navigate } from 'react-router-dom'
 const { Date, Math } = require('core-js')
 
 
@@ -51,9 +52,7 @@ const Register = () => {
     re_password: '',
     usertype: '',
     nominee: '',
-    plan:'',
-    investment:number,
-    
+     
    
     //nomineedate:'',
   })
@@ -104,6 +103,7 @@ const Register = () => {
       })
 
       setMessage('Registration successful for ' + formSubmitted.userid)
+      
 
       setFormData({
         name: '',
@@ -113,11 +113,11 @@ const Register = () => {
         re_password: '',
         usertype: '',
         nominee: '',
-        plan:'',
-        investmment:'',
+       
         //nomineedate:'',
       })
       console.log(formData)
+      
     } catch (err) {
       setError(err.response.data.message)
     }
@@ -228,41 +228,7 @@ const Register = () => {
                     )}
                    
                   </CInputGroup>
-                  <CInputGroup className="mb-4">
-                    {formData && formData.usertype === 'investor' && (
-                      <CFormSelect
-                        size="lg"
-                        className="mb-3"
-                        aria-label="Large select example"
-                        name="plan"
-                        onChange={handleInputChange}
-                        required
-                      >
-                        <option value="">Select Plan</option>
-                        <option value="Plan-A">Plan-A</option>
-                        <option value="Plan-B">Plan-b</option>
-                        
-                      </CFormSelect>
-                    )}
-                                       
-                  </CInputGroup>
                   
-                    {formData && formData.usertype === 'investor' && (
-                       <CInputGroup className="mb-4">
-                       <CInputGroupText>
-                         <CIcon icon={cilMoney} />
-                       </CInputGroupText>
-                       <CFormInput
-                         type="number"
-                         placeholder="Enter Investment Amount"
-                         autoComplete="Investment"
-                         name="investment"
-                         onChange={handleInputChange}
-                         value={formData.investmment}
-                       />
-                     </CInputGroup>
-                     
-                    )}
                                        
                   
 

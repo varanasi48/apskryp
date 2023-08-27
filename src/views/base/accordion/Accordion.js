@@ -1,4 +1,4 @@
-import React from 'react'
+import React,{useState} from 'react'
 import {
   CCard,
   CCardBody,
@@ -14,15 +14,43 @@ import {
   CTableRow,
 } from '@coreui/react'
 import { DocsExample } from 'src/components'
+import axios from 'axios'
 
-const userData = localStorage.getItem('userData')
+
+const Tables = () => {
+  const userData = localStorage.getItem('userData')
     ? JSON.parse(localStorage.getItem('userData'))
     : null
 
     console.log(userData)
     console.log(userData.name)
+    const API_URL = process.env.REACT_APP_API_URL
 
-const Tables = () => {
+  const [error, setError] = useState('')
+    const fetchUserData = async () => {
+      try {
+        // Send data to the register API with JWT token in header
+        const data = await axios.post(
+          `${API_URL}/fetch-users`,
+          {},
+          {
+            headers: {
+              Authorization: `Bearer ${userData.token}}`,
+            },
+          },
+        )
+  
+        console.log(data, 'data')
+        console.log(userData, 'USERdata')
+      } catch (err) {
+        setError(err.response.data.message)
+      }
+    }
+  //   useEffect(() => {
+  //     fetchUserData()
+  //   }, [])
+    fetchUserData()
+
   return (
     <CRow>
       <CCol xs={12}>

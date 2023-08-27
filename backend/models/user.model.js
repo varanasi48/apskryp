@@ -10,14 +10,14 @@ const UserSchema = new Schema(
     email: { type: String, unique: true },
     password: String,
     nominee: String,
-	status: { type: Boolean, default: false },
+	  status: { type: Boolean, default: false },
     usertype: {
       type: String,
       enum: ['investor', 'branch_manager', 'admin'],       
       required: true,
     },
    
-     plan:String,
+   //plan:String,
 
     registeredBy: {
       type: Schema.Types.ObjectId,

@@ -64,6 +64,16 @@ const _nav = [
         name: 'Payments',
         to: '/base/tables',
       },
+      {
+        component: CNavItem,
+        name: 'Uploads',
+        to: '/Upload',
+      },
+      {
+        component: CNavItem,
+        name: 'verify',
+        to: '/verify',
+      },
       
     ],
   },

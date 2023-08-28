@@ -44,6 +44,7 @@ const Register = () => {
 
   const [error, setError] = useState('')
   const [message, setMessage] = useState('')
+  
   const [formData, setFormData] = useState({
     name: '',
     phoneno: '',
@@ -107,7 +108,7 @@ const Register = () => {
 
       setMessage('Registration successful for ' + formSubmitted.userid)
      
-
+      {formData && formData.usertype !== 'investor' && (
       setFormData({
         name: '',
         phoneno: '',
@@ -116,11 +117,31 @@ const Register = () => {
         re_password: '',
         usertype: '',
         nominee: '',
-        plan:'',
-        investment:'',
+        plan:'na',
+        investment:0,
+      })
+
+      )
+      }
+
+      {formData && formData.usertype === 'investor' && (
+        setFormData({
+          name: '',
+          phoneno: '',
+          email: '',
+          password: '',
+          re_password: '',
+          usertype: '',
+          nominee: '',
+          
+          
+        })
+  
+        )
+        }
        
         //nomineedate:'',
-      })
+      
       console.log(formData)
       
     } catch (err) {

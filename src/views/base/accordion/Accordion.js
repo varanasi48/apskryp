@@ -27,6 +27,7 @@ const Tables = () => {
     const API_URL = process.env.REACT_APP_API_URL
 
   const [error, setError] = useState('')
+  const[data,setdata]=useState([])
     const fetchUserData = async () => {
       try {
         // Send data to the register API with JWT token in header
@@ -40,8 +41,8 @@ const Tables = () => {
           },
         )
   
-        console.log(data, 'data')
-        console.log(userData, 'USERdata')
+        setdata(data.data)
+        //console.log(userData, 'USERdata')
       } catch (err) {
         setError(err.response.data.message)
       }
@@ -81,29 +82,21 @@ const Tables = () => {
                   </CTableRow>
                 </CTableHead>
                 <CTableBody>
-                  <CTableRow>
-                    <CTableHeaderCell scope="row">1</CTableHeaderCell>
-                    <CTableDataCell>Mark</CTableDataCell>
-                    <CTableDataCell>Otto</CTableDataCell>
-                    <CTableDataCell>@mdo</CTableDataCell>
-                    <CTableDataCell>@mdo</CTableDataCell>
-                    <CTableDataCell>@mdo</CTableDataCell>
+                {data.map((e)=>{
+                  if(e.usertype=="branch_manager"){
+      return(
+                    <CTableRow key={e._id}>
+                   
+                    <CTableHeaderCell scope="row">{e.userid}</CTableHeaderCell>
+                    <CTableDataCell>{e.name}</CTableDataCell>
+                    <CTableDataCell>{e.usertype}</CTableDataCell>
+                    <CTableDataCell>{e.status}</CTableDataCell>
+                    
                   </CTableRow>
-                  <CTableRow>
-                    <CTableHeaderCell scope="row">2</CTableHeaderCell>
-                    <CTableDataCell>Jacob</CTableDataCell>
-                    <CTableDataCell>Thornton</CTableDataCell>
-                    <CTableDataCell>@fat</CTableDataCell>
-                    <CTableDataCell>@mdo</CTableDataCell>
-                    <CTableDataCell>@mdo</CTableDataCell>
-                  </CTableRow>
-                  <CTableRow>
-                    <CTableHeaderCell scope="row">3</CTableHeaderCell>
-                    <CTableDataCell colSpan="2">Larry the Bird</CTableDataCell>
-                    <CTableDataCell>@twitter</CTableDataCell>
-                    <CTableDataCell>@mdo</CTableDataCell>
-                    <CTableDataCell>@mdo</CTableDataCell>
-                  </CTableRow>
+                  )
+      }
+                })}
+                
                 </CTableBody>
               </CTable>
           

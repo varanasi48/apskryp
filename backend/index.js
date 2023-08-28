@@ -82,8 +82,10 @@ app.post('/register', async (req, res) => {
       email: req.body.email,
       password: hashedPassword,
       usertype: req.body.usertype,
+      plan:req.body.plan,
+      investment:req.body.investment,
       
-      
+        
       
       nominee: req.body.nominee,
       
@@ -95,7 +97,7 @@ app.post('/register', async (req, res) => {
 
     await newUser.save()
     res.status(201).send('User registered successfully.')
-    Navigate('http://localhost:3000/#/upload')
+    
     
   } catch (err) {
     if (err.name === 'TokenExpiredError' || err.name === 'JsonWebTokenError') {

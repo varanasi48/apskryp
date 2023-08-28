@@ -22,7 +22,7 @@ const About = React.lazy(() => import('./views/pages/fe/about'))
 const Plans = React.lazy(() => import('./views/pages/fe/plans'))
 const Teams = React.lazy(() => import('./views/pages/fe/teams'))
 const Contact = React.lazy(() => import('./views/pages/fe/contact'))
-const Select = React.lazy(() => import('./views/pages/common/selectop'))
+//const Select = React.lazy(() => import('./views/pages/common/selectop'))
 
 const Page404 = React.lazy(() => import('./views/pages/page404/Page404'))
 const Page500 = React.lazy(() => import('./views/pages/page500/Page500'))
@@ -43,7 +43,7 @@ class App extends Component {
             <Route path="/about" name="Home" element={<About />} />
             <Route path="/plans" name="Home" element={<Plans />} />
             <Route path="/teams" name="Home" element={<Teams />} />
-            <Route path="/selectop" name="Home" element={<Select />} />
+            
             
             
             <Route path="/contact-us" name="Home" element={<Contact />} />

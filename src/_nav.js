@@ -19,11 +19,6 @@ import {
 import { CNavGroup, CNavItem, CNavTitle } from '@coreui/react'
 import axios from 'axios'
 
-const userData = localStorage.getItem('userData')
-? JSON.parse(localStorage.getItem('userData'))
-: null
-const type=userData.usertype
-
 const _nav = [
 
   {

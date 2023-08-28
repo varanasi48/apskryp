@@ -11,6 +11,9 @@ const UserSchema = new Schema(
     password: String,
     nominee: String,
 	  status: { type: Boolean, default: false },
+    plan:String,
+    investment:Number,
+    
     usertype: {
       type: String,
       enum: ['investor', 'branch_manager', 'admin'],       

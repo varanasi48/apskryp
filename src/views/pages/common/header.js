@@ -10,8 +10,8 @@ import {
   MDBModalFooter,
 } from 'mdb-react-ui-kit';
 
-import BaseSelect from "react-select";
-import FixRequiredSelect from './required';
+
+
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';

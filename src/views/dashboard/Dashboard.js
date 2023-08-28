@@ -56,7 +56,9 @@ import WidgetsBrand from '../widgets/WidgetsBrand'
 import WidgetsDropdown from '../widgets/WidgetsDropdown'
 
 
-
+const userData = localStorage.getItem('userData')
+    ? JSON.parse(localStorage.getItem('userData'))
+    : null
   
 
 const Dashboard = () => {
@@ -66,37 +68,62 @@ const Dashboard = () => {
     
   const API_URL = process.env.REACT_APP_API_URL
   const [data, setData] = useState([]);
-  const getdata=()=>{
-    axios.get(`${API_URL}/fetch-users`)
-    .then((response)=>{
-    const userdata=response.data.data.users
-    setData(userdata)
+  const [error, setError] = useState('')
+  const fetchUserData = async () => {
+    try {
+      // Send data to the register API with JWT token in header
+      const data = await axios.post(
+        `${API_URL}/fetch-users`,
+        {},
+        {
+          headers: {
+            Authorization: `Bearer ${userData.token}}`,
+          },
+        },
+      )
+       setData(data.data)
+      //return data.data
+      
+      
+      } catch (err) {
+      setError(err.response.data.message)
     }
-    )
-    .catch(error=>console.error('error:${error}'))
+   
 
   }
-  useEffect(()=>{
+  
+   
+    /*useEffect(() => {
+      
+     
+     
+
+      
+
+   }, [])*/
+
+   
+  /*useEffect(()=>{
     getdata();
-  },[])
+  },[])*/
+  fetchUserData()
+  
 
-  if(data.length>0){
-    data.map((datas,index)=>{
-      console.log(datas)
-    }
+ console.log(data.length)
+ if(data.usertype=="investor"){
+  console.log("investors:"+data.length)
 
-    )
-  }
+ }
 
 
   
  
 
   const progressExample = [
-    { title: 'Visits', value: '29.703 Users', percent: 40, color: 'success' },
+    { title: 'Users', value: data.length, percent: 40, color: 'success' },
     { title: 'Unique', value: '24.093 Users', percent: 20, color: 'info' },
     { title: 'Pageviews', value: '78.706 Views', percent: 60, color: 'warning' },
-    { title: 'New Users', value: '22.123 Users', percent: 80, color: 'danger' },
+    { title: 'Investors', value: '22.123 Users', percent: 80, color: 'danger' },
     { title: 'Bounce Rate', value: 'Average Rate', percent: 40.15, color: 'primary' },
   ]
 

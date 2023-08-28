@@ -74,26 +74,45 @@ app.post('/register', async (req, res) => {
     const salt = await bcrypt.genSalt(10)
     const hashedPassword = await bcrypt.hash(req.body.password, salt)
     
-
-    const newUser = new User({
-      userid:req.body.userid,
-      name: req.body.name,
-      phoneno: req.body.phoneno,
-      email: req.body.email,
-      password: hashedPassword,
-      usertype: req.body.usertype,
-      plan:req.body.plan,
-      investment:req.body.investment,
-      
+    if (!['branch_manager', 'admin'].includes(decoded.usertype)) {
+      const newUser = new User({
+        userid:req.body.userid,
+        name: req.body.name,
+        phoneno: req.body.phoneno,
+        email: req.body.email,
+        password: hashedPassword,
+        usertype: req.body.usertype,
+        plan:req.body.plan,
+        investment:req.body.investment,
         
+          
+        
+        nominee: req.body.nominee,
+        
+  
+        status: req.body.status,
+  
+        registeredBy: decoded.id,
+      })
       
-      nominee: req.body.nominee,
-      
-
-      status: req.body.status,
-
-      registeredBy: decoded.id,
-    })
+    }
+    else{
+      const newUser = new User({
+        userid:req.body.userid,
+        name: req.body.name,
+        phoneno: req.body.phoneno,
+        email: req.body.email,
+        password: hashedPassword,
+        usertype: req.body.usertype,           
+                  
+        nominee: req.body.nominee,       
+  
+        status: req.body.status,
+  
+        registeredBy: decoded.id,
+      })
+    }
+   
 
     await newUser.save()
     res.status(201).send('User registered successfully.')
@@ -165,9 +184,9 @@ app.post('/fetch-users', async (req, res) => {
 
     const count = parseInt(req.query.count) || 10
     const start = parseInt(req.query.start) || 0
-    let filterConditions = req.body || {}
+    //let filterConditions = req.body || {}
 
-    switch (decoded.usertype) {
+   /* switch (decoded.usertype) {
       case 'admin':
         filterConditions.usertype = { $ne: 'admin' }
         break
@@ -176,9 +195,9 @@ app.post('/fetch-users', async (req, res) => {
         break
       default:
         return res.status(401).send('Unauthorized user type.')
-    }
+    }*/
 
-    const users = await User.find(filterConditions).skip(start).limit(count).sort('createdAt')
+    const users = await User.find().skip(start)
 
     res.status(200).json(users)
   } catch (error) {

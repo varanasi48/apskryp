@@ -11,8 +11,8 @@ const UserSchema = new Schema(
     password: String,
     nominee: String,
 	  status: { type: Boolean, default: false },
-    plan:{type:String,default:""},
-    investment:{type:Number,default:0},
+    plan:String,
+    investment:String,
     
     usertype: {
       type: String,

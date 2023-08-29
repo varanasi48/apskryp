@@ -14,14 +14,22 @@ import 'simplebar/dist/simplebar.min.css'
 
 
 
-      
+
+  import trump from '../_nav'
+  import jump from '../_navi'
+
+  const userData = localStorage.getItem('userData')
+    ? JSON.parse(localStorage.getItem('userData'))
+    : null
+     
 // sidebar nav config
-import navigation from '../_nav'
+
 
 const AppSidebar = () => {
   const dispatch = useDispatch()
   const unfoldable = useSelector((state) => state.sidebarUnfoldable)
   const sidebarShow = useSelector((state) => state.sidebarShow)
+  //console.log(typeof(navigation._nav))
 
   return (
     <CSidebar
@@ -38,7 +46,9 @@ const AppSidebar = () => {
       </CSidebarBrand>
       <CSidebarNav>
         <SimpleBar>
-          <AppSidebarNav items={navigation} />
+          {userData.usertype==="investor" ? <AppSidebarNav items={jump} />:<AppSidebarNav items={trump} />}
+          
+          
         </SimpleBar>
       </CSidebarNav>
       <CSidebarToggler

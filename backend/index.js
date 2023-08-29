@@ -37,7 +37,7 @@ app.post('/login', async (req, res) => {
       process.env.JWT_SECRET,
       { expiresIn: '30m' },
     )
-    res.json({ name: user.name, phoneno: user.phoneno, usertype: user.usertype, token, userid: user.userid})
+    res.json({ name: user.name, phoneno: user.phoneno, usertype: user.usertype, token, userid: user.userid,plan:user.plan,investment:user.investment})
   } catch (err) {
     res.status(500).send('Server error')
   }
@@ -74,7 +74,7 @@ app.post('/register', async (req, res) => {
     const salt = await bcrypt.genSalt(10)
     const hashedPassword = await bcrypt.hash(req.body.password, salt)
     
-    if (!['branch_manager', 'admin'].includes(decoded.usertype)) {
+   
       const newUser = new User({
         userid:req.body.userid,
         name: req.body.name,
@@ -95,23 +95,8 @@ app.post('/register', async (req, res) => {
         registeredBy: decoded.id,
       })
       
-    }
-    else{
-      const newUser = new User({
-        userid:req.body.userid,
-        name: req.body.name,
-        phoneno: req.body.phoneno,
-        email: req.body.email,
-        password: hashedPassword,
-        usertype: req.body.usertype,           
-                  
-        nominee: req.body.nominee,       
-  
-        status: req.body.status,
-  
-        registeredBy: decoded.id,
-      })
-    }
+    
+    
    
 
     await newUser.save()

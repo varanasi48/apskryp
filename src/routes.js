@@ -54,6 +54,13 @@ const Upload=React.lazy(() => import('./views/Upload/Upload'))
 const Verify=React.lazy(() => import('./views/Upload/Verify'))
 const Register = React.lazy(() => import('./views/pages/register/Register'))
 
+//Investor Links
+const Investment = React.lazy(() => import('./views/investor/Investment'))
+const Revenue = React.lazy(() => import('./views/investor/Revenue'))
+
+
+
+
 
 const routes = [
   { path: '/', exact: true, name: 'Home' },
@@ -102,7 +109,13 @@ const routes = [
   { path: '/widgets', name: 'Widgets', element: Widgets },
   { path:'/upload', name:'upload', element:Upload  },
   { path:'/verify', name:'verify' ,element:Verify },
- { path:'/register',name:'Register Page',element:Register }
+ { path:'/register',name:'Register Page',element:Register },
+
+ //Investor
+ { path:'/investor',name:'Investor Page',element:Investment },
+ { path:'/revenue',name:'Investor Page',element:Revenue },
+
+
 ]
 
 export default routes

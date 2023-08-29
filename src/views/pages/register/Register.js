@@ -108,23 +108,8 @@ const Register = () => {
 
       setMessage('Registration successful for ' + formSubmitted.userid)
      
-      {formData && formData.usertype !== 'investor' && (
-      setFormData({
-        name: '',
-        phoneno: '',
-        email: '',
-        password: '',
-        re_password: '',
-        usertype: '',
-        nominee: '',
-        plan:'na',
-        investment:0,
-      })
-
-      )
-      }
-
-      {formData && formData.usertype === 'investor' && (
+      
+    
         setFormData({
           name: '',
           phoneno: '',
@@ -133,12 +118,13 @@ const Register = () => {
           re_password: '',
           usertype: '',
           nominee: '',
+          plan:'',
+          investment:'',
           
           
         })
   
-        )
-        }
+       
        
         //nomineedate:'',
       
@@ -275,7 +261,7 @@ const Register = () => {
                   <CInputGroup className="mb-4">
                     {formData && formData.usertype === 'investor' && (
                       <CFormInput
-                      type="number"
+                      type="text"
                       placeholder="Enter Amount"
                       autoComplete="amount"
                       name="investment"

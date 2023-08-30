@@ -69,6 +69,8 @@ const Dashboard = () => {
   const API_URL = process.env.REACT_APP_API_URL
   const [data, setData] = useState([]);
   const [error, setError] = useState('')
+
+  
   const fetchUserData = async () => {
     try {
       // Send data to the register API with JWT token in header

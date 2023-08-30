@@ -56,6 +56,12 @@ const _navi = [
         name: 'Investor Page',
         to: '/investor',
       },
+
+      {
+        component: CNavItem,
+        name: 'Invest',
+        to: '/invest',
+      },
       
       
      

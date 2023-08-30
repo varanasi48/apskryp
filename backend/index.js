@@ -9,6 +9,7 @@ const db = require('./models')
 
 dotenv.config()
 const User = db.User
+const Investment = db.Investment
 
 const { Date, Math } = require("core-js");
 const { Navigate } = require('react-router-dom')
@@ -33,7 +34,7 @@ app.post('/login', async (req, res) => {
       return res.status(400).send('Invalid credentials')
     }
     const token = jwt.sign(
-      { usertype: user.usertype, phoneno: user.phoneno, id: user._id, userid: user.userid  },
+      { usertype: user.usertype, phoneno: user.phoneno, id: user._id, userid: user.userid,plan:user.plan  },
       process.env.JWT_SECRET,
       { expiresIn: '30m' },
     )
@@ -123,6 +124,48 @@ app.post('/register', async (req, res) => {
   }
 })
 
+app.post('/invest', async (req, res) => {
+  console.log(req.body)
+  try {
+    let token = req.headers.authorization.split(' ')[1]
+    if (token.endsWith('}')) {
+      token = token.slice(0, -1)
+    }
+    const decoded = jwt.verify(token, process.env.JWT_SECRET)
+
+   
+
+    const salt = await bcrypt.genSalt(10)
+   
+   
+      const invest = new Investment({
+        userid:req.body.userid,
+        plan:req.body.plan,
+        investment:req.body.investment,
+        status: req.body.status,
+  
+        
+      })
+      
+    
+    
+   
+
+    await invest.save()
+    res.status(201).send('Plan registered successfully.')
+    
+    
+  } catch (err) {
+    if (err.name === 'TokenExpiredError' || err.name === 'JsonWebTokenError') {
+      return res.status(401).send('Invalid token')
+    }
+
+	
+	
+    res.status(500).send('Server error')
+  }
+})
+
 app.get('/users', async (req, res) => {
   try {
     const token = req.headers.authorization.split(' ')[1]
@@ -193,6 +236,43 @@ app.post('/fetch-users', async (req, res) => {
     res.status(500).send('Internal Server Error.')
   }
 })
+
+app.post('/fetch-investment', async (req, res) => {
+  try {
+    let token = req.headers.authorization.split(' ')[1]
+    if (token.endsWith('}')) {
+      token = token.slice(0, -1)
+    }
+	
+    const decoded = jwt.verify(token, process.env.JWT_SECRET)
+
+    const count = parseInt(req.query.count) || 10
+    const start = parseInt(req.query.start) || 0
+    //let filterConditions = req.body || {}
+
+   /* switch (decoded.usertype) {
+      case 'admin':
+        filterConditions.usertype = { $ne: 'admin' }
+        break
+      case 'branch_manager':
+        filterConditions.registeredBy = decoded.id
+        break
+      default:
+        return res.status(401).send('Unauthorized user type.')
+    }*/
+
+    const invest = await Investment.find().skip(start)
+
+    res.status(200).json(invest)
+  } catch (error) {
+    if (error.name === 'TokenExpiredError' || error.name === 'JsonWebTokenError') {
+      return res.status(401).send('Invalid token')
+    }
+    console.error('Error fetching users:', error)
+    res.status(500).send('Internal Server Error.')
+  }
+})
+
 
 const PORT = process.env.PORT || 3001
 

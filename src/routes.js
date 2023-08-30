@@ -57,6 +57,8 @@ const Register = React.lazy(() => import('./views/pages/register/Register'))
 //Investor Links
 const Investment = React.lazy(() => import('./views/investor/Investment'))
 const Revenue = React.lazy(() => import('./views/investor/Revenue'))
+const Invest = React.lazy(() => import('./views/investor/invest'))
+
 
 
 
@@ -114,6 +116,7 @@ const routes = [
  //Investor
  { path:'/investor',name:'Investor Page',element:Investment },
  { path:'/revenue',name:'Investor Page',element:Revenue },
+ { path:'/invest',name:'Investor Page',element:Invest },
 
 
 ]

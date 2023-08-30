@@ -14,6 +14,7 @@ import {
   CTableRow,
 } from '@coreui/react'
 import { DocsExample } from 'src/components'
+import {addMonths, eachMonthOfInterval, format} from 'date-fns'
 
 const userData = localStorage.getItem('userData')
     ? JSON.parse(localStorage.getItem('userData'))
@@ -27,12 +28,31 @@ const userData = localStorage.getItem('userData')
    
     
     
-        while (loop <= ends) {
-           console.log(loop);
+       /* while (loop <= ends) {
+           console.log(format(loop,'MMM/yyyy'));
            let newDate = loop.setMonth(loop.getMonth() + 1);
            loop = new Date(newDate);
-       }
+       }*/
 
+      
+
+       const addmonths=addMonths(start,50)
+       console.log(loop)
+       console.log(addmonths)
+       
+     
+       
+
+       /* for(loop;loop<=ends;loop.setMonth(loop.getMonth()+1)){
+            console.log(loop)
+            
+           }*/
+
+          const result=eachMonthOfInterval({start:loop,end:addmonths})
+          console.log(result)
+          
+
+    
 
   
 
@@ -82,7 +102,14 @@ const Revenue = () => {
                     <CTableHeaderCell scope="col">Plan</CTableHeaderCell>
                     <CTableHeaderCell scope="col">Amount Invested</CTableHeaderCell>
              
-                    <CTableHeaderCell scope="col">month</CTableHeaderCell>
+            
+                    
+               
+                    
+                        <CTableHeaderCell scope="col" key='i'>date[0]</CTableHeaderCell>
+
+                  
+                    
 
                  
                    

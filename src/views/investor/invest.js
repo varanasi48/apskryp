@@ -2,6 +2,7 @@ import { CButton, CCard, CCardBody, CCardHeader, CForm, CFormInput, CFormLabel, 
 import React,{useState} from 'react'
 import FormControl from '../forms/form-control/FormControl'
 import axios from 'axios'
+import { format,addMonths } from 'date-fns'
 
 
 const API_URL = process.env.REACT_APP_API_URL
@@ -85,6 +86,9 @@ const Invest=()=>{
           }
           
 
+              const dates=new Date()
+              const date_a=format(new Date(addMonths(dates,36)),"dd-MMM-yyyy")
+              const date_b=format(new Date(addMonths(dates,12)),"dd-MMM-yyyy")
 
         
 
@@ -153,10 +157,19 @@ const Invest=()=>{
                         <CTableHeaderCell scope="col">{formData.investment}</CTableHeaderCell>
                     </CTableRow>
                             <CTableRow>
-                            <CTableHeaderCell scope="col"><strong>Amount Invested</strong></CTableHeaderCell>
+                            <CTableHeaderCell scope="col"><strong>Maturity Amount</strong></CTableHeaderCell>
                              {formData.plan==='plan-a' ?  
                             <CTableHeaderCell scope="col"><strong>{parseInt(formData.investment*0.1*36)}</strong></CTableHeaderCell>
-                             : <CTableHeaderCell scope="col"><strong>{parseInt(formData.investment*0.1*24)}</strong></CTableHeaderCell>
+                             : <CTableHeaderCell scope="col"><strong>{parseInt(formData.investment*2)}</strong></CTableHeaderCell>
+                             } 
+                            
+                            
+                            </CTableRow>
+                            <CTableRow>
+                            <CTableHeaderCell scope="col"><strong>Maturity Date</strong></CTableHeaderCell>
+                             {formData.plan==='plan-a' ?  
+                            <CTableHeaderCell scope="col"><strong>{date_a}</strong></CTableHeaderCell>
+                             : <CTableHeaderCell scope="col"><strong>{date_b}</strong></CTableHeaderCell>
                              } 
                             
                             

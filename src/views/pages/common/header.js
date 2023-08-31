@@ -127,7 +127,10 @@ const Header = () => {
   data=options_district_TG
  }
 
-  const handleClickOpen = () => {
+ 
+
+  
+   const handleClickOpen = () => {
     setOpen(true);
   };
 
@@ -136,9 +139,6 @@ const Header = () => {
       setOpen(false);
     }
   };
-
-  
-  
   
   return (
    

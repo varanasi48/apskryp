@@ -1,4 +1,4 @@
-import { CCard, CCardBody, CCardHeader, CTable, CTableBody, CTableHeaderCell, CTableRow } from '@coreui/react'
+import { CCard, CCardBody, CCardFooter, CCardHeader, CModal, CModalFooter, CModalHeader,CTableDataCell, CModalTitle,CButton,CModalBody, CTable, CTableBody, CTableHeaderCell, CTableRow, CTableHead } from '@coreui/react'
 import React, {useState} from 'react'
 import axios from 'axios'
 import {addMonths, eachMonthOfInterval, format,parseISO,parse,parseJSON} from 'date-fns'
@@ -21,7 +21,12 @@ const Investment=()=>{
     const [data, setData] = useState([]);
     const [error, setError] = useState('')
     const [sdate,setSdate]=useState('')
-  
+    const [visible, setVisible] = React.useState(false);
+    const [state, setState] = React.useState('');
+    let [ch, setCh] = React.useState([]);
+
+
+    
     
     const fetchUserData = async () => {
       try {
@@ -63,7 +68,8 @@ const Investment=()=>{
     fetchUserData()
     
   
-   console.log(data)
+   
+   
    
 
    
@@ -73,7 +79,7 @@ const Investment=()=>{
                             let maturity_amount='' ;
                             let f_date_f='';
                             if(e.plan=='plan-a'){
-                            maturity_amount=0.1*36*userData.investment
+                            maturity_amount=0.1*36*e.investment
 
                             let d=format(new Date(e.createdAt),'dd-MMM-yy')
                             const f_date=addMonths(new Date(d),36)
@@ -81,14 +87,21 @@ const Investment=()=>{
                             }
                             else
                             {
-                                 maturity_amount=parseInt(0.1*24*userData.investment)
+                                 maturity_amount=parseInt(2*e.investment)
 
                             let d=format(new Date(e.createdAt),'dd-MMM-yy')
-                            const f_date=addMonths(new Date(d),24)
+                            const f_date=addMonths(new Date(d),12)
                              f_date_f=format(new Date(f_date),'dd-MMM-yyyy') 
 
                             } 
+                            let loop = new Date(data.createdAt);
+
+                            setCh = []
+                         
+                            for(loop;loop<=f_date_f;loop.setMonth(loop.getMonth()+1)){
+                             ch.push(loop.toLocaleDateString());
                                  
+                                }
                                                
 
 
@@ -142,11 +155,48 @@ const Investment=()=>{
                     </CTableBody>
                 </CTable>
             </CCardBody>
+            <CCardFooter>
+                <button onClick={() => setVisible(!visible)}>Statement</button>
+            </CCardFooter>
         </CCard>
                                 
                             )
                         })}
-                    
+
+    
+
+<CModal visible={visible} onClose={() => setVisible(false)}>
+      <CModalHeader onClose={() => setVisible(false)}>
+        <CModalTitle>Modal title</CModalTitle>
+      </CModalHeader>
+      
+      <CModalBody>
+      
+        <CTable>
+            
+                <CTableHead color='purple'>
+                <CTableRow>
+                    <CTableHeaderCell scope="col">S.no</CTableHeaderCell>
+                    <CTableHeaderCell scope="col">Plan</CTableHeaderCell>
+                    <CTableHeaderCell scope="col">Amount Invested</CTableHeaderCell>
+                    <CTableHeaderCell scope="col">Months</CTableHeaderCell>
+                   <CTableHeaderCell scope="col">Revenue</CTableHeaderCell>
+                    <CTableHeaderCell scope="col">Status</CTableHeaderCell>
+                  </CTableRow>
+                 </CTableHead>
+                <CTableBody>
+                
+            </CTableBody>
+        </CTable>
+      </CModalBody>
+      <CModalFooter>
+        <CButton color="secondary" onClick={() => setVisible(false)}>
+          Close
+        </CButton>
+        <CButton color="primary">Download</CButton>
+      </CModalFooter>
+    </CModal>
+
                    
         </>
 

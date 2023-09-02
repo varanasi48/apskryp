@@ -1,5 +1,5 @@
 import { CCard, CCardBody, CCardFooter, CCardHeader, CModal, CModalFooter, CModalHeader,CTableDataCell, CModalTitle,CButton,CModalBody, CTable, CTableBody, CTableHeaderCell, CTableRow, CTableHead } from '@coreui/react'
-import React, {useState} from 'react'
+import React, {useState,useEffect} from 'react'
 import axios from 'axios'
 import {addMonths, eachMonthOfInterval, format,parseISO,parse,parseJSON} from 'date-fns'
 import enGB from 'date-fns/locale/en-GB'
@@ -62,10 +62,10 @@ const Investment=()=>{
      }, [])*/
   
      
-    /*useEffect(()=>{
-      getdata();
-    },[])*/
-    fetchUserData()
+    useEffect(()=>{
+      fetchUserData();
+    },[])
+    
     
   
    
@@ -109,7 +109,7 @@ const Investment=()=>{
                            
                             
                             return(
-                                <CCard key={e.userid}>
+                                <CCard key={e._id}>
            <CCardHeader>
             Investment Details
             </CCardHeader> 
@@ -149,7 +149,9 @@ const Investment=()=>{
                     </CTableRow>
                     <CTableRow>
                         <CTableHeaderCell><strong>Status</strong></CTableHeaderCell>
-                        <CTableHeaderCell><strong>{e.status}</strong></CTableHeaderCell>
+                        <CTableHeaderCell><strong>
+                          {e.status===false ? 'Pending': 'Aprooved'}
+                          </strong></CTableHeaderCell>
                     </CTableRow>
                     
                     </CTableBody>

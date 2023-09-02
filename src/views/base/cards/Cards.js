@@ -26,6 +26,7 @@ const API_URL = process.env.REACT_APP_API_URL
 const Tables = () => {
   const [error, setError] = useState('')
   const [info,setinfo]=useState([])
+  
 
 
   const fetchUserData = async () => {
@@ -93,8 +94,7 @@ const Tables = () => {
                     <CTableHeaderCell scope="col">ID</CTableHeaderCell>
                     <CTableHeaderCell scope="col">Name</CTableHeaderCell>
                     <CTableHeaderCell scope="col">Designation</CTableHeaderCell>
-                    <CTableHeaderCell scope="col">District</CTableHeaderCell>
-                    <CTableHeaderCell scope="col">Plan</CTableHeaderCell>
+                   
                     <CTableHeaderCell scope="col">Status</CTableHeaderCell>
                   </CTableRow>
                 </CTableHead>
@@ -109,7 +109,13 @@ const Tables = () => {
                     <CTableHeaderCell scope="row">{e.userid}</CTableHeaderCell>
                     <CTableDataCell>{e.name}</CTableDataCell>
                     <CTableDataCell>{e.usertype}</CTableDataCell>
-                    <CTableDataCell>{e.status}</CTableDataCell>
+                    
+                    <CTableDataCell>
+                    {e.status===false ?
+                    <button >Click to aproove</button> :
+                    "Aprooved"
+                    }
+                    </CTableDataCell>
                     
                   </CTableRow>
                   )

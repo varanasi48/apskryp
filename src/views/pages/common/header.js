@@ -100,9 +100,7 @@ const options_district_TG = [
 
 ];
 
-function go(){
-  Navigate('/#/login')
-}
+
 
 const Header = () => {
 
@@ -116,7 +114,9 @@ const Header = () => {
   let data=''
 
   const handleChange = (event) => {
+
     setState(Number(event.target.value) || '');
+    setDistrict(Number(event.target.value) || '');
   };
  console.log(state)
  if (state==1){
@@ -134,8 +134,10 @@ const Header = () => {
     setOpen(true);
   };
 
+  
+ 
   const handleClose = (event, reason) => {
-    if (reason !== 'backdropClick') {
+    if (reason !== 'backdropClick' ) {
       setOpen(false);
     }
   };
@@ -207,7 +209,7 @@ const Header = () => {
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose}>Cancel</Button>
-          <Button href='/#/login'>Ok</Button>
+          <Button  href='/#/login'>Ok</Button>
         </DialogActions>
       </Dialog>
     </div>

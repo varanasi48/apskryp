@@ -83,6 +83,9 @@ let [investment,setInvestment]=useState('')
        let p=''
        let ch=[]
        let r=''
+       let s=''
+
+       
  
            
          let totla=investment*0.1*36
@@ -96,14 +99,21 @@ let [investment,setInvestment]=useState('')
   //data filter
      //console.log(data)
      let plan=data.filter(e=>{return e.investment===investment})
+     
      if(plan.length==0){ 
       k="Plan Not Selected"
       p="Select plan"
       ch.push("please select")
       r='NOt selected'
+      s="select "
+
+      console.log(plan)
+
+      //
       
      }
      else{
+      {plan[0].status===false ? s='Pending': s='Aprooved'}
       k=plan[0].plan
       p=plan[0].createdAt
 
@@ -163,7 +173,7 @@ if(k=="plan-a"){
      return(
       <>
 
-     <option key={e.index}  value={e.investment}>{e.investment}({e.plan})</option>
+     <option key={e.ObjectId}  value={e.investment}>{e.investment}({e.plan})</option>
       </>
      )
     })}
@@ -206,13 +216,13 @@ if(k=="plan-a"){
                   {ch.map((e)=>{
 
                   return(
-                <CTableRow key={e._id}>
+                <CTableRow key={e.ObjectId}>
                       <CTableDataCell>no</CTableDataCell>   
                       <CTableDataCell>{k}</CTableDataCell>
                       <CTableDataCell>{investment}</CTableDataCell>  
                       <CTableDataCell>{e}</CTableDataCell>  
                       <CTableDataCell>{r}</CTableDataCell> 
-                      <CTableDataCell></CTableDataCell> 
+                      <CTableDataCell>{s}</CTableDataCell> 
                 </CTableRow>
           )})
 }

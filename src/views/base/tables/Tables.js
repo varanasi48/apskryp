@@ -1,4 +1,4 @@
-import React from 'react'
+import React,{useEffect,useState} from 'react'
 import {
   CCard,
   CCardBody,
@@ -14,6 +14,7 @@ import {
   CTableRow,
 } from '@coreui/react'
 import { DocsExample } from 'src/components'
+import axios from 'axios'
 
 const userData = localStorage.getItem('userData')
     ? JSON.parse(localStorage.getItem('userData'))
@@ -24,7 +25,49 @@ const num=localStorage.length
     console.log(userData.name)
     console.log(num)
 
+
+   
+
 const Tables = () => {
+  const API_URL = process.env.REACT_APP_API_URL
+  const [data, setData] = useState([]);
+  const [error, setError] = useState('')
+  const [sdate,setSdate]=useState('')
+  const [visible, setVisible] = React.useState(false);
+  const [state, setState] = React.useState('');
+
+   //fetch data
+
+   const fetchUserData = async () => {
+    
+    try {
+      // Send data to the register API with JWT token in header
+      const data = await axios.post(
+        `${API_URL}/fetch-investment`,
+        {},
+        {
+          headers: {
+            Authorization: `Bearer ${userData.token}}`,
+          },
+        },
+      )
+       setData(data.data)
+     
+      
+      
+      } catch (err) {
+      setError(err.response.data.message)
+    }
+   
+
+  }
+  useEffect(()=>{
+
+    fetchUserData()
+
+  },[])
+
+  
   return (
     <CRow>
       <CCol xs={12}>
@@ -46,24 +89,27 @@ const Tables = () => {
               <CTable>
                 <CTableHead color="dark">
                   <CTableRow>
-                    <CTableHeaderCell scope="col">S.no</CTableHeaderCell>
-                    <CTableHeaderCell scope="col">Name</CTableHeaderCell>
-                    <CTableHeaderCell scope="col">Designation</CTableHeaderCell>
-                    <CTableHeaderCell scope="col">District</CTableHeaderCell>
+                    
+                    <CTableHeaderCell scope="col">ID</CTableHeaderCell>
                     <CTableHeaderCell scope="col">Plan</CTableHeaderCell>
-                    <CTableHeaderCell scope="col">Status</CTableHeaderCell>
+                    <CTableHeaderCell scope="col">Amount</CTableHeaderCell>
+                    <CTableHeaderCell scope="col">status</CTableHeaderCell>
+                    
                   </CTableRow>
                 </CTableHead>
                 <CTableBody>
-                  <CTableRow>
-                    <CTableHeaderCell scope="row">1</CTableHeaderCell>
-                    <CTableDataCell>Mark</CTableDataCell>
-                    <CTableDataCell>Otto</CTableDataCell>
-                    <CTableDataCell>@mdo</CTableDataCell>
-                    <CTableDataCell>@mdo</CTableDataCell>
-                    <CTableDataCell>@mdo</CTableDataCell>
-                    
-                  </CTableRow>
+                  
+                <CTableRow>  
+                     <CTableDataCell>e.id</CTableDataCell>
+                     <CTableDataCell>e.plan</CTableDataCell>
+                     <CTableDataCell>e.amount</CTableDataCell>
+                     <CTableDataCell>e.status</CTableDataCell>
+                     
+                     
+                   </CTableRow>
+
+                 
+                 
                   <CTableRow>
                     <CTableHeaderCell scope="row">2</CTableHeaderCell>
                     <CTableDataCell>Jacob</CTableDataCell>

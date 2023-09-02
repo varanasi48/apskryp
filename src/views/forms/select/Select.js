@@ -1,4 +1,4 @@
-import React from 'react'
+import React,{useState,useEffect} from 'react'
 import {
   CCard,
   CCardBody,
@@ -14,21 +14,71 @@ import {
   CTableRow,
 } from '@coreui/react'
 import { DocsExample } from 'src/components'
+import axios from 'axios'
 
 const userData = localStorage.getItem('userData')
     ? JSON.parse(localStorage.getItem('userData'))
     : null
 
-    console.log(userData)
-    console.log(userData.name)
+const API_URL = process.env.REACT_APP_API_URL
 
-const Tables = () => {
+
+const Select = () => {
+  const [error, setError] = useState('')
+  const [info,setinfo]=useState([])
+  
+
+
+  const fetchUserData = async () => {
+    try {
+      // Send data to the register API with JWT token in header
+      const data = await axios.post(
+        `${API_URL}/fetch-investment`,
+        {},
+        {
+          headers: {
+            Authorization: `Bearer ${userData.token}}`,
+          },
+        },
+      )
+       setinfo(data.data)
+      //return data.data
+      
+      
+      } catch (err) {
+      setError(err.response.data.message)
+    }
+   
+
+  }
+  
+   
+    /*useEffect(() => {
+      
+     
+     
+
+      
+
+   }, [])*/
+
+   fetchUserData()
+   console.log(info)
+   
+  //  fetchUserData()
   return (
+    <>
+     
+     
+      
+      
+     
+
     <CRow>
       <CCol xs={12}>
         <CCard className="mb-4">
           <CCardHeader>
-            <strong>Pending Approvals</strong> 
+            <strong>Investments</strong> 
           </CCardHeader>
           
         </CCard>
@@ -37,39 +87,46 @@ const Tables = () => {
         <CCard className="mb-4">
          
           <CCardBody>
-            
-            
-                         
-            
+           
               <CTable>
                 <CTableHead color="dark">
-                  <CTableRow>
-                    <CTableHeaderCell scope="col">S.no</CTableHeaderCell>
-                    <CTableHeaderCell scope="col">Name</CTableHeaderCell>
-                    <CTableHeaderCell scope="col">Designation</CTableHeaderCell>
-                    <CTableHeaderCell scope="col">District</CTableHeaderCell>
+                  <CTableRow >
+                    <CTableHeaderCell scope="col">ID</CTableHeaderCell>
                     <CTableHeaderCell scope="col">Plan</CTableHeaderCell>
+                    <CTableHeaderCell scope="col">Investment</CTableHeaderCell>
+                    
                     <CTableHeaderCell scope="col">Status</CTableHeaderCell>
                   </CTableRow>
                 </CTableHead>
                 <CTableBody>
-                  <CTableRow>
-                    <CTableHeaderCell scope="row">1</CTableHeaderCell>
-                    <CTableDataCell>Mark</CTableDataCell>
-                    <CTableDataCell>Otto</CTableDataCell>
-                    <CTableDataCell>@mdo</CTableDataCell>
+                
+                  
+                {info.map((e)=>{
+                  let k=''
+                      
+      return(
+
+                    <CTableRow key={e._id}>
+                   
+                    <CTableHeaderCell scope="row">{e.userid}</CTableHeaderCell>
+                    <CTableDataCell>{e.plan}</CTableDataCell>
+                    <CTableDataCell>{e.investment}</CTableDataCell>
+                    <CTableDataCell>
+                      {e.status===false ?
+                    <button >Click to aproove</button> :
+                    "Aprooved"
+                    }
+                      </CTableDataCell>
+                    
                   </CTableRow>
-                  <CTableRow>
-                    <CTableHeaderCell scope="row">2</CTableHeaderCell>
-                    <CTableDataCell>Jacob</CTableDataCell>
-                    <CTableDataCell>Thornton</CTableDataCell>
-                    <CTableDataCell>@fat</CTableDataCell>
-                  </CTableRow>
-                  <CTableRow>
-                    <CTableHeaderCell scope="row">3</CTableHeaderCell>
-                    <CTableDataCell colSpan="2">Larry the Bird</CTableDataCell>
-                    <CTableDataCell>@twitter</CTableDataCell>
-                  </CTableRow>
+                  )
+      }
+                )}
+    
+
+                                   
+                  
+                 
                 </CTableBody>
               </CTable>
           
@@ -78,7 +135,9 @@ const Tables = () => {
       </CCol>
      
     </CRow>
+    </>
   )
+  
 }
 
-export default Tables
+export default Select

@@ -115,7 +115,7 @@ const Invest=()=>{
                         <option value='plan-b'>Plan-B</option>
                     </CFormSelect>
 
-                    <CFormLabel>File Upload</CFormLabel>
+                  
                     
   
   

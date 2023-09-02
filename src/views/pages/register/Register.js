@@ -76,10 +76,8 @@ const Register = () => {
       formSubmitted.usertype = 'investor'
     }
     if (userData.usertype !== 'investor') {
-      formSubmitted.status = true
-    } else {
       formSubmitted.status = false
-    }
+    } 
 	formSubmitted.userid = generateID();
   //formSubmitted.plan = "Plan-A";
 	

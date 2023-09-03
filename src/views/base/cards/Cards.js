@@ -53,19 +53,56 @@ const Tables = () => {
   }
   
    
-    /*useEffect(() => {
+    useEffect(() => {
       
      
      
-
+fetchUserData()
       
 
-   }, [])*/
+   }, [])
 
-   fetchUserData()
+   
    console.log(info)
    
   //  fetchUserData()
+
+
+  //update
+
+  const handleSubmit = async (event) => {
+    event.preventDefault()
+    const formSubmitted = {id:event.target.value,
+      status:true }
+	
+  
+	
+  //formSubmitted.plan = "Plan-A";
+	
+    
+    setError('')
+    try {
+      // Send data to the register API with JWT token in header
+      await axios.post(`${API_URL}/updateTwo`, formSubmitted, {
+        headers: {
+          Authorization: `Bearer ${userData.token}}`,
+        },
+      })
+
+     // setMessage('Registration successful for ' + formSubmitted.id)
+     
+      
+     fetchUserData()
+             
+       
+        //nomineedate:'',
+      
+      console.log(formSubmitted)
+      
+    } catch (err) {
+      setError(err.response.data.message)
+    }
+  }
   return (
     <>
      
@@ -112,7 +149,7 @@ const Tables = () => {
                     
                     <CTableDataCell>
                     {e.status===false ?
-                    <button >Click to aproove</button> :
+                    <button  onClick={handleSubmit} value={e._id}>Click to aproove</button> :
                     "Aprooved"
                     }
                     </CTableDataCell>

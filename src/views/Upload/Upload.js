@@ -21,7 +21,7 @@ let bname="lbfprofiles/"+dir
   const uploadFile = async (event) => {
     let button_id=event.currentTarget.id
     console.log(button_id);
-    bname=bname+button_id
+    bname=bname+'/'+button_id
     // S3 Bucket Name
     const S3_BUCKET = bname;
 
@@ -76,7 +76,7 @@ let bname="lbfprofiles/"+dir
     <div className="App">
       <div>
         <input type="file" onChange={handleFileChange} />
-        <button id="pic" onClick={uploadFile}>Upload Pic</button>
+        <button id="pics" onClick={uploadFile}>Upload Pic</button>
       </div>
       <div>
         <input type="file" onChange={handleFileChange} />

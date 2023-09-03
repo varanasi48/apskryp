@@ -1,4 +1,4 @@
-import React,{useState} from 'react'
+import React,{useState,useEffect} from 'react'
 import {
   CCard,
   CCardBody,
@@ -28,6 +28,7 @@ const Tables = () => {
 
   const [error, setError] = useState('')
   const[data,setdata]=useState([])
+  let[k,setK]=useState('')
     const fetchUserData = async () => {
       try {
         // Send data to the register API with JWT token in header
@@ -47,10 +48,47 @@ const Tables = () => {
         setError(err.response.data.message)
       }
     }
-  //   useEffect(() => {
-  //     fetchUserData()
-  //   }, [])
-    fetchUserData()
+   useEffect(() => {
+      fetchUserData()
+    }, [])
+    //fetchUserData()
+
+     //update
+  const handleSubmit = async (event) => {
+    event.preventDefault()
+    const formSubmitted = {id:event.target.value,
+      status:true }
+	
+  
+	
+  //formSubmitted.plan = "Plan-A";
+	
+    
+    setError('')
+    try {
+      // Send data to the register API with JWT token in header
+      await axios.post(`${API_URL}/updateTwo`, formSubmitted, {
+        headers: {
+          Authorization: `Bearer ${userData.token}}`,
+        },
+      })
+
+     // setMessage('Registration successful for ' + formSubmitted.id)
+     
+      
+     fetchUserData()
+             
+       
+        //nomineedate:'',
+      
+      console.log(formSubmitted)
+      
+    } catch (err) {
+      setError(err.response.data.message)
+    }
+  }
+    
+        
 
   return (
     <CRow>
@@ -83,6 +121,7 @@ const Tables = () => {
                 </CTableHead>
                 <CTableBody>
                 {data.map((e)=>{
+                  setK=e.usertype
                   if(e.usertype=="branch_manager"){
       return(
                     <CTableRow key={e._id}>
@@ -91,7 +130,7 @@ const Tables = () => {
                     <CTableDataCell>{e.name}</CTableDataCell>
                     <CTableDataCell>{e.usertype}</CTableDataCell>
                     <CTableDataCell> {e.status===false ?
-                    <button >Click to aproove</button> :
+                    <button onClick={handleSubmit} value={e._id}>Click to aproove</button> :
                     "Aprooved"
                     }</CTableDataCell>
                     

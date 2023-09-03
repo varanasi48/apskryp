@@ -76,8 +76,11 @@ const Investment=()=>{
     return(
         <>
                         {data.map((e)=>{
-                            let maturity_amount='' ;
-                            let f_date_f='';
+                          
+                          if(e.userid===userData.userid ){
+                             let maturity_amount='' ;
+                           let f_date_f='';
+                           
                             if(e.plan=='plan-a'){
                             maturity_amount=0.1*36*e.investment
 
@@ -102,6 +105,8 @@ const Investment=()=>{
                              ch.push(loop.toLocaleDateString());
                                  
                                 }
+                                
+
                                                
 
 
@@ -163,7 +168,7 @@ const Investment=()=>{
         </CCard>
                                 
                             )
-                        })}
+ } })}
 
     
 

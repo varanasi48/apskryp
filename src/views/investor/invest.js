@@ -3,6 +3,7 @@ import React,{useState} from 'react'
 import FormControl from '../forms/form-control/FormControl'
 import axios from 'axios'
 import { format,addMonths } from 'date-fns'
+import { Navigate, useNavigate } from 'react-router-dom'
 
 
 const API_URL = process.env.REACT_APP_API_URL
@@ -13,6 +14,7 @@ const API_URL = process.env.REACT_APP_API_URL
 
 const Invest=()=>{
     let revenue=''
+    const navigate=useNavigate()
 
     const [error, setError] = useState('')
     const [message, setMessage] = useState('')
@@ -55,14 +57,16 @@ const Invest=()=>{
             
             try {
               // Send data to the register API with JWT token in header
-              await axios.post(`${API_URL}/invest`, formSubmitted, {
+              const response=await axios.post(`${API_URL}/invest`, formSubmitted, {
                 headers: {
                   Authorization: `Bearer ${userData.token}}`,
                 },
               })
         
-              setMessage('Registration successful for ' + formSubmitted.plan)
-             
+              
+             if(response.status==201){
+              navigate('/submit')
+             }
               
             
                 setFormData({
@@ -73,7 +77,8 @@ const Invest=()=>{
                   
                   
                 })
-          
+                setMessage('Registration successful for ' + formSubmitted.plan)
+               
                
                
                 //nomineedate:'',
@@ -114,7 +119,8 @@ const Invest=()=>{
                         <option value='plan-a'>Plan-A</option>
                         <option value='plan-b'>Plan-B</option>
                     </CFormSelect>
-
+                   
+                   
                   
                     
   

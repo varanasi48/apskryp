@@ -58,6 +58,8 @@ const Register = React.lazy(() => import('./views/pages/register/Register'))
 const Investment = React.lazy(() => import('./views/investor/Investment'))
 const Revenue = React.lazy(() => import('./views/investor/Revenue'))
 const Invest = React.lazy(() => import('./views/investor/invest'))
+const Profile = React.lazy(() => import('./views/profile/profile'))
+const Submit = React.lazy(() => import('./views/investor/submit'))
 
 
 
@@ -112,11 +114,13 @@ const routes = [
   { path:'/upload', name:'upload', element:Upload  },
   { path:'/verify', name:'verify' ,element:Verify },
  { path:'/register',name:'Register Page',element:Register },
+ { path:'/profile',name:'Register Page',element:Profile },
 
  //Investor
  { path:'/investor',name:'Investor Page',element:Investment },
  { path:'/revenue',name:'Investor Page',element:Revenue },
  { path:'/invest',name:'Investor Page',element:Invest },
+ { path:'/submit',name:'Investor Page',element:Submit },
 
 
 ]

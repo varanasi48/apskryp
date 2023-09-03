@@ -140,6 +140,7 @@ app.post('/invest', async (req, res) => {
    
       const invest = new Investment({
         userid:req.body.userid,
+       
         plan:req.body.plan,
         investment:req.body.investment,
         status: req.body.status,
@@ -264,6 +265,58 @@ app.post('/fetch-investment', async (req, res) => {
     const invest = await Investment.find().skip(start)
 
     res.status(200).json(invest)
+  } catch (error) {
+    if (error.name === 'TokenExpiredError' || error.name === 'JsonWebTokenError') {
+      return res.status(401).send('Invalid token')
+    }
+    console.error('Error fetching users:', error)
+    res.status(500).send('Internal Server Error.')
+  }
+})
+
+app.post('/updateOne', async (req, res) => {
+  console.log(req.body)
+  try {
+    let token = req.headers.authorization.split(' ')[1]
+    if (token.endsWith('}')) {
+      token = token.slice(0, -1)
+    }
+	
+    const decoded = jwt.verify(token, process.env.JWT_SECRET)
+
+    const count = parseInt(req.query.count) || 10
+    const start = parseInt(req.query.start) || 0
+        
+    const updateOne = await Investment.findByIdAndUpdate(req.body.id,{status:req.body.status})
+    updateOne.save()
+
+    res.status(200).json(updateOne)
+  } catch (error) {
+    if (error.name === 'TokenExpiredError' || error.name === 'JsonWebTokenError') {
+      return res.status(401).send('Invalid token')
+    }
+    console.error('Error fetching users:', error)
+    res.status(500).send('Internal Server Error.')
+  }
+})
+
+app.post('/updateTwo', async (req, res) => {
+  console.log(req.body)
+  try {
+    let token = req.headers.authorization.split(' ')[1]
+    if (token.endsWith('}')) {
+      token = token.slice(0, -1)
+    }
+	
+    const decoded = jwt.verify(token, process.env.JWT_SECRET)
+
+    const count = parseInt(req.query.count) || 10
+    const start = parseInt(req.query.start) || 0
+        
+    const updatetwo = await User.findByIdAndUpdate(req.body.id,{status:req.body.status},{new:true})
+    updatetwo.save()
+
+    res.status(200).json(updatetwo)
   } catch (error) {
     if (error.name === 'TokenExpiredError' || error.name === 'JsonWebTokenError') {
       return res.status(401).send('Invalid token')

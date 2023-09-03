@@ -14,7 +14,8 @@ import {
   cilStar,
   cilAccountLogout,
   cilPeople,
-  cilUserFollow
+  cilUserFollow,
+  cilCheckCircle
 } from '@coreui/icons'
 import { CNavGroup, CNavItem, CNavTitle } from '@coreui/react'
 import axios from 'axios'
@@ -97,13 +98,15 @@ const _nav = [
         to: '/register',
       },
       
-      {
-        component: CNavItem,
-        name: 'Approve',
-        to: '/forms/select',
-      },
+      
       
     ],
+  },
+  {
+    component: CNavItem,
+    name: 'Investment Approval',
+    icon: <CIcon icon={cilCheckCircle} customClassName="nav-icon" />,
+    to: '/forms/select',
   },
   {
     component: CNavItem,

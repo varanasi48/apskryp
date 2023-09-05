@@ -52,27 +52,11 @@ const Investment=()=>{
     }
     
      
-      /*useEffect(() => {
-        
-       
-       
-  
-        
-  
-     }, [])*/
-  
-     
     useEffect(()=>{
       fetchUserData();
     },[])
     
-    
   
-   
-   
-   
-
-   
     return(
         <>
                         {data.map((e)=>{
@@ -107,12 +91,6 @@ const Investment=()=>{
                                 }
                                 
 
-                                               
-
-
-                            
-                           
-                            
                             return(
                                 <CCard key={e._id}>
            <CCardHeader>

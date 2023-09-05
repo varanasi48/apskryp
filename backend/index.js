@@ -28,6 +28,7 @@ mongoose.connect(process.env.DB_URL, {
 
 
 app.post('/login', async (req, res) => {
+  console.log(JSON.stringify(req.body))
   try {
     const user = await User.findOne({ phoneno: req.body.phoneno })
     if (!user || !(await bcrypt.compare(req.body.password, user.password))) {

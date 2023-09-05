@@ -50,7 +50,7 @@ import {
 import WidgetsBrand from '../widgets/WidgetsBrand'
 import { format, formatDistanceToNow, formatDistanceToNowStrict } from 'date-fns'
 import { LinearProgress } from '@mui/material'
-import { Progress } from 'flowbite-react'
+
 
 
 
@@ -183,7 +183,7 @@ r=investment*0.1
   return (
     <>
       
-      <Progress progress={45} />
+    
       <WidgetsBrand withCharts />
       
      

@@ -32,7 +32,7 @@ const Login = () => {
       
     }
     else{
-      navigate(`/dashboard`);
+      navigate(`/dashboardi`);
 
     }
     } catch (err) {

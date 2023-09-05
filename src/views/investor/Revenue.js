@@ -17,7 +17,7 @@ import {
   CTableRow,
 } from '@coreui/react'
 import { DocsExample } from 'src/components'
-import {addMonths, eachMonthOfInterval, format} from 'date-fns'
+import {addMonths, eachMonthOfInterval, format,formatDistanceToNowStrict} from 'date-fns'
 import TablePagination from '@mui/material/TablePagination';
 import axios from 'axios'
 
@@ -98,7 +98,7 @@ let [investment,setInvestment]=useState('')
         }  
   //data filter
      //console.log(data)
-     let plan=data.filter(e=>{return e.investment===investment})
+     let plan=data.filter(e=>{return e.investment===investment && e.userid===userData.userid})
      
      if(plan.length==0){ 
       k="Plan Not Selected"
@@ -125,9 +125,7 @@ if(k=="plan-a"){
       const ends=end.setMonth(start.getMonth()+36)
       
       let loop = new Date(start);
-           
-  
-  
+      
             for(loop;loop<=ends;loop.setMonth(loop.getMonth()+1)){
               ch.push(format(new Date(loop.toLocaleDateString()),"MMM-yyyy"));
                   
@@ -138,8 +136,13 @@ if(k=="plan-a"){
                   const start = new Date(p);
       const end = new Date()
       const ends=end.setMonth(start.getMonth()+24)
-      
+      console.log(start.getMonth())
+      console.log(new Date(ends).getMonth())
+     console.log(((new Date(ends).getMonth()-start.getMonth())/start.getMonth())*100)
       let loop = new Date(start);
+  
+     /* let diff=formatDistanceToNowStrict(new Date(ends),{unit:'month'})
+      console.log((diff/24)*100)*/
            
   
   
@@ -173,7 +176,7 @@ if(k=="plan-a"){
      return(
       <>
 
-     <option key={e.ObjectId}  value={e.investment}>{e.investment}({e.plan})</option>
+     <option key={e.ObjectId}  value={e.investment}>{e.investment}({e.plan})({e.userid})</option>
       </>
      )
     })}

@@ -704,4 +704,4 @@ const Widgetsi = () => {
   )
 }
 
-export default WidgetsDropdown
+export default Widgetsi

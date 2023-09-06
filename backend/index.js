@@ -30,10 +30,11 @@ mongoose.connect(process.env.DB_URL, {
 app.post('/login', async (req, res) => {
   console.log(JSON.stringify(req.body))
   try {
-    const user = await User.findOne({ phoneno: req.body.phoneno })
+    const user = await User.findOne({$or:[{userid:req.body.phoneno },{phoneno: req.body.phoneno }]})
     if (!user || !(await bcrypt.compare(req.body.password, user.password))) {
       return res.status(400).send('Invalid credentials')
     }
+    console.log(res.user)
     const token = jwt.sign(
       { usertype: user.usertype, phoneno: user.phoneno, id: user._id, userid: user.userid,plan:user.plan  },
       process.env.JWT_SECRET,
@@ -86,12 +87,9 @@ app.post('/register', async (req, res) => {
         usertype: req.body.usertype,
         plan:req.body.plan,
         investment:req.body.investment,
-        
-          
-        
+      
         nominee: req.body.nominee,
-        
-  
+      
         status: req.body.status,
   
         registeredBy: decoded.id,
@@ -118,6 +116,7 @@ app.post('/register', async (req, res) => {
       if (err?.keyPattern && err?.keyPattern?.phoneno) {
         return res.status(400).send('Phone number already exists')
       }
+
     }
 	
 	

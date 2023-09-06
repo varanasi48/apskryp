@@ -1,4 +1,4 @@
-import React from 'react'
+import React,{useEffect,useState} from 'react'
 
 import {
   CRow,
@@ -14,7 +14,54 @@ import { CChartBar, CChartLine } from '@coreui/react-chartjs'
 import CIcon from '@coreui/icons-react'
 import { cilArrowBottom, cilArrowTop, cilOptions } from '@coreui/icons'
 
+import axios from 'axios'
+
 const WidgetsDropdown = () => {
+
+  const userData = localStorage.getItem('userData')
+  ? JSON.parse(localStorage.getItem('userData'))
+  : null
+    
+ 
+  const API_URL = process.env.REACT_APP_API_URL
+    const [data, setData] = useState([]);
+    const [error, setError] = useState('')
+    const [sdate,setSdate]=useState('')
+    const [visible, setVisible] = React.useState(false);
+    const [state, setState] = React.useState('');
+    let [ch, setCh] = React.useState([]);
+    let [investment,setInvestment]=useState('')
+
+    
+    
+    const fetchUserData = async () => {
+      try {
+        // Send data to the register API with JWT token in header
+        const data = await axios.post(
+          `${API_URL}/fetch-investment`,
+          {},
+          {
+            headers: {
+              Authorization: `Bearer ${userData.token}}`,
+            },
+          },
+        )
+         setData(data.data)
+        //return data.data
+        
+        
+        } catch (err) {
+        setError(err.response.data.message)
+      }
+     
+  
+    }
+    
+     
+    useEffect(()=>{
+      fetchUserData();
+    },[])
+    
   return (
     <CRow>
       <CCol sm={6} lg={3}>

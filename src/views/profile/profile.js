@@ -13,10 +13,14 @@ import Typography from '@mui/joy/Typography';
 import SvgIcon from '@mui/joy/SvgIcon';
 
 export default function BioCard() {
+  const userData = localStorage.getItem('userData')
+  ? JSON.parse(localStorage.getItem('userData'))
+  : null
   return (
+    <>
     <Card
       sx={{
-        width: 320,
+        width: 720,
         maxWidth: '100%',
         boxShadow: 'lg',
       }}
@@ -34,12 +38,11 @@ export default function BioCard() {
             borderColor: 'background.surface',
           }}
         >
-          PRO
+          
         </Chip>
-        <Typography level="title-lg">Josephine Blanton</Typography>
+        <Typography level="title-lg">{userData.name}</Typography>
         <Typography level="body-sm" sx={{ maxWidth: '24ch' }}>
-          Hello, this is my bio and I am a PRO member of MUI. I am a developer and I
-          love to code.
+          {userData.userid}
         </Typography>
         <Box
           sx={{
@@ -118,11 +121,12 @@ export default function BioCard() {
       <CardOverflow sx={{ bgcolor: 'background.level1' }}>
         <CardActions buttonFlex="1">
           <ButtonGroup variant="outlined" sx={{ bgcolor: 'background.surface' }}>
-            <Button>Message</Button>
-            <Button>Connect</Button>
+            <Button>Bank</Button>
+            <Button>Nominee</Button>
           </ButtonGroup>
         </CardActions>
       </CardOverflow>
     </Card>
+    </>
   );
 }

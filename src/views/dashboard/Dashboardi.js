@@ -50,6 +50,8 @@ import {
 import WidgetsBrand from '../widgets/WidgetsBrand'
 import { format, formatDistanceToNow, formatDistanceToNowStrict } from 'date-fns'
 import { LinearProgress } from '@mui/material'
+import WidgetsDropdown from '../widgets/WidgetsDropdowni'
+
 
 
 
@@ -120,7 +122,19 @@ const Dashboardi = () => {
   
    
  
-   let plan=data.filter((e)=>{return e.userid===userData.userid})
+  let plan=data.filter((e)=>{return e.userid===userData.userid})
+  let plana=data.filter((e)=>{return e.userid===userData.userid && e.plan==='plan-a' && e.status===true})
+  let planb=data.filter((e)=>{return e.userid===userData.userid && e.plan==='plan-b'})
+  let plana_uv=data.filter((e)=>{return e.userid===userData.userid && e.plan==='plan-a' && e.status===false})
+  let planb_uv=data.filter((e)=>{return e.userid===userData.userid && e.plan==='plan-b' && e.status===false})
+  
+  let amt_a=plana.reduce((a,v)=>a=a+parseInt(v.investment),0)
+  console.log(amt_a)
+  let amt_b=planb.reduce((a,v)=>a=a+parseInt(v.investment),0)
+
+  let amt_b_f=planb_uv.reduce((a,v)=>a=a+parseInt(v.investment),0)
+  let amt_a_f=plana_uv.reduce((a,v)=>a=a+parseInt(v.investment),0)
+  
 
    if(plan.length==0){ 
     k="Plan Not Selected"
@@ -183,7 +197,7 @@ r=investment*0.1
   return (
     <>
       
-    
+      <WidgetsDropdown />
       <WidgetsBrand withCharts />
       
      
@@ -200,13 +214,13 @@ r=investment*0.1
                     <CCol sm={6}>
                       <div className="border-start border-start-4 border-start-warning py-1 px-3 mb-3">
                         <div className="text-medium-emphasis small">Total Plan-A Investment</div>
-                        <div className="fs-5 fw-semibold">78,623</div>
+                        <div className="fs-5 fw-semibold">{amt_a}</div>
                       </div>
                     </CCol>
                     <CCol sm={6}>
                       <div className="border-start border-start-4 border-start-success py-1 px-3 mb-3">
                         <div className="text-medium-emphasis small">Total Plan-b Investment</div>
-                        <div className="fs-5 fw-semibold">49,123</div>
+                        <div className="fs-5 fw-semibold">{amt_b}</div>
                       </div>
                     </CCol>
                   </CRow>
@@ -228,7 +242,7 @@ r=investment*0.1
                    
                   <CTableHeaderCell>Investment</CTableHeaderCell>
                     <CTableHeaderCell>Payment status</CTableHeaderCell>
-                    <CTableHeaderCell className="text-center">Payment Method</CTableHeaderCell>
+                    <CTableHeaderCell >Payment Method</CTableHeaderCell>
                     <CTableHeaderCell>Activity</CTableHeaderCell>
                   </CTableRow>
                 </CTableHead>
@@ -238,29 +252,21 @@ r=investment*0.1
                       
                       <CTableDataCell>
                         <div>{item.investment}</div>
-                        <div className="small text-medium-emphasis">
-                          <span>{item.status}</span> 
-                          
-                        </div>
-                      </CTableDataCell>
+                       </CTableDataCell>
                      
                       <CTableDataCell>
-                        <div className="clearfix">
-                          <div className="float-start">
-                            <strong>item.usage.value%</strong>
+                         <div className="float-start">
+                            <strong>Pending</strong>
                           </div>
-                          <div className="float-end">
-                            <small className="text-medium-emphasis">k</small>
-                          </div>
-                        </div>
+                      </CTableDataCell>
+                      
+                      <CTableDataCell>
+                      <div>Bank</div>
                        
                       </CTableDataCell>
-                      <CTableDataCell className="text-center">
-                        <CIcon size="xl" />
-                      </CTableDataCell>
                       <CTableDataCell>
-                        <div className="small text-medium-emphasis">Last login</div>
-                        <strong>{item.status}</strong>
+                        
+                        <strong>{item.status===false ? "Inactive":"Active"}</strong>
                       </CTableDataCell>
                     </CTableRow>
                   ))}

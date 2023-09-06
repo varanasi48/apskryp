@@ -54,6 +54,19 @@ const Invest=()=>{
                 return false
               }
             }
+            if(formData.plan=="plan-a" && formData.investment<=50000 || formData.investment>=100000){
+            
+              setError('Investmnet not valid')
+              return false
+            }
+
+            if(formData.plan=="plan-a" && formData.investment<=50000 || formData.investment>=500000){
+              
+                setError('Investmnet not valid')
+                return false
+              }
+            
+
             
             try {
               // Send data to the register API with JWT token in header

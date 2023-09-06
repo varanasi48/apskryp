@@ -95,20 +95,12 @@ const Dashboard = () => {
   }
   
    
-    /*useEffect(() => {
-      
-     
-     
+  
 
-      
-
-   }, [])*/
-
-   
-  /*useEffect(()=>{
-    getdata();
-  },[])*/
+ useEffect(()=>{
   fetchUserData()
+  },[])
+  
   
 
  console.log(data.length)

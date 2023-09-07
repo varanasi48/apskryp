@@ -15,8 +15,9 @@ import 'simplebar/dist/simplebar.min.css'
 
 
 
-  import trump from '../_nav'
-  import jump from '../_navi'
+  import admin from '../_nav'
+  import investor from '../_navi'
+  import branchmanager from '../_navb'
 
   const userData = localStorage.getItem('userData')
     ? JSON.parse(localStorage.getItem('userData'))
@@ -46,7 +47,9 @@ const AppSidebar = () => {
       </CSidebarBrand>
       <CSidebarNav>
         <SimpleBar>
-          {userData.usertype==="investor" ? <AppSidebarNav items={jump} />:<AppSidebarNav items={trump} />}
+          {userData.usertype==="admin" && <AppSidebarNav items={admin} />}
+          {userData.usertype==="investor" && <AppSidebarNav items={investor} />}
+          {userData.usertype==="branch_manager" && <AppSidebarNav items={branchmanager} />}
           
           
         </SimpleBar>

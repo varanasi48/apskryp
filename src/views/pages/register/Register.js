@@ -53,8 +53,7 @@ const Register = () => {
     re_password: '',
     usertype: '',
     nominee: '',
-    plan:'',
-    investment:'',
+   
      
    
     //nomineedate:'',
@@ -118,8 +117,7 @@ const Register = () => {
           re_password: '',
           usertype: '',
           nominee: '',
-          plan:'',
-          investment:'',
+       
           
           
         })
@@ -240,39 +238,8 @@ const Register = () => {
                     )}
                    
                   </CInputGroup>
-                  <CInputGroup className="mb-4">
-                    {formData && formData.usertype === 'investor' && (
-                      <CFormSelect
-                        size="lg"
-                        className="mb-3"
-                        aria-label="Large select example"
-                        name="plan"
-                        onChange={handleInputChange}
-                      >
-                        <option value="">Select User Type</option>
-                        <option value="plan-a">Plan-A</option>
-                        <option value="plan-b">Plan-B</option>
-                        
-                      </CFormSelect>
-                    )}
-                    
-                   
-                  </CInputGroup>
-                  <CInputGroup className="mb-4">
-                    {formData && formData.usertype === 'investor' && (
-                      <CFormInput
-                      type="text"
-                      placeholder="Enter Amount"
-                      autoComplete="amount"
-                      name="investment"
-                      onChange={handleInputChange}
-                      value={formData.investment}
-                    />
-                      
-                    )}
-                    
-                   
-                  </CInputGroup>
+                 
+                  
                   
                                        
                   

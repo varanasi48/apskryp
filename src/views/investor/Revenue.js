@@ -98,7 +98,9 @@ let [investment,setInvestment]=useState('')
         }  
   //data filter
      //console.log(data)
-     let plan=data.filter(e=>{return e.investment===investment && e.userid===userData.userid})
+     let plan=data.filter(e=>{return  e.userid===userData.userid})
+
+    let ii= plan.filter(ev=>{return ev.investment===investment})
      
      if(plan.length==0){ 
       k="Plan Not Selected"
@@ -171,9 +173,10 @@ if(k=="plan-a"){
       <CFormSelect onChange={handleChange} >
       
               <option >Select  Invetsment </option>
-              {data.map((e)=>{
+              {plan.map((e)=>{
                 
      return(
+      
       <>
 
      <option key={e.ObjectId}  value={e.investment}>{e.investment}({e.plan})({e.userid})</option>

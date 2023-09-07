@@ -10,6 +10,7 @@ const InvestSchema = new Schema(
     status: { type: Boolean, default: false },
    
     investment:String,
+    referal:String
     
    //plan:String,
 

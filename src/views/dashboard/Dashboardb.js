@@ -58,7 +58,7 @@ import WidgetsDropdown from '../widgets/WidgetsDropdowni'
 
   
 
-const Dashboardi = () => {
+const Dashboardb = () => {
   const random = (min, max) => Math.floor(Math.random() * (max - min + 1) + min)
 
   const userData = localStorage.getItem('userData')
@@ -124,7 +124,7 @@ const Dashboardi = () => {
  
   let plan=data.filter((e)=>{return e.userid===userData.userid})
   let plana=data.filter((e)=>{return e.userid===userData.userid && e.plan==='plan-a' && e.status===true})
-  let planb=data.filter((e)=>{return e.userid===userData.userid && e.plan==='plan-b' && e.status===true})
+  let planb=data.filter((e)=>{return e.userid===userData.userid && e.plan==='plan-b'})
   let plana_uv=data.filter((e)=>{return e.userid===userData.userid && e.plan==='plan-a' && e.status===false})
   let planb_uv=data.filter((e)=>{return e.userid===userData.userid && e.plan==='plan-b' && e.status===false})
   
@@ -287,4 +287,4 @@ r=investment*0.1
   )
 }
 
-export default Dashboardi
+export default Dashboardb

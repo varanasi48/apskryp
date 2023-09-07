@@ -12,7 +12,7 @@ const API_URL = process.env.REACT_APP_API_URL
     ? JSON.parse(localStorage.getItem('userData'))
     : null
 
-const Invest=()=>{
+const Bank=()=>{
     let revenue=''
     const navigate=useNavigate()
 
@@ -252,16 +252,17 @@ const Invest=()=>{
         <CCardBody>
             
                 <CForm >
-                <CFormLabel>Amount</CFormLabel>
-                <CFormInput  name="investment" onChange={handleInputChange}
+                <CFormLabel>Account</CFormLabel>
+                <CFormInput  name="account" onChange={handleInputChange}
                       value={formData.name} placeholder='Enter Amount'></CFormInput>
 
-                    <CFormLabel>Select plan</CFormLabel>
-                    <CFormSelect name='plan' onChange={handleInputChange}>
-                    <option value="">Select Plan</option>
-                        <option value='plan-a'>Plan-A</option>
-                        <option value='plan-b'>Plan-B</option>
-                    </CFormSelect>
+<CFormLabel>Bank Name</CFormLabel>
+                <CFormInput  name="bank" onChange={handleInputChange}
+                      value={formData.bank} placeholder='Enter Amount'></CFormInput>
+
+<CFormLabel>Account</CFormLabel>
+                <CFormInput  name="ifsc" onChange={handleInputChange}
+                      value={formData.ifsc} placeholder='Enter Amount'></CFormInput>
                   
                   <div className='mb-3'>
                  <CButton type='submit' onSubmit={handleSubmit}
@@ -286,44 +287,8 @@ const Invest=()=>{
                   
                     
                      
-        {formData.plan && formData.investment && (
-                            <CCard>
-            <CCardHeader>
-                <strong>Estimated Returns</strong>
-            </CCardHeader>
-                            
-                            <CCardBody>
-                <CTable>
-                <CTableRow>
-                        <CTableHeaderCell scope="col"><strong>Plan Selected</strong></CTableHeaderCell>
-                        <CTableHeaderCell scope="col">{formData.plan}</CTableHeaderCell>
-                    </CTableRow>
-                    <CTableRow>
-                        <CTableHeaderCell scope="col"><strong>Amount Invested</strong></CTableHeaderCell>
-                        <CTableHeaderCell scope="col">{formData.investment}</CTableHeaderCell>
-                    </CTableRow>
-                            <CTableRow>
-                            <CTableHeaderCell scope="col"><strong>Maturity Amount</strong></CTableHeaderCell>
-                             {formData.plan==='plan-a' ?  
-                            <CTableHeaderCell scope="col"><strong>{parseInt(formData.investment*0.1*36)}</strong></CTableHeaderCell>
-                             : <CTableHeaderCell scope="col"><strong>{parseInt(formData.investment*2)}</strong></CTableHeaderCell>
-                             } 
-                            
-                            
-                            </CTableRow>
-                            <CTableRow>
-                            <CTableHeaderCell scope="col"><strong>Maturity Date</strong></CTableHeaderCell>
-                             {formData.plan==='plan-a' ?  
-                            <CTableHeaderCell scope="col"><strong>{date_a}</strong></CTableHeaderCell>
-                             : <CTableHeaderCell scope="col"><strong>{date_b}</strong></CTableHeaderCell>
-                             } 
-                            
-                            
-                            </CTableRow>
-                            </CTable>
-            </CCardBody>
-        </CCard>
-         )}
+        
+        
                         
                         
                         
@@ -336,4 +301,4 @@ const Invest=()=>{
     )
 }
 
-export default Invest
+export default Bank

@@ -2,6 +2,7 @@ import React from 'react'
 
 const Dashboard = React.lazy(() => import('./views/dashboard/Dashboard'))
 const Dashboardi = React.lazy(() => import('./views/dashboard/Dashboardi'))
+const Dashboardb = React.lazy(() => import('./views/dashboard/Dashboardb'))
 const Colors = React.lazy(() => import('./views/theme/colors/Colors'))
 const Typography = React.lazy(() => import('./views/theme/typography/Typography'))
 
@@ -60,6 +61,7 @@ const Investment = React.lazy(() => import('./views/investor/Investment'))
 const Revenue = React.lazy(() => import('./views/investor/Revenue'))
 const Invest = React.lazy(() => import('./views/investor/invest'))
 const Profile = React.lazy(() => import('./views/profile/profile'))
+const Bank = React.lazy(() => import('./views/profile/bank'))
 const Submit = React.lazy(() => import('./views/investor/submit'))
 
 
@@ -71,6 +73,7 @@ const routes = [
   { path: '/', exact: true, name: 'Home' },
   { path: '/dashboard', name: 'Dashboard', element: Dashboard },
   { path: '/dashboardi', name: 'Dashboard', element: Dashboardi },
+  { path: '/dashboardb', name: 'Dashboard', element: Dashboardb },
   { path: '/theme', name: 'Theme', element: Colors, exact: true },
   { path: '/theme/colors', name: 'Colors', element: Colors },
   { path: '/theme/typography', name: 'Typography', element: Typography },
@@ -117,6 +120,7 @@ const routes = [
   { path:'/verify', name:'verify' ,element:Verify },
  { path:'/register',name:'Register Page',element:Register },
  { path:'/profile',name:'Register Page',element:Profile },
+ { path:'/bank',name:'Register Page',element:Bank },
 
  //Investor
  { path:'/investor',name:'Investor Page',element:Investment },

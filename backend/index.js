@@ -10,6 +10,7 @@ const db = require('./models')
 dotenv.config()
 const User = db.User
 const Investment = db.Investment
+const Bank = db.Bank
 
 const { Date, Math } = require("core-js");
 const { Navigate } = require('react-router-dom')
@@ -144,14 +145,10 @@ app.post('/invest', async (req, res) => {
         plan:req.body.plan,
         investment:req.body.investment,
         status: req.body.status,
-  
+        referal:req.body.ref
         
       })
-      
     
-    
-   
-
     await invest.save()
     res.status(201).send('Plan registered successfully.')
     
@@ -166,6 +163,48 @@ app.post('/invest', async (req, res) => {
     res.status(500).send('Server error')
   }
 })
+
+
+app.post('/bank', async (req, res) => {
+  console.log(req.body)
+  try {
+    let token = req.headers.authorization.split(' ')[1]
+    if (token.endsWith('}')) {
+      token = token.slice(0, -1)
+    }
+    const decoded = jwt.verify(token, process.env.JWT_SECRET)
+
+   
+
+    const salt = await bcrypt.genSalt(10)
+   
+   
+      const bank = new Bank({
+        userid:req.body.userid,
+       
+        bank:req.body.bank,
+        ifsc:req.body.ifsc,
+        status: req.body.status,
+        account:req.body.account
+        
+      })
+    
+    await bank.save()
+    res.status(201).send('Plan registered successfully.')
+    
+    
+  } catch (err) {
+    if (err.name === 'TokenExpiredError' || err.name === 'JsonWebTokenError') {
+      return res.status(401).send('Invalid token')
+    }
+
+	
+	
+    res.status(500).send('Server error')
+  }
+})
+
+
 
 app.get('/users', async (req, res) => {
   try {

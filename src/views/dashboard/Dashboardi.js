@@ -241,7 +241,8 @@ r=investment*0.1
                   <CTableRow>
                    
                   <CTableHeaderCell>Investment</CTableHeaderCell>
-                    <CTableHeaderCell>Payment status</CTableHeaderCell>
+                    <CTableHeaderCell>Payment pending</CTableHeaderCell>
+                    <CTableHeaderCell>Payment Received</CTableHeaderCell>
                     <CTableHeaderCell >Payment Method</CTableHeaderCell>
                     <CTableHeaderCell>Activity</CTableHeaderCell>
                   </CTableRow>
@@ -257,6 +258,12 @@ r=investment*0.1
                       <CTableDataCell>
                          <div className="float-start">
                             <strong>Pending</strong>
+                          </div>
+                      </CTableDataCell>
+
+                      <CTableDataCell>
+                         <div className="float-start">
+                            <strong>Received</strong>
                           </div>
                       </CTableDataCell>
                       

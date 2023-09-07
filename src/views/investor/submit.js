@@ -102,7 +102,7 @@ const Submit=()=>{
                 <strong color='danger'> Bank</strong>
                 <h5>Account Number:919020073403006</h5>
 
-                <h5>IFSCUTIB:00020880</h5>
+                <h5>IFSC:UTIB00020880</h5>
                 <h5>Bank Name:Axis Bank</h5>
                 <h5>UPI Id:8859441</h5>
                 <CCard>

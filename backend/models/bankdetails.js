@@ -2,7 +2,7 @@ const mongoose = require('mongoose')
 
 const Schema = mongoose.Schema
 
-const InvestSchema = new Schema(
+const BankSchema = new Schema(
   {
     userid: String,
     account: String,
@@ -25,6 +25,6 @@ const InvestSchema = new Schema(
   },
 )
 
-const Investment = mongoose.model('invest', InvestSchema)
+const Bank = mongoose.model('bank', BankSchema)
 
-module.exports = Investment
+module.exports = Bank

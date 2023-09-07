@@ -29,8 +29,9 @@ const Bank=()=>{
   
       const [formData, setFormData] = useState({
          
-          plan:'',
-          investment:'',
+          account:'',
+          bank:'',
+          ifsc:'',
            
          
           //nomineedate:'',
@@ -78,9 +79,9 @@ const Bank=()=>{
             const formSubmitted = { ...formData }
             
            
-            {userData.usertype==='branch_manager' ? formSubmitted.userid = uid:formSubmitted.userid = userData.userid;}
+             formSubmitted.userid = uid;
             formSubmitted.status = false;
-            formSubmitted.referal=userData.userid
+           
             
             for (const key in formSubmitted) {
               if (
@@ -93,22 +94,6 @@ const Bank=()=>{
               }
             }
             
-
-            if(formData.plan=="plan-b" ){
-              if(formData.investment<=49999 || formData.investment>=500001){
-              
-                setError('Investment not valid')
-                return false
-              }
-              }
-
-              if(formData.plan=="plan-a" ){
-                if(formData.investment<=49999 || formData.investment>=1000001){
-              
-                setError('Investment not valid')
-                return false
-                }
-              }
               if(investortype==='admin'){
 
                 setError('wrong user type')
@@ -125,7 +110,7 @@ const Bank=()=>{
             
             try {
               // Send data to the register API with JWT token in header
-              const response=await axios.post(`${API_URL}/invest`, formSubmitted, {
+              const response=await axios.post(`${API_URL}/bank`, formSubmitted, {
                 headers: {
                   Authorization: `Bearer ${userData.token}}`,
                 },
@@ -138,12 +123,13 @@ const Bank=()=>{
                 setFormData({
                   
                   
-                  plan:'',
-                  investment:'',
+                  account:'',
+                  bank:'',
+                  ifsc:'',
                   
                   
                 })
-                setMessage('Registration successful for ' + formSubmitted.plan)
+                setMessage('Bank details registered successfully for ' + formSubmitted.userid)
                
                
                
@@ -157,25 +143,15 @@ const Bank=()=>{
           }
           
 
-              const dates=new Date()
-              const date_a=format(new Date(addMonths(dates,36)),"dd-MMM-yyyy")
-              const date_b=format(new Date(addMonths(dates,12)),"dd-MMM-yyyy")
+             
 
-        let k="hidden"
+       
 
 
         useEffect(()=>{
           fetch();
         },[])
-        const infofetch=()=>{
-          const info= idata.filter((e)=>{
-            return uid===e.userid
-             
-           })
-   
-           
-
-        }
+       
 
        const info= idata.filter((e)=>{
          return uid===e.userid
@@ -192,55 +168,19 @@ const Bank=()=>{
 
     return(
         <>
-        {userData.usertype==='branch_manager' && (<CInputGroup>
+        
           <CFormInput onChange={inputuid} value={uid}></CFormInput>
           
-        </CInputGroup>)}
+       
 
         {investorid!=='' && (<CInputGroup>
-          <CFormInput  value={investorid}></CFormInput>
-          <CFormInput  value={investorname}></CFormInput>
-          <CFormInput  value={status}></CFormInput>
+          <CFormInput  disabled value={investorid}></CFormInput>
+          <CFormInput  disabled value={investorname}></CFormInput>
+          <CFormInput  disabled value={status}></CFormInput>
           </CInputGroup>)}
 
-       {uid===''  ?
-        <CCard hidden> 
-        <CCardHeader color='purple'>
-        Invest Now
-        {message && <CAlert color="success">{message}</CAlert>}
-              {error && <CAlert color="danger">{error}</CAlert>}
-        </CCardHeader>  
-        <CCardBody>
-            
-                <CForm >
-                <CFormLabel>Amount</CFormLabel>
-                <CFormInput  name="investment" onChange={handleInputChange}
-                      value={formData.name} placeholder='Enter Amount'></CFormInput>
-
-                    <CFormLabel>Select plan</CFormLabel>
-                    <CFormSelect name='plan' onChange={handleInputChange}>
-                    <option value="">Select Plan</option>
-                        <option value='plan-a'>Plan-A</option>
-                        <option value='plan-b'>Plan-B</option>
-                    </CFormSelect>
-                  
-                  <div className='mb-3'>
-                 <CButton type='submit' onSubmit={handleSubmit}
-                      onClick={handleSubmit}>Submit</CButton>
-                 </div >
-
-
-                 </CForm>
-                 
-            
-        </CCardBody>
-        
-        </CCard>
-
-
-        :
-
-
+       {uid!==''  &&
+       
         <CCard> 
         <CCardHeader color='purple'>
         Invest Now

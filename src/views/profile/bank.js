@@ -132,9 +132,7 @@ const Bank=()=>{
               })
         
               
-             if(response.status==201){
-              navigate('/submit')
-             }
+             
               
             
                 setFormData({
@@ -254,15 +252,15 @@ const Bank=()=>{
                 <CForm >
                 <CFormLabel>Account</CFormLabel>
                 <CFormInput  name="account" onChange={handleInputChange}
-                      value={formData.name} placeholder='Enter Amount'></CFormInput>
+                      value={formData.name} placeholder='Enter Account Number'></CFormInput>
 
 <CFormLabel>Bank Name</CFormLabel>
                 <CFormInput  name="bank" onChange={handleInputChange}
-                      value={formData.bank} placeholder='Enter Amount'></CFormInput>
+                      value={formData.bank} placeholder='Enter Bank Name'></CFormInput>
 
 <CFormLabel>Account</CFormLabel>
                 <CFormInput  name="ifsc" onChange={handleInputChange}
-                      value={formData.ifsc} placeholder='Enter Amount'></CFormInput>
+                      value={formData.ifsc} placeholder='Enter IFSC Code'></CFormInput>
                   
                   <div className='mb-3'>
                  <CButton type='submit' onSubmit={handleSubmit}

@@ -54,17 +54,24 @@ const Invest=()=>{
                 return false
               }
             }
-            if(formData.plan=="plan-a" && formData.investment<=50000 || formData.investment>=1000000){
             
-              setError('Investmnet not valid')
-              return false
-            }
 
-            if(formData.plan=="plan-b" && formData.investment<=50000 || formData.investment>=500000){
+            if(formData.plan=="plan-b" ){
+              if(formData.investment<=49999 || formData.investment>=500001){
               
-                setError('Investmnet not valid')
+                setError('Investment not valid')
                 return false
               }
+              }
+
+              if(formData.plan=="plan-a" ){
+                if(formData.investment<=49999 || formData.investment>=1000001){
+              
+                setError('Investment not valid')
+                return false
+                }
+              }
+             
             
 
             

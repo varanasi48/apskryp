@@ -15,6 +15,8 @@ import {
   CTableHead,
   CTableHeaderCell,
   CTableRow,
+  CFormInput,
+  CInputGroup
 } from '@coreui/react'
 import { DocsExample } from 'src/components'
 import {addMonths, eachMonthOfInterval, format,formatDistanceToNowStrict} from 'date-fns'
@@ -36,6 +38,12 @@ const Revenue = () => {
   const API_URL = process.env.REACT_APP_API_URL
   const [data, setData] = useState([]);
   const [error, setError] = useState('')
+  const [uid,setuid]=useState('')
+  let [investorname, setinvestorname] = useState('')
+  let [status, setstatus] = useState('')
+  let [investorid, setinvestorid] = useState('')
+  const[idata,setiData]=useState([])
+
   
 
   
@@ -46,8 +54,35 @@ let [investment,setInvestment]=useState('')
   
   
 
+const inputuid=  (e)=>{
+  setuid(e.target.value)
 
+}
   
+
+const fetch = async () => {
+  try {
+    // Send data to the register API with JWT token in header
+    const data = await axios.post(
+      `${API_URL}/fetch-users`,
+      {},
+      {
+        headers: {
+          Authorization: `Bearer ${userData.token}}`,
+        },
+      },
+    )
+     setiData(data.data)
+    //return data.data
+    
+    
+    } catch (err) {
+    setError(err.response.data.message)
+  }
+ 
+
+}
+
 
 
   const fetchUserData = async () => {
@@ -76,8 +111,23 @@ let [investment,setInvestment]=useState('')
   useEffect(()=>{
 
     fetchUserData()
+    fetch()
 
   },[])
+
+
+  const info= idata.filter((e)=>{
+    return uid===e.userid
+     
+   })
+
+   info.map((e)=>{
+     investorid=e.userid
+     investorname=e.name
+        status=e.status
+        
+     console.log(investorid)
+   })
 
        let k=''
        let p=''
@@ -96,11 +146,16 @@ let [investment,setInvestment]=useState('')
          
           
         }  
+        let plan=[]
+        let dati=[]
   //data filter
      //console.log(data)
-     let plan=data.filter(e=>{return  e.userid===userData.userid})
+        {userData.usertype==='branch_manager' ? dati=data.filter(e=>{return  e.userid===uid  }) : dati=data.filter(e=>{return  e.userid===userData.userid  })}
+      
+      plan=dati.filter(e=>{return  e.investment===investment })
+    
 
-    let ii= plan.filter(ev=>{return ev.investment===investment})
+   
      
      if(plan.length==0){ 
       k="Plan Not Selected"
@@ -169,15 +224,28 @@ if(k=="plan-a"){
 
   return (
     <>
+    {userData.usertype==='branch_manager' && (<CInputGroup>
+          <CFormInput onChange={inputuid} value={uid} placeholder='Enter User ID'></CFormInput>
+          
+        </CInputGroup>)}
+
+        {investorid!=='' && (<CInputGroup>
+          <CFormInput  value={investorid}></CFormInput>
+          <CFormInput  value={investorname}></CFormInput>
+          <CFormInput  value={status}></CFormInput>
+          </CInputGroup>)}
+
+
     
       <CFormSelect onChange={handleChange} >
       
               <option >Select  Invetsment </option>
-              {plan.map((e)=>{
+              {dati.map((e)=>{
                 
      return(
       
       <>
+
 
      <option key={e.ObjectId}  value={e.investment}>{e.investment}({e.plan})({e.userid})</option>
       </>

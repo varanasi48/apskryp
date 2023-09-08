@@ -64,6 +64,9 @@ const Profile = React.lazy(() => import('./views/profile/profile'))
 const Bank = React.lazy(() => import('./views/profile/bank'))
 const Submit = React.lazy(() => import('./views/investor/submit'))
 
+//Branch Manager Links
+const RevenueB = React.lazy(() => import('./views/investorinfo/investor'))
+
 
 
 
@@ -128,6 +131,9 @@ const routes = [
  { path:'/invest',name:'Investor Page',element:Invest },
  { path:'/submit',name:'Investor Page',element:Submit },
 
+
+ //Branch Manager
+ { path:'/revenueb',name:'Investor Page',element:RevenueB },
 
 ]
 

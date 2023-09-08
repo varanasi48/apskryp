@@ -61,7 +61,7 @@ const _navb = [
       {
         component: CNavItem,
         name: 'Investor Page',
-        to: '/investor',
+        to: '/revenueb',
       },
 
       {
@@ -106,7 +106,7 @@ const _navb = [
       {
         component: CNavItem,
         name: 'Investment',
-        to: '/Upload',
+        to: '/investor',
       },
       {
         component: CNavItem,
@@ -116,7 +116,7 @@ const _navb = [
       {
         component: CNavItem,
         name: 'Invest',
-        to: '/Upload',
+        to: '/invest',
       },
 
     ]

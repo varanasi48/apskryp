@@ -17,6 +17,7 @@ const { Navigate } = require('react-router-dom')
 
 
 const app = express()
+app.use(express.urlencoded({extended:true}))
 
 app.use(express.json())
 // Allow requests from all origins
@@ -42,6 +43,7 @@ app.post('/login', async (req, res) => {
       { expiresIn: '30m' },
     )
     res.json({ name: user.name, phoneno: user.phoneno, usertype: user.usertype, token, userid: user.userid,plan:user.plan,investment:user.investment,id:user._id})
+    
   } catch (err) {
     res.status(500).send('Server error')
   }

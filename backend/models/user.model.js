@@ -13,6 +13,7 @@ const UserSchema = new Schema(
 	  status: { type: Boolean, default: false },
     plan:String,
     investment:String,
+    bank:{ type: Boolean, default: false },
     
     usertype: {
       type: String,

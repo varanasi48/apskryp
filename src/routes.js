@@ -66,6 +66,7 @@ const Submit = React.lazy(() => import('./views/investor/submit'))
 
 //Branch Manager Links
 const RevenueB = React.lazy(() => import('./views/investorinfo/investor'))
+const RevenueC = React.lazy(() => import('./views/investorinfo/revenuebranch'))
 
 
 
@@ -128,6 +129,7 @@ const routes = [
  //Investor
  { path:'/investor',name:'Investor Page',element:Investment },
  { path:'/revenue',name:'Investor Page',element:Revenue },
+ { path:'/revenuec',name:'Investor Page',element:RevenueC },
  { path:'/invest',name:'Investor Page',element:Invest },
  { path:'/submit',name:'Investor Page',element:Submit },
 

@@ -111,7 +111,7 @@ const _navb = [
       {
         component: CNavItem,
         name: 'Revenue',
-        to: '/Upload',
+        to: '/revenuec',
       },
       {
         component: CNavItem,

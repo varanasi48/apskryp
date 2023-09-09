@@ -78,6 +78,7 @@ const Register = () => {
       formSubmitted.status = false
     } 
 	formSubmitted.userid = generateID();
+  formSubmitted.bank = false;
   //formSubmitted.plan = "Plan-A";
 	
     for (const key in formSubmitted) {

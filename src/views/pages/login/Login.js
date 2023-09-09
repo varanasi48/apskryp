@@ -31,7 +31,11 @@ const Login = () => {
       navigate(`/dashboard`);
       
     }
-    else{
+    if(response.data.usertype=='branch_manager'){
+      navigate(`/dashboardb`);
+
+    }
+    if(response.data.usertype=='investor'){
       navigate(`/dashboardi`);
 
     }

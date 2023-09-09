@@ -17,6 +17,7 @@ const { Navigate } = require('react-router-dom')
 
 
 const app = express()
+app.use(express.urlencoded({extended:true}))
 
 app.use(express.json())
 // Allow requests from all origins
@@ -41,7 +42,8 @@ app.post('/login', async (req, res) => {
       process.env.JWT_SECRET,
       { expiresIn: '30m' },
     )
-    res.json({ name: user.name, phoneno: user.phoneno, usertype: user.usertype, token, userid: user.userid,plan:user.plan,investment:user.investment})
+    res.json({ name: user.name, phoneno: user.phoneno, usertype: user.usertype, token, userid: user.userid,plan:user.plan,investment:user.investment,id:user._id})
+    
   } catch (err) {
     res.status(500).send('Server error')
   }
@@ -207,6 +209,7 @@ app.post('/bank', async (req, res) => {
 
 
 app.get('/users', async (req, res) => {
+ 
   try {
     const token = req.headers.authorization.split(' ')[1]
     const decoded = jwt.verify(token, process.env.JWT_SECRET)

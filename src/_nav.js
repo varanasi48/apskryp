@@ -110,6 +110,12 @@ const _nav = [
   },
   {
     component: CNavItem,
+    name: 'Bank Approval',
+    icon: <CIcon icon={cilCheckCircle} customClassName="nav-icon" />,
+    to: '/forms/select',
+  },
+  {
+    component: CNavItem,
     name: 'Logout',
     to: '/logout',
     icon: <CIcon icon={cilAccountLogout} customClassName="nav-icon" />,

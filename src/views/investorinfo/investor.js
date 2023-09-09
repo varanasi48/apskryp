@@ -100,7 +100,7 @@ const Investment_i=()=>{
          {investorid!=='' && (<CInputGroup>
           <CFormInput  value={investorid}></CFormInput>
           <CFormInput  value={investorname}></CFormInput>
-          <CFormInput  value={status}></CFormInput>
+          <CFormInput  value={status==='true' ? "Active":"Inactive"}></CFormInput>
           </CInputGroup>)}
 
                         {buid.map((e)=>{

@@ -205,8 +205,8 @@ const Invest=()=>{
           <CFormInput  value={investorname}></CFormInput>
           <CFormInput  value={status}></CFormInput>
           </CInputGroup>)}
-
-       {uid===''  ?
+     
+       { userData.usertype==='branch_manager' && uid===''  ?
         <CCard hidden> 
         <CCardHeader color='purple'>
         Invest Now

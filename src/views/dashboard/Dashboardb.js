@@ -51,6 +51,7 @@ import WidgetsBrand from '../widgets/WidgetsBrand'
 import { format, formatDistanceToNow, formatDistanceToNowStrict } from 'date-fns'
 import { LinearProgress } from '@mui/material'
 import WidgetsDropdown from '../widgets/WidgetsDropdownb'
+import { check } from 'prettier'
 
 
 
@@ -59,44 +60,49 @@ import WidgetsDropdown from '../widgets/WidgetsDropdownb'
   
 
 const Dashboardb = () => {
+
+  const API_URL = process.env.REACT_APP_API_URL
+  const [data, setData] = useState([]);
+  const [idata, setiData] = useState([]);
+  const [error, setError] = useState('')
+
   const random = (min, max) => Math.floor(Math.random() * (max - min + 1) + min)
 
   const userData = localStorage.getItem('userData')
   ? JSON.parse(localStorage.getItem('userData'))
   : null
     
+ console.log(userData.id)
+
+
+ const fetch = async () => {
+  try {
+    // Send data to the register API with JWT token in header
+    const data = await axios.get(
+      `${API_URL}/users`,
+      {params:{registeredBy:userData.id}},
+      {
+        headers: {
+          Authorization: `Bearer ${userData.token}}`,
+        },
+      },
+    )
+     setData(data.data)
+    //return data.data
+    
+    
+    } catch (err) {
+    setError(err.response.data.message)
+  }
  
-  
-  const API_URL = process.env.REACT_APP_API_URL
-  const [data, setData] = useState([]);
-  const [error, setError] = useState('')
-  let [uid,setuid]=useState('')
-  let [investorname, setinvestorname] = useState('')
-  let [status, setstatus] = useState('')
-  let [investorid, setinvestorid] = useState('')
-  const[idata,setiData]=useState([])
 
-  
+}
 
-  
-
-
-let [revenue,setRevenue]=useState('')  
-let [investment,setInvestment]=useState('')
-  
-  
-
-/*const inputuid=  (e)=>{
-  setuid(e.target.value)
-
-}*/
-  
-
-const fetch = async () => {
+const fetchi = async () => {
   try {
     // Send data to the register API with JWT token in header
     const data = await axios.post(
-      `${API_URL}/fetch-users`,
+      `${API_URL}/fetch-investment`,
       {},
       {
         headers: {
@@ -115,140 +121,27 @@ const fetch = async () => {
 
 }
 
+useEffect(()=>{
 
+  fetch()
+  fetchi()
 
-  const fetchUserData = async () => {
-    
-    try {
-      // Send data to the register API with JWT token in header
-      const data = await axios.post(
-        `${API_URL}/fetch-investment`,
-        {},
-        {
-          headers: {
-            Authorization: `Bearer ${userData.token}}`,
-          },
-        },
-      )
-       setData(data.data)
-     
-      
-      
-      } catch (err) {
-      setError(err.response.data.message)
-    }
+ 
+},[])
+  let ch=[]
+  let ia=0
+  let ib=0
+  let ic=0
+
+  const info=data.map(e => {
+    let idd=e.userid
+    ch=idata.filter(e=>e.userid===idd)
    
-
   }
-  useEffect(()=>{
-
-    fetch()
-
-    fetchUserData()
-    
-
-  },[])
-
-   console.log(userData.id)
-  const info= idata.filter((e)=>{
-    return userData.id===e.registeredBy 
-     
-   })
-   console.log(info.length)
-
-   let idd=''
-
-info.map((e)=>{
-    
-    idd=e.userid 
-})
-console.log(idd)
-
-
-   let k=''
-   let p=''
-
-   let r=''
-   let s=''
-   let ch=[]
-   let start=new Date()
-   const end = new Date()
-   let loop = new Date(start);
-
-
+    ) 
+  console.log(info)
+  console.log(ch)
   
-   
- 
-  let plan=data.filter((e)=>{return e.userid===userData.userid})
-  let plana=data.filter((e)=>{return e.userid===userData.userid && e.plan==='plan-a' && e.status===true})
-  let planb=data.filter((e)=>{return e.userid===userData.userid && e.plan==='plan-b' && e.status===true})
-  let plana_uv=data.filter((e)=>{return e.userid===userData.userid && e.plan==='plan-a' && e.status===false})
-  let planb_uv=data.filter((e)=>{return e.userid===userData.userid && e.plan==='plan-b' && e.status===false})
-  
-  let amt_a=plana.reduce((a,v)=>a=a+parseInt(v.investment),0)
-  
-  let amt_b=planb.reduce((a,v)=>a=a+parseInt(v.investment),0)
-
-  let amt_b_f=planb_uv.reduce((a,v)=>a=a+parseInt(v.investment),0)
-  let amt_a_f=plana_uv.reduce((a,v)=>a=a+parseInt(v.investment),0)
-  
-
-   if(plan.length==0){ 
-    k="Plan Not Selected"
-    p="Select plan"
-    ch.push("please select")
-    r='NOt selected'
-    s="select "
-
-    
-
-    //
-    
-   }
-   else{
-    {plan[0].status===false ? s='Pending': s='Aprooved'}
-    k=plan[0].plan
-    p=plan[0].createdAt
-
-if(k=="plan-a"){
-
-r=investment*0.1
-     start = new Date(p);
-    
-    const ends=end.setMonth(start.getMonth()+36)
-    
-            for(loop;loop<=ends;loop.setMonth(loop.getMonth()+1)){
-            ch.push(format(new Date(loop.toLocaleDateString()),"MMM-yyyy"));
-                
-               }
-              }
-              else{
-                r=0
-                const start = new Date(p);
-    const end = new Date()
-    const ends=end.setMonth(start.getMonth()+24)
-    
-    let loop = new Date(start);
-         
-
-
-          for(loop;loop<=ends;loop.setMonth(loop.getMonth()+1)){
-            ch.push(format(new Date(loop.toLocaleDateString()),"MMM-yyyy"));
-                
-               }
-
-              }
-                      }
-
-
-
-    
-  let kp=85
-
-
-  
- 
-
   
 
   return (
@@ -271,13 +164,19 @@ r=investment*0.1
                     <CCol sm={6}>
                       <div className="border-start border-start-4 border-start-warning py-1 px-3 mb-3">
                         <div className="text-medium-emphasis small">Total Plan-A Investors</div>
-                        <div className="fs-5 fw-semibold">{plana.length}</div>
+                        <div className="fs-5 fw-semibold">pa.length</div>
                       </div>
                     </CCol>
                     <CCol sm={6}>
                       <div className="border-start border-start-4 border-start-success py-1 px-3 mb-3">
                         <div className="text-medium-emphasis small">Total Plan-b Investors</div>
-                        <div className="fs-5 fw-semibold">{planb.length}</div>
+                        <div className="fs-5 fw-semibold">planb.length</div>
+                      </div>
+                    </CCol>
+                    <CCol sm={6}>
+                      <div className="border-start border-start-4 border-start-success py-1 px-3 mb-3">
+                        <div className="text-medium-emphasis small">Total Plan-A & Plan-B Investors</div>
+                        <div className="fs-5 fw-semibold">planb.length</div>
                       </div>
                     </CCol>
                   </CRow>
@@ -296,8 +195,9 @@ r=investment*0.1
               <CTable align="middle" className="mb-0 border" hover responsive>
                 <CTableHead color="light">
                   <CTableRow>
-                   
+                  <CTableHeaderCell>User</CTableHeaderCell>
                   <CTableHeaderCell>Investment</CTableHeaderCell>
+                  <CTableHeaderCell>Plan</CTableHeaderCell>
                     <CTableHeaderCell>Payment pending</CTableHeaderCell>
                     <CTableHeaderCell>Payment Received</CTableHeaderCell>
                     <CTableHeaderCell >Payment Method</CTableHeaderCell>
@@ -305,8 +205,16 @@ r=investment*0.1
                   </CTableRow>
                 </CTableHead>
                 <CTableBody>
-                  {plan.map((item) => (
+                  {ch.map((item) => (
                     <CTableRow v-for="item in tableItems" key={item.ObjectId}>
+
+                      <CTableDataCell>
+                        <div>{item.userid}</div>
+                       </CTableDataCell>
+
+                       <CTableDataCell>
+                        <div>{item.plan}</div>
+                       </CTableDataCell>
                       
                       <CTableDataCell>
                         <div>{item.investment}</div>
@@ -336,6 +244,8 @@ r=investment*0.1
                   ))}
                 </CTableBody>
               </CTable>
+
+              
             </CCardBody>
           </CCard>
         </CCol>

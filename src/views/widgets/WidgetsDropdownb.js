@@ -53,8 +53,31 @@ let [investment,setInvestment]=useState('')
 const fetch = async () => {
   try {
     // Send data to the register API with JWT token in header
+    const data = await axios.get(
+      `${API_URL}/users`,
+      {params:{registeredBy:userData.id}},
+      {
+        headers: {
+          Authorization: `Bearer ${userData.token}}`,
+        },
+      },
+    )
+     setData(data.data)
+    //return data.data
+    
+    
+    } catch (err) {
+    setError(err.response.data.message)
+  }
+ 
+
+}
+
+const fetchi = async () => {
+  try {
+    // Send data to the register API with JWT token in header
     const data = await axios.post(
-      `${API_URL}/fetch-users`,
+      `${API_URL}/fetch-investment`,
       {},
       {
         headers: {
@@ -73,58 +96,39 @@ const fetch = async () => {
 
 }
 
+useEffect(()=>{
 
+  fetch()
+  fetchi()
 
-  const fetchUserData = async () => {
-    
-    try {
-      // Send data to the register API with JWT token in header
-      const data = await axios.post(
-        `${API_URL}/fetch-investment`,
-        {},
-        {
-          headers: {
-            Authorization: `Bearer ${userData.token}}`,
-          },
-        },
-      )
-       setData(data.data)
-     
-      
-      
-      } catch (err) {
-      setError(err.response.data.message)
-    }
+ 
+},[])
+  let ch=[]
+  let ia=0
+  let ib=0
+  let ic=0
+
+  const info=data.map(e => {
+    let idd=e.userid
+    ch=idata.filter(e=>e.userid===idd)
    
-
   }
-  useEffect(()=>{
+    ) 
+  console.log(info)
+  console.log(ch)
 
-    fetch()
-
-    fetchUserData()
-    
-
-  },[])
-
-   console.log(userData.id)
-
-  const info= idata.filter((e)=>{
-    return userData.id===e.registeredBy 
-     
-   })
    
 
 
-  let plan=data.filter((e)=>{return e.userid===userData.userid })
+  let plan=ch.filter((e)=>{return e.userid===userData.userid })
   
-  let plana=idata.filter((e)=>{return userData.id===e.registeredBy  && e.plan==='plan-a' && e.status===true})
-  let planb=data.filter((e)=>{return userData.id===e.registeredBy && e.plan==='plan-b' && e.status===true})
-  let plana_uv=data.filter((e)=>{return e.userid===userData.userid && e.plan==='plan-a' && e.status===true})
-  let planb_uv=data.filter((e)=>{return e.userid===userData.userid && e.plan==='plan-b' && e.status===true})
+  let plana=ch.filter((e)=>{return  e.plan==='plan-a' && e.status===true})
+  let planb=ch.filter((e)=>{return  e.plan==='plan-b' && e.status===true})
+  let plana_uv=idata.filter((e)=>{return e.userid===userData.userid && e.plan==='plan-a' && e.status===true})
+  let planb_uv=idata.filter((e)=>{return e.userid===userData.userid && e.plan==='plan-b' && e.status===true})
   
   let amt_a=plana.reduce((a,v)=>a=a+parseInt(v.investment),0)
-  console.log(amt_a)
+  
   let amt_b=planb.reduce((a,v)=>a=a+parseInt(v.investment),0)
 
   let amt_b_f=planb_uv.reduce((a,v)=>a=a+parseInt(v.investment),0)

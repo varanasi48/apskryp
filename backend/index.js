@@ -209,6 +209,7 @@ app.post('/bank', async (req, res) => {
 
 
 app.get('/users', async (req, res) => {
+  console.log(req.query)
  
   try {
     const token = req.headers.authorization.split(' ')[1]

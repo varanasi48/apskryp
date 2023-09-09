@@ -197,7 +197,7 @@ if(k=="plan-a"){
                   r=investment*0.01
                   const start = new Date(p);
       const end = new Date()
-      const ends=end.setMonth(start.getMonth()+24)
+      const ends=end.setMonth(start.getMonth()+12)
       console.log(start.getMonth())
       console.log(new Date(ends).getMonth())
      console.log(((new Date(ends).getMonth()-start.getMonth())/start.getMonth())*100)

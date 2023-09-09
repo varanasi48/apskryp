@@ -192,7 +192,7 @@ if(k=="plan-a"){
                   r=0
                   const start = new Date(p);
       const end = new Date()
-      const ends=end.setMonth(start.getMonth()+24)
+      const ends=end.setMonth(start.getMonth()+12)
       console.log(start.getMonth())
       console.log(new Date(ends).getMonth())
      console.log(((new Date(ends).getMonth()-start.getMonth())/start.getMonth())*100)
@@ -232,7 +232,7 @@ if(k=="plan-a"){
         {investorid!=='' && (<CInputGroup>
           <CFormInput  value={investorid}></CFormInput>
           <CFormInput  value={investorname}></CFormInput>
-          <CFormInput  value={status}></CFormInput>
+          <CFormInput  value={status==='true' ? "Active":"Inactive"}></CFormInput>
           </CInputGroup>)}
 
 

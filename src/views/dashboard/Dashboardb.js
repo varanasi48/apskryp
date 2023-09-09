@@ -50,7 +50,7 @@ import {
 import WidgetsBrand from '../widgets/WidgetsBrand'
 import { format, formatDistanceToNow, formatDistanceToNowStrict } from 'date-fns'
 import { LinearProgress } from '@mui/material'
-import WidgetsDropdown from '../widgets/WidgetsDropdowni'
+import WidgetsDropdown from '../widgets/WidgetsDropdownb'
 
 
 
@@ -66,54 +66,111 @@ const Dashboardb = () => {
   : null
     
  
-  const API_URL = process.env.REACT_APP_API_URL
-    const [data, setData] = useState([]);
-    const [error, setError] = useState('')
-    const [sdate,setSdate]=useState('')
-    const [visible, setVisible] = React.useState(false);
-    const [state, setState] = React.useState('');
-    let [ch, setCh] = React.useState([]);
-    let [investment,setInvestment]=useState('')
-
-    
-    
-    const fetchUserData = async () => {
-      try {
-        // Send data to the register API with JWT token in header
-        const data = await axios.post(
-          `${API_URL}/fetch-investment`,
-          {},
-          {
-            headers: {
-              Authorization: `Bearer ${userData.token}}`,
-            },
-          },
-        )
-         setData(data.data)
-        //return data.data
-        
-        
-        } catch (err) {
-        setError(err.response.data.message)
-      }
-     
   
-    }
+  const API_URL = process.env.REACT_APP_API_URL
+  const [data, setData] = useState([]);
+  const [error, setError] = useState('')
+  let [uid,setuid]=useState('')
+  let [investorname, setinvestorname] = useState('')
+  let [status, setstatus] = useState('')
+  let [investorid, setinvestorid] = useState('')
+  const[idata,setiData]=useState([])
+
+  
+
+  
+
+
+let [revenue,setRevenue]=useState('')  
+let [investment,setInvestment]=useState('')
+  
+  
+
+/*const inputuid=  (e)=>{
+  setuid(e.target.value)
+
+}*/
+  
+
+const fetch = async () => {
+  try {
+    // Send data to the register API with JWT token in header
+    const data = await axios.post(
+      `${API_URL}/fetch-users`,
+      {},
+      {
+        headers: {
+          Authorization: `Bearer ${userData.token}}`,
+        },
+      },
+    )
+     setiData(data.data)
+    //return data.data
     
+    
+    } catch (err) {
+    setError(err.response.data.message)
+  }
+ 
+
+}
+
+
+
+  const fetchUserData = async () => {
+    
+    try {
+      // Send data to the register API with JWT token in header
+      const data = await axios.post(
+        `${API_URL}/fetch-investment`,
+        {},
+        {
+          headers: {
+            Authorization: `Bearer ${userData.token}}`,
+          },
+        },
+      )
+       setData(data.data)
      
-    useEffect(()=>{
-      fetchUserData();
-    },[])
+      
+      
+      } catch (err) {
+      setError(err.response.data.message)
+    }
+   
+
+  }
+  useEffect(()=>{
+
+    fetch()
+
+    fetchUserData()
     
-   if(data.length>0){
-    console.log(data)
-   }
+
+  },[])
+
+   console.log(userData.id)
+  const info= idata.filter((e)=>{
+    return userData.id===e.registeredBy 
+     
+   })
+   console.log(info.length)
+
+   let idd=''
+
+info.map((e)=>{
+    
+    idd=e.userid 
+})
+console.log(idd)
+
 
    let k=''
    let p=''
 
    let r=''
    let s=''
+   let ch=[]
    let start=new Date()
    const end = new Date()
    let loop = new Date(start);
@@ -124,12 +181,12 @@ const Dashboardb = () => {
  
   let plan=data.filter((e)=>{return e.userid===userData.userid})
   let plana=data.filter((e)=>{return e.userid===userData.userid && e.plan==='plan-a' && e.status===true})
-  let planb=data.filter((e)=>{return e.userid===userData.userid && e.plan==='plan-b'})
+  let planb=data.filter((e)=>{return e.userid===userData.userid && e.plan==='plan-b' && e.status===true})
   let plana_uv=data.filter((e)=>{return e.userid===userData.userid && e.plan==='plan-a' && e.status===false})
   let planb_uv=data.filter((e)=>{return e.userid===userData.userid && e.plan==='plan-b' && e.status===false})
   
   let amt_a=plana.reduce((a,v)=>a=a+parseInt(v.investment),0)
-  console.log(amt_a)
+  
   let amt_b=planb.reduce((a,v)=>a=a+parseInt(v.investment),0)
 
   let amt_b_f=planb_uv.reduce((a,v)=>a=a+parseInt(v.investment),0)
@@ -143,7 +200,7 @@ const Dashboardb = () => {
     r='NOt selected'
     s="select "
 
-    console.log(plan)
+    
 
     //
     
@@ -213,14 +270,14 @@ r=investment*0.1
                   <CRow>
                     <CCol sm={6}>
                       <div className="border-start border-start-4 border-start-warning py-1 px-3 mb-3">
-                        <div className="text-medium-emphasis small">Total Plan-A Investment</div>
-                        <div className="fs-5 fw-semibold">{amt_a}</div>
+                        <div className="text-medium-emphasis small">Total Plan-A Investors</div>
+                        <div className="fs-5 fw-semibold">{plana.length}</div>
                       </div>
                     </CCol>
                     <CCol sm={6}>
                       <div className="border-start border-start-4 border-start-success py-1 px-3 mb-3">
-                        <div className="text-medium-emphasis small">Total Plan-b Investment</div>
-                        <div className="fs-5 fw-semibold">{amt_b}</div>
+                        <div className="text-medium-emphasis small">Total Plan-b Investors</div>
+                        <div className="fs-5 fw-semibold">{planb.length}</div>
                       </div>
                     </CCol>
                   </CRow>

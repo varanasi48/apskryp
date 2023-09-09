@@ -91,6 +91,7 @@ const Investment_i=()=>{
     
 
     let buid=data.filter((e)=>{return e.userid===uid})
+    console.log(buid)
   
     return(
         <>

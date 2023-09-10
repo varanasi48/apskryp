@@ -222,7 +222,7 @@ useEffect(()=>{
                      
                       <CTableDataCell>
                          <div className="float-start">
-                            <strong>Pending</strong>
+                            <strong>{item.plan==='plan-a' ? (parseInt(item.investment)*3.6):(parseInt(item.investment)*2)}</strong>
                           </div>
                       </CTableDataCell>
 

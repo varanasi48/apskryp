@@ -55,14 +55,14 @@ const _nav = [
       {
         
         component: CNavItem,
-        name: 'Branch Managers',
+        name: 'User Info',
         to: '/base/accordion',
         
       },
       
       {
         component: CNavItem,
-        name: 'Investments',
+        name: 'Investors',
         to: '/base/cards',
       },
       
@@ -112,7 +112,7 @@ const _nav = [
     component: CNavItem,
     name: 'Bank Approval',
     icon: <CIcon icon={cilCheckCircle} customClassName="nav-icon" />,
-    to: '/forms/select',
+    to: '/forms/range',
   },
   {
     component: CNavItem,

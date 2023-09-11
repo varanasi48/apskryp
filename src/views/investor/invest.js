@@ -195,18 +195,18 @@ const Invest=()=>{
 
     return(
         <>
-        {userData.usertype==='branch_manager' && (<CInputGroup>
-          <CFormInput onChange={inputuid} value={uid}></CFormInput>
+        {userData.usertype==='branch_manager'||userData.usertype==='admin'  && (<CInputGroup>
+          <CFormInput placeholder='Enter User ID' onChange={inputuid} value={uid}></CFormInput>
           
         </CInputGroup>)}
 
         {investorid!=='' && (<CInputGroup>
           <CFormInput  value={investorid}></CFormInput>
           <CFormInput  value={investorname}></CFormInput>
-          <CFormInput  value={status}></CFormInput>
+          <CFormInput  value={status===false ? "Inactive":"Active"}></CFormInput>
           </CInputGroup>)}
      
-       { userData.usertype==='branch_manager' && uid===''  ?
+       { userData.usertype==='branch_manager' || userData.usertype==='admin' && uid===''  ?
         <CCard hidden> 
         <CCardHeader color='purple'>
         Invest Now

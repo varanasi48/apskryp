@@ -14,6 +14,8 @@ const UserSchema = new Schema(
     plan:String,
     investment:String,
     bank:{ type: Boolean, default: false },
+    state:String,
+    district:String,
     
     usertype: {
       type: String,

@@ -34,10 +34,7 @@ const _nav = [
     name: 'Dashboard',
     to: '/dashboard',
     icon: <CIcon icon={cilSpeedometer} customClassName="nav-icon" />,
-    badge: {
-      color: 'info',
-      text: 'NEW',
-    },
+   
   },
   
   
@@ -62,10 +59,22 @@ const _nav = [
       
       {
         component: CNavItem,
+        name: 'Branch Managers',
+        to: '/base/breadcrumbs',
+      },
+
+      
+      {
+        component: CNavItem,
         name: 'Investors',
         to: '/base/cards',
       },
       
+      {
+        component: CNavItem,
+        name: 'Invest',
+        to: '/invest',
+      },
       
      
       {
@@ -125,68 +134,7 @@ const _nav = [
  
 ]
 
-export const _nav_i = [
-  
 
-  {
-    component: CNavItem,
-    name: 'Dashboard',
-    to: '/dashboard',
-    icon: <CIcon icon={cilSpeedometer} customClassName="nav-icon" />,
-    badge: {
-      color: 'info',
-      text: 'NEW',
-    },
-  },
-  
-  
-  /*{
-    component: CNavTitle,
-    name: 'Investors',
-  },*/
-  {
-    
-    component: CNavGroup,
-    name: 'Users',
-    to: '/base',
-    icon: <CIcon icon={cilPeople} customClassName="nav-icon" />,
-    items: [
-      
-      
-      {
-        component: CNavItem,
-        name: 'Investments',
-        to: '/base/cards',
-      },
-      
-      
-     
-      {
-        component: CNavItem,
-        name: 'Payments',
-        to: '/base/tables',
-      },
-      {
-        component: CNavItem,
-        name: 'Uploads',
-        to: '/Upload',
-      },
-      
-      
-    ],
-  },
-  
- 
-  {
-    component: CNavItem,
-    name: 'Logout',
-    to: '/logout',
-    icon: <CIcon icon={cilAccountLogout} customClassName="nav-icon" />,
-  },
-
- 
- 
-]
 
  
   

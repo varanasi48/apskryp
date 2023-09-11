@@ -1,20 +1,29 @@
-import React,{useState,useEffect} from 'react'
+import React, { useState,useEffect } from 'react'
 import {
+  CBreadcrumb,
+  CBreadcrumbItem,
   CCard,
   CCardBody,
   CCardHeader,
   CCol,
   CRow,
+  CLink,
+  CInputGroup,
+  CInputGroupText,
+  CFormInput,
   CTable,
-  CTableBody,
-  CTableCaption,
   CTableDataCell,
-  CTableHead,
+  CTableBody,
   CTableHeaderCell,
+  CTableHead,
   CTableRow,
+  CFormSelect,
+  CButton,
+
 } from '@coreui/react'
 import { DocsExample } from 'src/components'
 import axios from 'axios'
+
 
 const userData = localStorage.getItem('userData')
     ? JSON.parse(localStorage.getItem('userData'))
@@ -22,12 +31,12 @@ const userData = localStorage.getItem('userData')
 
 const API_URL = process.env.REACT_APP_API_URL
 
-
-const Tables = () => {
-  const [error, setError] = useState('')
-  const [info,setinfo]=useState([])
+const Breadcrumbs = () => {
   
 
+  const [info,setinfo]=useState([])
+  const [error,setError]=useState('')
+  const [status,setstatus]=useState(false)
 
   const fetchUserData = async () => {
     try {
@@ -54,33 +63,28 @@ const Tables = () => {
   
    
     useEffect(() => {
-      
-     
-     
+ 
 fetchUserData()
-      
-
+ 
    }, [])
 
-   
-   console.log(info)
-   
-  //  fetchUserData()
+    //update
 
-
-  //update
+    const statusupdate=(event)=>{
+      setstatus(event.target.value)
+    }
 
   const handleSubmit = async (event) => {
     event.preventDefault()
-    const formSubmitted = {id:event.target.value,
-      status:true }
-	
-  
-	
-  //formSubmitted.plan = "Plan-A";
-	
     
-    setError('')
+
+    const formSubmitted = {id:event.target.value,
+      status:status
+       }
+	
+      setError('')
+	
+ 
     try {
       // Send data to the register API with JWT token in header
       await axios.post(`${API_URL}/updateTwo`, formSubmitted, {
@@ -89,38 +93,21 @@ fetchUserData()
         },
       })
 
-     // setMessage('Registration successful for ' + formSubmitted.id)
-     
-      
-     fetchUserData()
-             
-       
-        //nomineedate:'',
-      
       console.log(formSubmitted)
+      
       
     } catch (err) {
       setError(err.response.data.message)
     }
+  
   }
-  return (
+  return(
     <>
-     
-     
-      
-      
-     
+    <CInputGroup>
+     <CFormInput placeholder='Enter User ID'/>
+    </CInputGroup>
 
-    <CRow>
-      <CCol xs={12}>
-        <CCard className="mb-4">
-          <CCardHeader>
-            <strong>Investments</strong> 
-          </CCardHeader>
-          
-        </CCard>
-      </CCol>
-      <CCol xs={12}>
+    <CCol xs={12}>
         <CCard className="mb-4">
          
           <CCardBody>
@@ -138,26 +125,28 @@ fetchUserData()
                 <CTableBody>
                 
                   
-                {info.map((e)=>{
-                  if(e.usertype=="investor"){
-      return(
-                    <CTableRow key={e._id}>
+                 {info.filter(e=>e.usertype==='investor' && e.status===false).map((e)=>
+                   <CTableRow key={e.id}>
                    
                     <CTableHeaderCell scope="row">{e.userid}</CTableHeaderCell>
                     <CTableDataCell>{e.name}</CTableDataCell>
                     <CTableDataCell>{e.usertype}</CTableDataCell>
+                    <CTableDataCell>{e.status==='true' ? 'Active':
+                    
+                    <CFormSelect onChange={statusupdate}>
+                      <option value=''>Select action</option>
+                      <option value='true'>Activate</option>
+                      <option value='false'>Reject</option>
+                      </CFormSelect>}</CTableDataCell>
+                      <CButton onClick={handleSubmit} value={e._id}> Submit</CButton>
                     
                     <CTableDataCell>
-                    {e.status===false ?
-                    <button  onClick={handleSubmit} value={e._id}>Click to aproove</button> :
-                    "Aprooved"
-                    }
+                   
                     </CTableDataCell>
                     
                   </CTableRow>
-                  )
-      }
-                })}
+)}
+        
     
 
                                    
@@ -169,11 +158,8 @@ fetchUserData()
           </CCardBody>
         </CCard>
       </CCol>
-     
-    </CRow>
     </>
   )
-  
-}
+  }
 
-export default Tables
+export default Breadcrumbs

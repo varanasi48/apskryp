@@ -13,7 +13,7 @@ const Investment = db.Investment
 const Bank = db.Bank
 
 const { Date, Math } = require("core-js");
-const { Navigate } = require('react-router-dom')
+const { Navigate, redirect } = require('react-router-dom')
 
 
 const app = express()
@@ -42,6 +42,7 @@ app.post('/login', async (req, res) => {
       process.env.JWT_SECRET,
       { expiresIn: '30m' },
     )
+    
     res.json({ name: user.name, phoneno: user.phoneno, usertype: user.usertype, token, userid: user.userid,plan:user.plan,investment:user.investment,id:user._id})
     
   } catch (err) {
@@ -90,6 +91,8 @@ app.post('/register', async (req, res) => {
         usertype: req.body.usertype,
         plan:req.body.plan,
         investment:req.body.investment,
+        state:req.body.state,
+        district:req.body.district,
       
         nominee: req.body.nominee,
       

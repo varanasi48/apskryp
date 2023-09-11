@@ -123,6 +123,8 @@ const Tables = () => {
   }
 const dat=data.filter(e=> e.userid===uid)
 
+
+
 console.log(idata)
 let plana=idata.filter((e)=>{return e.userid===uid && e.plan==='plan-a' && e.status===true})
 let planb=idata.filter((e)=>{return e.userid===uid && e.plan==='plan-b' && e.status===true})
@@ -144,7 +146,8 @@ let amt_b=planb.reduce((a,v)=>a=a+parseInt(v.investment),0)
       
     <CCardTitle>
     
-    <CFormLabel htmlFor="basic-url" className="position-absolute top-0 start-50">{e.usertype}</CFormLabel>
+    <CFormLabel htmlFor="basic-url" className="position-absolute top-0 start-50">{(e.usertype).toString().toUpperCase()}</CFormLabel>
+
     </CCardTitle>
     <CCardBody>
     <CInputGroup className="mb-3">
@@ -161,9 +164,10 @@ let amt_b=planb.reduce((a,v)=>a=a+parseInt(v.investment),0)
 
 <CInputGroup className="mb-3">
 <CInputGroupText id="basic-addon2">State</CInputGroupText>
-  <CFormInput placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="basic-addon2"/>
+  <CFormInput placeholder="Recipient's username" aria-label="Recipient's username" value={e.state} aria-describedby="basic-addon2"/>
+  
   <CInputGroupText id="basic-addon2">District</CInputGroupText>
-  <CFormInput placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="basic-addon2"/>
+  <CFormInput placeholder="Recipient's username" aria-label="Recipient's username" value={e.district}aria-describedby="basic-addon2"/>
   
 </CInputGroup>
 

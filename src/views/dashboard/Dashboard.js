@@ -462,48 +462,53 @@ const Dashboard = () => {
                       <CIcon icon={cilPeople} />
                     </CTableHeaderCell>
                     <CTableHeaderCell>User</CTableHeaderCell>
-                    <CTableHeaderCell className="text-center">Country</CTableHeaderCell>
-                    <CTableHeaderCell>Usage</CTableHeaderCell>
+                    <CTableHeaderCell className="text-center">Investment Limit</CTableHeaderCell>
+                    
                     <CTableHeaderCell className="text-center">Payment Method</CTableHeaderCell>
                     <CTableHeaderCell>Activity</CTableHeaderCell>
                   </CTableRow>
                 </CTableHead>
                 <CTableBody>
-                  {tableExample.map((item, index) => (
-                    <CTableRow v-for="item in tableItems" key={index}>
-                      <CTableDataCell className="text-center">
-                        <CAvatar size="md" src={item.avatar.src} status={item.avatar.status} />
-                      </CTableDataCell>
-                      <CTableDataCell>
-                        <div>{item.user.name}</div>
-                        <div className="small text-medium-emphasis">
-                          <span>{item.user.new ? 'New' : 'Recurring'}</span> | Registered:{' '}
-                          {item.user.registered}
-                        </div>
-                      </CTableDataCell>
-                      <CTableDataCell className="text-center">
-                        <CIcon size="xl" icon={item.country.flag} title={item.country.name} />
-                      </CTableDataCell>
-                      <CTableDataCell>
-                        <div className="clearfix">
-                          <div className="float-start">
-                            <strong>{item.usage.value}%</strong>
-                          </div>
-                          <div className="float-end">
-                            <small className="text-medium-emphasis">{item.usage.period}</small>
-                          </div>
-                        </div>
-                        <CProgress thin color={item.usage.color} value={item.usage.value} />
-                      </CTableDataCell>
-                      <CTableDataCell className="text-center">
-                        <CIcon size="xl" icon={item.payment.icon} />
-                      </CTableDataCell>
-                      <CTableDataCell>
-                        <div className="small text-medium-emphasis">Last login</div>
-                        <strong>{item.activity}</strong>
-                      </CTableDataCell>
-                    </CTableRow>
-                  ))}
+                  {data.filter((item) => item.usertype==='branch_manager').map((item,index)=>
+                  <CTableRow v-for="item in tableItems" key={index}>
+                  <CTableDataCell className="text-center">
+                    <CAvatar size="md" src={''} status={''} />
+                  </CTableDataCell>
+                  <CTableDataCell>
+                    <div>{item.name}</div>
+                    <div className="small text-medium-emphasis">
+                      <span>District:{'item.district '}</span>
+                      
+                    </div>
+                  </CTableDataCell>
+                  
+                  <CTableDataCell>
+                    <div className="clearfix">
+                      <div className="float-start">
+                      <div className="progress-group-bars">
+                        <CProgress thin color="info" value='60' />
+                        <CProgress thin color="danger" value='40' />
+                      </div>
+                        <strong>%</strong>
+                      </div>
+                      <div className="float-end">
+                        <small className="text-medium-emphasis">{''}</small>
+                      </div>
+                    </div>
+                    <CProgress thin color='red'  />
+                  </CTableDataCell>
+                  <CTableDataCell className="text-center">
+                   bank
+                  </CTableDataCell>
+                  <CTableDataCell>
+                    <div className="small text-medium-emphasis">Last login</div>
+                    
+                  </CTableDataCell>
+                </CTableRow>
+                  
+                  )
+                    
+}
                 </CTableBody>
               </CTable>
             </CCardBody>

@@ -15,6 +15,9 @@ const Login = () => {
   const handleLoginSubmit = async (e) => {
     e.preventDefault()
 
+    let x = document.forms["myForm"]["username"].value;
+    let y = document.forms["myForm"]["password"].value;
+
     try {
       const response = await axios.post(`${API_URL}/login`, {
         phoneno: phoneno.trim(),

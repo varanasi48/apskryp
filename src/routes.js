@@ -69,6 +69,9 @@ const RevenueB = React.lazy(() => import('./views/investorinfo/investor'))
 const RevenueC = React.lazy(() => import('./views/investorinfo/revenuebranch'))
 
 
+//meeting
+const meeting = React.lazy(() => import('./views/pages/meeting/meeting'))
+
 
 
 
@@ -136,6 +139,10 @@ const routes = [
 
  //Branch Manager
  { path:'/revenueb',name:'Investor Page',element:RevenueB },
+
+ //meeting
+ { path:'/meeting',name:'Investor Page',element:meeting },
+
 
 ]
 

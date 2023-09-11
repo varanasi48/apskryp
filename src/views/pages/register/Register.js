@@ -44,6 +44,10 @@ const Register = () => {
 
   const [error, setError] = useState('')
   const [message, setMessage] = useState('')
+
+  var ap = ["Anantapur","Chittoor","East Godavari","Guntur","Kadapa","Krishna","Kurnool","Prakasam","Nellore","Srikakulam","Visakhapatnam","Vizianagaram","West Godavari"];
+
+var tg = ["Adilabad","Bhadradri Kothagudem","Hyderabad","Jagtial","Jangaon","Jayashankar","Jogulamba","Kamareddy","Karimnagar","Khammam","Komaram Bheem","Mahabubabad","Mahbubnagar","Mancherial","Medak","Medchal","Nagarkurnool","Nalgonda","Nirmal","Nizamabad","Peddapalli","Rajanna Sircilla","Ranga Reddy","Sangareddy","Siddipet","Suryapet","Vikarabad","Wanaparthy","Warangal Rural","Warangal Urban","Yadadri Bhuvanagiri"];
   
   const [formData, setFormData] = useState({
     name: '',
@@ -52,6 +56,8 @@ const Register = () => {
     password: '',
     re_password: '',
     usertype: '',
+    state:'',
+    district:'',
     nominee: '',
    
      
@@ -117,6 +123,8 @@ const Register = () => {
           password: '',
           re_password: '',
           usertype: '',
+          state:'',
+          district:'',
           nominee: '',
        
           
@@ -239,6 +247,61 @@ const Register = () => {
                     )}
                    
                   </CInputGroup>
+                   <CInputGroup className="mb-4">
+                    
+                      <CFormSelect
+                        size="lg"
+                        className="mb-3"
+                        aria-label="Large select example"
+                        name="state"
+                        onChange={handleInputChange}
+                      >
+                        <option value="">Select State</option>
+                        <option value="Andhra Pradesh">Andhra Pradesh</option>
+                        <option value="Telangana">Telangana</option>
+                        
+                      </CFormSelect>
+                   
+                    {userData && userData.usertype === 'branch_manager' && (
+                      <input type="hidden" name="usertype" value="investor" />
+                    )}
+                   
+                  </CInputGroup>
+
+                  <CInputGroup className="mb-4">
+                    
+                    <CFormSelect
+                      size="lg"
+                      className="mb-3"
+                      aria-label="Large select example"
+                      name="district"
+                      onChange={handleInputChange}
+                    >
+                      <option value="">Select District</option>
+                      {formData.state==='Telangana' && tg.map((e,index)=>
+
+                        <option key={index} value={e}>{e}</option>
+
+                      )}
+                      
+                      {formData.state==='tg' && tg.map((e,index)=>
+
+                        <option key={index} value={e}>{e}</option>
+
+                      )}
+                      
+                        
+                      
+                      
+                     
+                      
+                    </CFormSelect>
+                 
+                  {userData && userData.usertype === 'branch_manager' && (
+                    <input type="hidden" name="usertype" value="investor" />
+                  )}
+                 
+                </CInputGroup>
                  
                   
                   

@@ -71,7 +71,9 @@ fetchUserData()
     //update
 
     const statusupdate=(event)=>{
+      
       setstatus(event.target.value)
+
     }
 
   const handleSubmit = async (event) => {

@@ -61,7 +61,8 @@
     "react-s3": "^1.3.1",
     "react-select": "^5.7.4",
     "redux": "4.2.1",
-    "simplebar-react": "^2.4.3"
+    "simplebar-react": "^2.4.3",
+    "proxy":"https://main.d3j7dt224zzcqc.amplifyapp.com/login/index.html"
   },
   "devDependencies": {
     "@testing-library/jest-dom": "^5.16.5",

@@ -277,18 +277,29 @@ var tg = ["Adilabad","Bhadradri Kothagudem","Hyderabad","Jagtial","Jangaon","Jay
                       name="district"
                       onChange={handleInputChange}
                     >
+                      {formData.state==='' ?
                       <option value="">Select District</option>
-                      {formData.state==='Telangana' && tg.map((e,index)=>
+                    
+
+                    :
+
+                   ( formData.state==='Telangana' ?tg.map((e,index)=>
 
                         <option key={index} value={e}>{e}</option>
 
-                      )}
+                      )
+                    :
+                    ap.map((e,index)=>
+
+                        <option key={index} value={e}>{e}</option>
+
+                      )
+                   )
+                    
+                    
+                    }
                       
-                      {formData.state==='tg' && tg.map((e,index)=>
-
-                        <option key={index} value={e}>{e}</option>
-
-                      )}
+                     
                       
                         
                       

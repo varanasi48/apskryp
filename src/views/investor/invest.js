@@ -70,10 +70,7 @@ const Invest=()=>{
            
         
           }
-          
-          
-      
-       
+        
           const handleSubmit = async (event) => {
             event.preventDefault()
             const formSubmitted = { ...formData }

@@ -57,7 +57,7 @@ const Invest=()=>{
             
 
             if(formData.plan=="plan-b" ){
-              if(formData.investment<=49999 || formData.investment>=500001){
+              if(formData.investment<=49999 || formData.investment>=200001){
               
                 setError('Investment not valid')
                 return false

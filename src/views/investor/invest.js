@@ -95,16 +95,16 @@ const Invest=()=>{
             }
             
 
-            if(formData.plan=="plan-B" ){
-              if(formData.investment<=49999 || formData.investment>=200001){
+            if(formData.plan=="plan-b" ){
+              if(formData.investment<49999 || formData.investment>200001){
               
                 setError('Investment not valid')
                 return false
               }
               }
 
-              if(formData.plan=="plan-A" ){
-                if(formData.investment<=49999 || formData.investment>=1000001){
+              if(formData.plan=="plan-a" ){
+                if(formData.investment<49999 || formData.investment>1000001){
               
                 setError('Investment not valid')
                 return false
@@ -195,7 +195,8 @@ const Invest=()=>{
 
     return(
         <>
-        {userData.usertype==='branch_manager'||userData.usertype==='admin'  && (<CInputGroup>
+        <strong>{userData.usertype}</strong>
+        {userData.usertype==='branch_manager' || userData.usertype==='admin'  && (<CInputGroup>
           <CFormInput placeholder='Enter User ID' onChange={inputuid} value={uid}></CFormInput>
           
         </CInputGroup>)}

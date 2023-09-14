@@ -19,6 +19,7 @@ import {
   CTableHeaderCell,
   CTableRow,
   CInputGroupText,
+  CFormSelect,
 } from '@coreui/react'
 import { DocsExample } from 'src/components'
 import axios from 'axios'
@@ -194,9 +195,16 @@ let amt_b=planb.reduce((a,v)=>a=a+parseInt(v.investment),0)
 
     </CCardBody>
     <CCardFooter>
-    <CInputGroup className="mb-3">
-      <CButton >Submit</CButton>
-      
+    
+      <CInputGroup>
+        <CFormSelect name='ustatus'>
+          <option value="Active">Activate</option>
+          <option value="Dismissed">Dismiss</option>
+          <option value="Deactivated">De-Activate</option>
+
+
+        </CFormSelect>
+        <CButton>Sumbit</CButton>
       </CInputGroup>
     </CCardFooter>
      

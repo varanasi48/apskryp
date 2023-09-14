@@ -15,6 +15,7 @@ import {
 } from '@coreui/react'
 import { DocsExample } from 'src/components'
 import axios from 'axios'
+import { useNavigate } from 'react-router-dom'
 
 const userData = localStorage.getItem('userData')
     ? JSON.parse(localStorage.getItem('userData'))
@@ -27,6 +28,10 @@ const Select = () => {
   const [error, setError] = useState('')
   const [info,setinfo]=useState([])
   const [message, setMessage] = useState('')
+
+  const nav=useNavigate()
+
+  
   
 
 
@@ -76,6 +81,11 @@ const Select = () => {
       status:true }
 	
   
+      const datapush=()=>{
+
+        nav('/agreement',{state:{id:event.target.value}})
+    
+      }
 	
   //formSubmitted.plan = "Plan-A";
 	
@@ -92,7 +102,7 @@ const Select = () => {
       setMessage('Registration successful for ' + formSubmitted.id)
 
       fetchUserData()
-     
+     datapush()
       
     
              

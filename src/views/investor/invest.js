@@ -1,9 +1,13 @@
-import { CButton, CCard, CCardBody, CCardHeader, CForm, CFormInput, CFormLabel, CFormSelect,CInputGroup,CAlert, CCardTitle, CTable, CTableRow,CTableHeaderCell } from '@coreui/react'
+import { CButton, CCard, CCardBody, CCardHeader, CForm, CFormInput, CFormLabel, CFormSelect,CInputGroup,CAlert, CCardTitle, CTable, CTableRow,CTableHeaderCell, CFormText, CInputGroupText, CFormTextarea, CModalBody, CModalHeader, CModalFooter, CModal } from '@coreui/react'
 import React,{useEffect, useState} from 'react'
 import FormControl from '../forms/form-control/FormControl'
 import axios from 'axios'
 import { format,addMonths } from 'date-fns'
 import { Navigate, useNavigate } from 'react-router-dom'
+import AWS from 'aws-sdk'
+
+
+
 
 
 const API_URL = process.env.REACT_APP_API_URL
@@ -11,6 +15,9 @@ const API_URL = process.env.REACT_APP_API_URL
   const userData = localStorage.getItem('userData')
     ? JSON.parse(localStorage.getItem('userData'))
     : null
+
+    let dir=userData.name
+let bname="lbfprofiles/"+dir
 
 const Invest=()=>{
     let revenue=''
@@ -25,6 +32,11 @@ const Invest=()=>{
     let [investorname, setinvestorname] = useState('')
     let [status, setstatus] = useState('')
     let[investortype,setinvestortype]=useState('')
+    const [file, setFile] = useState(null);
+    let [visible, setVisible] = useState(false)
+   
+
+    const bank="Account Number:919020073403006\nBank Name:Axis Bank\nIFSC:UTIB00020880\n"
 
   
       const [formData, setFormData] = useState({
@@ -46,6 +58,11 @@ const Invest=()=>{
           const inputuid=  (e)=>{
             setuid(e.target.value)
 
+          }
+
+          const onclose = () => {
+            setVisible(false)
+            navigate('/investor')
           }
 
           const fetch = async () => {
@@ -113,13 +130,13 @@ const Invest=()=>{
                 return false
               }
               if(status===false){
-                setError('Investor not actiavtes. Please contact admin')
+                setError('Investor not activated. Please contact admin')
                 return false
 
               }
-             
-            
 
+              
+          const invest=async()=>{
             
             try {
               // Send data to the register API with JWT token in header
@@ -131,7 +148,7 @@ const Invest=()=>{
         
               
              if(response.status==201){
-              navigate('/submit')
+              setVisible(true)
              }
               
             
@@ -151,9 +168,72 @@ const Invest=()=>{
               
               console.log(formData)
               
-            } catch (err) {
+            } 
+        
+            catch (err) {
               setError(err.response.data.message)
             }
+          }
+             
+            //aws
+
+            bname=bname+uid
+            // S3 Bucket Name
+            const S3_BUCKET = bname;
+        
+            // S3 Region
+            const REGION = "us-east-1";
+        
+            // S3 Credentials
+            AWS.config.update({
+              accessKeyId: "AKIAWPP2ILKA3SQDYNZ4",
+              secretAccessKey: "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",
+            });
+            const s3 = new AWS.S3({
+              params: { Bucket: S3_BUCKET },
+              region: REGION,
+            });
+        
+            // Files Parameters
+        
+            const params = {
+              Bucket: S3_BUCKET,
+              
+              Key: file.name,
+              Body: file,
+            };
+
+            //uploading
+            
+
+             // Uploading file to s3
+
+    var upload = s3
+    .putObject(params)
+    .on("httpUploadProgress", (evt) => {
+      // File uploading progress
+      console.log(
+        "Uploading " + parseInt((evt.loaded * 100) / evt.total) + "%"
+      );
+    })
+    .promise();
+
+  await upload.then((err, data) => {
+    console.log(err);
+    // Fille successfully uploaded
+   //alert("File uploaded successfully.");
+   /* <CAlert color='secondary' dismissible visible={visible} onClose={onclose }>
+      Registration successful.Wait for aprooval.
+    </CAlert>*/
+   
+    console.log(visible)
+ 
+    invest()
+        
+
+          });
+
+
           }
           
 
@@ -190,10 +270,17 @@ const Invest=()=>{
           console.log(investorid)
         })
 
+        const handleFileChange = (e) => {
+          // Uploaded file
+          const file = e.target.files[0];
+          // Changing file state
+          setFile(file);
+        };
+
     return(
         <>
         <strong>{userData.usertype}</strong>
-        {userData.usertype==='branch_manager' || userData.usertype==='admin'  && (<CInputGroup>
+        {(userData.usertype==='branch_manager' || userData.usertype==='admin' ) && (<CInputGroup>
           <CFormInput placeholder='Enter User ID' onChange={inputuid} value={uid}></CFormInput>
           
         </CInputGroup>)}
@@ -204,7 +291,7 @@ const Invest=()=>{
           <CFormInput  value={status===false ? "Inactive":"Active"}></CFormInput>
           </CInputGroup>)}
      
-       { userData.usertype==='branch_manager' || userData.usertype==='admin' && uid===''  ?
+       { (userData.usertype==='branch_manager' || userData.usertype==='admin') && uid===''  ?
         <CCard hidden> 
         <CCardHeader color='purple'>
         Invest Now
@@ -218,12 +305,43 @@ const Invest=()=>{
                 <CFormInput  name="investment" onChange={handleInputChange}
                       value={formData.name} placeholder='Enter Amount'></CFormInput>
 
-                    <CFormLabel>Select plan</CFormLabel>
+                    <CFormLabel>Select Plan</CFormLabel>
                     <CFormSelect name='plan' onChange={handleInputChange}>
                     <option value="">Select Plan</option>
                         <option value='plan-a'>Plan-A</option>
                         <option value='plan-b'>Plan-B</option>
                     </CFormSelect>
+
+                    <CFormLabel>Select Payment Mode</CFormLabel>
+                    <CFormSelect name='payment' onChange={handleInputChange}>
+                    <option value="">Select Payment Mode</option>
+                        <option value='cash'>Cash</option>
+                        <option value='bank'>Bank</option>
+                        <option value='upi'>UPI</option>
+                    </CFormSelect>
+
+                    {formData.payment==='bank' &&
+                    <>
+                    <CFormLabel>Account Details</CFormLabel>
+                    <CFormTextarea rows={3} resize='none' disabled>
+                    {bank}
+                    </CFormTextarea>
+                    </>
+                    }
+                    {formData.payment==='upi' &&
+                    <>
+                    <CFormLabel>UPI Information</CFormLabel>
+                    <CFormText disabled><h3>UPI ID:8859441</h3></CFormText>
+                    </>
+                  }
+                  {formData.payment!=='cash'   &&
+                  <CCard>
+                  <CFormLabel>Upload Receipt or screen shot</CFormLabel>
+                    <CFormInput type='file' placeholder='Upload Receipt/Screenshot' onChange={handleFileChange}></CFormInput>
+                    
+                  </CCard>
+}
+                    
                   
                   <div className='mb-3'>
                  <CButton type='submit' onSubmit={handleSubmit}
@@ -261,7 +379,39 @@ const Invest=()=>{
                         <option value='plan-a'>Plan-A</option>
                         <option value='plan-b'>Plan-B</option>
                     </CFormSelect>
-                  
+
+                    <CFormLabel>Select Payment Mode</CFormLabel>
+                    <CFormSelect name='payment' onChange={handleInputChange}>
+                    <option >Select Payment Mode</option>
+                        <option value='cash'>Cash</option>
+                        <option value='bank'>Bank</option>
+                        <option value='upi'>UPI</option>
+                    </CFormSelect>
+
+                   
+                    
+                    {formData.payment==='bank' &&
+                    <>
+                    <CFormLabel>Account Details</CFormLabel>
+                    <CFormTextarea rows={3} resize='none' disabled>
+                    {bank}
+                    </CFormTextarea>
+                    </>
+                    }
+                    {formData.payment==='upi' &&
+                    <>
+                    <CFormLabel>UPI Information</CFormLabel>
+                    <CFormText disabled><h3>UPI ID:8859441</h3></CFormText>
+                    </>
+                  }
+                  {formData.payment!=='cash'   &&
+                  <CCard>
+                  <CFormLabel>Upload Receipt or screen shot</CFormLabel>
+                    <CFormInput type='file' placeholder='Upload Receipt/Screenshot' onChange={handleFileChange}></CFormInput>
+                    
+                  </CCard>
+}
+
                   <div className='mb-3'>
                  <CButton type='submit' onSubmit={handleSubmit}
                       onClick={handleSubmit}>Submit</CButton>
@@ -326,7 +476,18 @@ const Invest=()=>{
                         
                         
                         
-                        
+
+               <CModal visible={visible}>
+<CModalHeader>
+    <strong>Succeful</strong>
+</CModalHeader>
+<CModalBody>
+Registration successful.Wait for aprooval.
+</CModalBody>
+<CModalFooter>
+    <CButton href='/#/investor'>Close</CButton>
+</CModalFooter>
+</CModal>         
                         
                     
 

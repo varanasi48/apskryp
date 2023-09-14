@@ -85,7 +85,7 @@ const _navb = [
       {
         component: CNavItem,
         name: 'Investor Nominee',
-        to: '/revenue',
+        to: '/nominee',
       },
       {
         component: CNavItem,

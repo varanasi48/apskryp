@@ -149,7 +149,7 @@ const Investment_i=()=>{
                         <CTableHeaderCell scope="col">{e.userid}</CTableHeaderCell>
                     </CTableRow>
                     <CTableRow>
-                        <CTableHeaderCell><strong>Name</strong></CTableHeaderCell>
+                        <CTableHeaderCell><strong>Plan</strong></CTableHeaderCell>
                         <CTableHeaderCell>{e.plan}</CTableHeaderCell>
                     </CTableRow>
                     
@@ -172,7 +172,7 @@ const Investment_i=()=>{
                     </CTableRow>
                     <CTableRow>
                         <CTableHeaderCell><strong>Pending Months</strong></CTableHeaderCell>
-                        <CTableHeaderCell><strong>Name</strong></CTableHeaderCell>
+                        <CTableHeaderCell><strong>{e.plan==='plan-a' ? "36 Months":"24 Months"}</strong></CTableHeaderCell>
                     </CTableRow>
                     <CTableRow>
                         <CTableHeaderCell><strong>Status</strong></CTableHeaderCell>

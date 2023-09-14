@@ -58,6 +58,7 @@ const Register = React.lazy(() => import('./views/pages/register/Register'))
 
 //Investor Links
 const Investment = React.lazy(() => import('./views/investor/Investment'))
+const Nominee = React.lazy(() => import('./views/investorinfo/nominee'))
 const Revenue = React.lazy(() => import('./views/investor/Revenue'))
 const Invest = React.lazy(() => import('./views/investor/invest'))
 const Profile = React.lazy(() => import('./views/profile/profile'))
@@ -71,6 +72,11 @@ const RevenueC = React.lazy(() => import('./views/investorinfo/revenuebranch'))
 
 //meeting
 const meeting = React.lazy(() => import('./views/pages/meeting/meeting'))
+
+//agreement
+
+const agreement = React.lazy(() => import('./views/profile/agreement'))
+
 
 
 
@@ -135,6 +141,7 @@ const routes = [
  { path:'/revenuec',name:'Investor Page',element:RevenueC },
  { path:'/invest',name:'Investor Page',element:Invest },
  { path:'/submit',name:'Investor Page',element:Submit },
+ { path:'/nominee',name:'Investor Page',element:Nominee },
 
 
  //Branch Manager
@@ -142,6 +149,11 @@ const routes = [
 
  //meeting
  { path:'/meeting',name:'Investor Page',element:meeting },
+
+ //agreement
+ { path:'/agreement',name:'Investor Page',element:agreement },
+
+
 
 
 ]

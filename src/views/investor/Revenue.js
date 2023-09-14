@@ -134,6 +134,8 @@ const fetch = async () => {
        let ch=[]
        let r=''
        let s=''
+       let m=''
+       
 
        
  
@@ -173,13 +175,15 @@ const fetch = async () => {
       {plan[0].status===false ? s='Pending': s='Aprooved'}
       k=plan[0].plan
       p=plan[0].createdAt
-
+      
+      
 if(k=="plan-a"){
 
   r=investment*0.1
+  m=investment*3.6
       const start = new Date(p);
       const end = new Date()
-      const ends=end.setMonth(start.getMonth()+36)
+      const ends=end.setMonth(start.getMonth()+35)
       
       let loop = new Date(start);
       
@@ -282,21 +286,25 @@ if(k=="plan-a"){
                     <CTableHeaderCell scope="col">Amount Invested</CTableHeaderCell>
                     <CTableHeaderCell scope="col">Months</CTableHeaderCell>
                    <CTableHeaderCell scope="col">Revenue</CTableHeaderCell>
-                    <CTableHeaderCell scope="col">Status</CTableHeaderCell>
+                   <CTableHeaderCell scope="col">Amount pending</CTableHeaderCell>
+                   
+                    <CTableHeaderCell scope="col">Amount Received</CTableHeaderCell>
                   </CTableRow>
                 </CTableHead>
                 <CTableBody>
                
-                  {ch.map((e)=>{
+                  {ch.map((e,index)=>{
 
                   return(
                 <CTableRow key={e.ObjectId}>
-                      <CTableDataCell>no</CTableDataCell>   
+                      <CTableDataCell>{index+1}</CTableDataCell>   
                       <CTableDataCell>{k}</CTableDataCell>
                       <CTableDataCell>{investment}</CTableDataCell>  
                       <CTableDataCell>{e}</CTableDataCell>  
                       <CTableDataCell>{r}</CTableDataCell> 
-                      <CTableDataCell>{s}</CTableDataCell> 
+                      <CTableDataCell>{m-index*r}</CTableDataCell> 
+                      <CTableDataCell>{index*r}</CTableDataCell> 
+                       
                 </CTableRow>
           )})
 }

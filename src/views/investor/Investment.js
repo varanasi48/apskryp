@@ -1,7 +1,7 @@
 import { CCard, CCardBody, CCardFooter, CCardHeader, CModal, CModalFooter, CModalHeader,CTableDataCell, CModalTitle,CButton,CModalBody, CTable, CTableBody, CTableHeaderCell, CTableRow, CTableHead } from '@coreui/react'
 import React, {useState,useEffect} from 'react'
 import axios from 'axios'
-import {addMonths, eachMonthOfInterval, format,parseISO,parse,parseJSON} from 'date-fns'
+import {addMonths, eachMonthOfInterval, format,parseISO,parse,parseJSON, subMonths} from 'date-fns'
 import enGB from 'date-fns/locale/en-GB'
 import { enIN } from 'date-fns/locale'
 
@@ -64,13 +64,17 @@ const Investment=()=>{
                           if(e.userid===userData.userid ){
                              let maturity_amount='' ;
                            let f_date_f='';
+                           let pending_amount='';
+                           
                            
                             if(e.plan=='plan-a'){
                             maturity_amount=0.1*36*e.investment
 
                             let d=format(new Date(e.createdAt),'dd-MMM-yy')
                             const f_date=addMonths(new Date(d),36)
-                             f_date_f=format(new Date(f_date),'dd-MMM-yyyy')  
+                             f_date_f=format(new Date(f_date),'dd-MMM-yyyy') 
+                             
+                            
                             }
                             else
                             {

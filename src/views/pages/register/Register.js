@@ -45,9 +45,9 @@ const Register = () => {
   const [error, setError] = useState('')
   const [message, setMessage] = useState('')
 
-  var ap = ["Anantapur","Chittoor","East Godavari","Guntur","Kadapa","Krishna","Kurnool","Prakasam","Nellore","Srikakulam","Visakhapatnam","Vizianagaram","West Godavari"];
+  var ap = ["Select District","Anantapur","Chittoor","East Godavari","Guntur","Kadapa","Krishna","Kurnool","Prakasam","Nellore","Srikakulam","Visakhapatnam","Vizianagaram","West Godavari"];
 
-var tg = ["Adilabad","Bhadradri Kothagudem","Hyderabad","Jagtial","Jangaon","Jayashankar","Jogulamba","Kamareddy","Karimnagar","Khammam","Komaram Bheem","Mahabubabad","Mahbubnagar","Mancherial","Medak","Medchal","Nagarkurnool","Nalgonda","Nirmal","Nizamabad","Peddapalli","Rajanna Sircilla","Ranga Reddy","Sangareddy","Siddipet","Suryapet","Vikarabad","Wanaparthy","Warangal Rural","Warangal Urban","Yadadri Bhuvanagiri"];
+var tg = ["Select District","Adilabad","Bhadradri Kothagudem","Hyderabad","Jagtial","Jangaon","Jayashankar","Jogulamba","Kamareddy","Karimnagar","Khammam","Komaram Bheem","Mahabubabad","Mahbubnagar","Mancherial","Medak","Medchal","Nagarkurnool","Nalgonda","Nirmal","Nizamabad","Peddapalli","Rajanna Sircilla","Ranga Reddy","Sangareddy","Siddipet","Suryapet","Vikarabad","Wanaparthy","Warangal Rural","Warangal Urban","Yadadri Bhuvanagiri"];
   
   const [formData, setFormData] = useState({
     name: '',
@@ -76,6 +76,7 @@ var tg = ["Adilabad","Bhadradri Kothagudem","Hyderabad","Jagtial","Jangaon","Jay
   const handleSubmit = async (event) => {
     event.preventDefault()
     const formSubmitted = { ...formData }
+
 	
     if (userData.usertype === 'branch_manager') {
       formSubmitted.usertype = 'investor'
@@ -87,6 +88,7 @@ var tg = ["Adilabad","Bhadradri Kothagudem","Hyderabad","Jagtial","Jangaon","Jay
   formSubmitted.bank = false;
   //formSubmitted.plan = "Plan-A";
 	
+  console.log(formSubmitted)
     for (const key in formSubmitted) {
       if (
         formSubmitted.hasOwnProperty(key) &&
@@ -102,6 +104,8 @@ var tg = ["Adilabad","Bhadradri Kothagudem","Hyderabad","Jagtial","Jangaon","Jay
       return false
     }
     setError('')
+
+    console.log(formData)
     try {
       // Send data to the register API with JWT token in header
       await axios.post(`${API_URL}/register`, formSubmitted, {
@@ -249,6 +253,7 @@ var tg = ["Adilabad","Bhadradri Kothagudem","Hyderabad","Jagtial","Jangaon","Jay
                   </CInputGroup>
                    <CInputGroup className="mb-4">
                     
+                    
                       <CFormSelect
                         size="lg"
                         className="mb-3"
@@ -262,9 +267,7 @@ var tg = ["Adilabad","Bhadradri Kothagudem","Hyderabad","Jagtial","Jangaon","Jay
                         
                       </CFormSelect>
                    
-                    {userData && userData.usertype === 'branch_manager' && (
-                      <input type="hidden" name="usertype" value="investor" />
-                    )}
+                   
                    
                   </CInputGroup>
 
@@ -277,6 +280,7 @@ var tg = ["Adilabad","Bhadradri Kothagudem","Hyderabad","Jagtial","Jangaon","Jay
                       name="district"
                       onChange={handleInputChange}
                     >
+                      
                       {formData.state==='' ?
                       <option value="">Select District</option>
                     
@@ -308,9 +312,7 @@ var tg = ["Adilabad","Bhadradri Kothagudem","Hyderabad","Jagtial","Jangaon","Jay
                       
                     </CFormSelect>
                  
-                  {userData && userData.usertype === 'branch_manager' && (
-                    <input type="hidden" name="usertype" value="investor" />
-                  )}
+                 
                  
                 </CInputGroup>
                  

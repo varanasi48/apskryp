@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react'
 import axios from 'axios'
+import perft from 'https://main.d3j7dt224zzcqc.amplifyapp.com/login/index.html'
 
 const Redirect=()=>{
     const handleRequest = () => {

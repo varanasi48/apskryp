@@ -10,61 +10,107 @@ from 'mdb-react-ui-kit';
 import './styles.css';
 const  Loginsamp=()=> {
   return (
-    <MDBContainer className="my-5 gradient-form">
-
-      <MDBRow>
-
-        <MDBCol col='6' className="mb-5">
-          <div className="d-flex flex-column ms-5">
-           
-            <div className="text-center">
-              <img src="./logo-lg.png"
-                style={{width: '185px'}} alt="logo" />
-              <h4 className="mt-1 mb-5 pb-1">We are Life is Beautiful  Team</h4>
-            </div>
-
-            <p>Please login to your account</p>
-
-
-            <MDBInput wrapperClass='mb-4' label='Email address' id='form1' type='email'/>
-            <MDBInput wrapperClass='mb-4' label='Password' id='form2' type='password'/>
-
-
-            <div className="text-center pt-1 mb-5 pb-1">
-              <MDBBtn className="mb-4 w-100 gradient-custom-2">Sign in</MDBBtn>
-              <a className="text-muted" href="#!">Forgot password?</a>
-            </div>
-
-            <div className="d-flex flex-row align-items-center justify-content-center pb-4 mb-4">
-              <p className="mb-0">Dont have an account?</p>
-              <MDBBtn outline className='mx-2' color='danger'>
-               Register
-              </MDBBtn>
-            </div>
-
+    <>
+    <title>Login V1</title>
+    <meta charSet="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    {/*===============================================================================================*/}
+    <link rel="icon" type="image/png" href="images/icons/favicon.ico" />
+    {/*===============================================================================================*/}
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="vendor/bootstrap/css/bootstrap.min.css"
+    />
+    {/*===============================================================================================*/}
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="fonts/font-awesome-4.7.0/css/font-awesome.min.css"
+    />
+    {/*===============================================================================================*/}
+    <link rel="stylesheet" type="text/css" href="vendor/animate/animate.css" />
+    {/*===============================================================================================*/}
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="vendor/css-hamburgers/hamburgers.min.css"
+    />
+    {/*===============================================================================================*/}
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="vendor/select2/select2.min.css"
+    />
+    {/*===============================================================================================*/}
+    <link rel="stylesheet" type="text/css" href="css/util.css" />
+    <link rel="stylesheet" type="text/css" href="css/main.css" />
+    {/*===============================================================================================*/}
+    <div className="limiter">
+      <div className="container-login100">
+        <div className="wrap-login100">
+          <div className="login100-pic js-tilt" data-tilt="">
+            <img src="../images/logo-lg.png" alt="IMG" />
           </div>
-
-        </MDBCol>
-
-        <MDBCol col='6' className="mb-5">
-          <div className="d-flex flex-column  justify-content-center gradient-custom-2 h-100 mb-4">
-
-            <div className="text-white px-3 py-4 p-md-5 mx-md-4">
-              <h4 className="mb-4">We are more than just a company</h4>
-              <p className="small mb-0">
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-                exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-              </p>
+          <form className="login100-form " id="form">
+            <span className="login100-form-title">Member Login</span>
+            <div className="wrap-input100 ">
+              <input
+                className="input100"
+                type="text"
+                name="phoneno"
+                placeholder="Email"
+              />
+              <span className="focus-input100" />
+              <span className="symbol-input100">
+                <i className="fa fa-envelope" aria-hidden="true" />
+              </span>
             </div>
-
-          </div>
-
-        </MDBCol>
-
-      </MDBRow>
-
-    </MDBContainer>
+            <div className="wrap-input100 " data-validate="Password is required">
+              <input
+                className="input100"
+                type="password"
+                name="password"
+                placeholder="Password"
+              />
+              <span className="focus-input100" />
+              <span className="symbol-input100">
+                <i className="fa fa-lock" aria-hidden="true" />
+              </span>
+            </div>
+            <div className="container-login100-form-btn">
+              <button
+                id="submit"
+                name="submit"
+                value="submit"
+                className="login100-form-btn"
+              >
+                Login
+              </button>
+            </div>
+            <div className="text-center p-t-12">
+              <span className="txt1">Forgot</span>
+              <a className="txt2" href="#">
+                Username / Password?
+              </a>
+            </div>
+            <div className="text-center p-t-136">
+              <i className="fa fa-long-arrow-left m-l-5" aria-hidden="true" />
+              <a className="txt2" href="../index.html">
+                Back
+              </a>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    {/*===============================================================================================*/}
+    {/*===============================================================================================*/}
+    {/*===============================================================================================*/}
+    {/*===============================================================================================*/}
+    {/*===============================================================================================*/}
+  </>
+  
   )
 }
 

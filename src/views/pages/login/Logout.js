@@ -10,7 +10,7 @@ function LogoutPage() {
     delete axios.defaults.headers.common['Authorization']
 
     // Optionally, redirect user to login page or another public page
-    window.location = '/login'
+    window.location = 'http://lbfkryptoz.com'
   }
 
   useEffect(() => {

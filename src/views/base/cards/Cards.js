@@ -125,7 +125,7 @@ fetchUserData()
                 <CTableBody>
                 
                   
-                 {info.filter(e=>e.usertype==='investor' && e.status===false).map((e)=>
+                 {info.filter(e=>e.usertype==='investor' ).map((e)=>
                    <CTableRow key={e.id}>
                    
                     <CTableHeaderCell scope="row">{e.userid}</CTableHeaderCell>

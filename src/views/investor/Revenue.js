@@ -228,7 +228,7 @@ if(k=="plan-a"){
 
   return (
     <>
-    {userData.usertype==='branch_manager' && (<CInputGroup>
+    {(userData.usertype==='branch_manager' || userData.usertype==='admin') && (<CInputGroup>
           <CFormInput onChange={inputuid} value={uid} placeholder='Enter User ID'></CFormInput>
           
         </CInputGroup>)}

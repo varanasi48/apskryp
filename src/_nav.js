@@ -56,6 +56,13 @@ const _nav = [
         to: '/base/accordion',
         
       },
+      {
+        
+        component: CNavItem,
+        name: 'User Revenue',
+        to: '/revenue',
+        
+      },
       
       {
         component: CNavItem,

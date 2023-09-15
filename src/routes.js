@@ -82,6 +82,8 @@ const agreement = React.lazy(() => import('./views/profile/agreement'))
 
 
 
+
+
 const routes = [
   { path: '/', exact: true, name: 'Home' },
   { path: '/dashboard', name: 'Dashboard', element: Dashboard },

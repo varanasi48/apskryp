@@ -11,7 +11,7 @@ const Agreement=()=>{
     const componentRef = useRef();
     let location=useLocation()
 
-    this.setState((state,props)=>({id:location.state.id}))
+    //this.setState((state,props)=>({id:location.state.id}))
 
 
 return (

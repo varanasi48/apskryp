@@ -132,6 +132,9 @@ const Range = () => {
                     <CTableHeaderCell scope="row">{e.userid}</CTableHeaderCell>
                     <CTableDataCell>{e.name}</CTableDataCell>
                     <CTableDataCell>{e.usertype}</CTableDataCell>
+                    <CTableDataCell>{e.usertype}</CTableDataCell>
+                    <CTableDataCell>{e.usertype}</CTableDataCell>
+                    <CTableDataCell>{e.usertype}</CTableDataCell>
                     <CTableDataCell> {e.status===false ? 
                     <CFormSelect  >
                       <option value=''>Choose</option>

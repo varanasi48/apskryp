@@ -45,7 +45,7 @@ const Register = () => {
   const [error, setError] = useState('')
   const [message, setMessage] = useState('')
 
-  var ap = ["Select District","Anantapur","Chittoor","East Godavari","Guntur","Kadapa","Krishna","Kurnool","Prakasam","Nellore","Srikakulam","Visakhapatnam","Vizianagaram","West Godavari"];
+  var ap = ["Select District","Anantapur","Chittoor","East Godavari","Guntur","YSR Kadapa","Krishna","Kurnool","Prakasam","SPS Nellore","Srikakulam","Visakhapatnam","Vizianagaram","West Godavari","Manyam Dist","Alluri Sitaram Raju District","Anakapalli","Kakinada","Kona Seema","Eluru","NTR District","Bapatla","Palnadu","Nandyal","Sri Satyasai District","Annamayya District","Sri Balaji Dist"];
 
 var tg = ["Select District","Adilabad","Bhadradri Kothagudem","Hyderabad","Jagtial","Jangaon","Jayashankar","Jogulamba","Kamareddy","Karimnagar","Khammam","Komaram Bheem","Mahabubabad","Mahbubnagar","Mancherial","Medak","Medchal","Nagarkurnool","Nalgonda","Nirmal","Nizamabad","Peddapalli","Rajanna Sircilla","Ranga Reddy","Sangareddy","Siddipet","Suryapet","Vikarabad","Wanaparthy","Warangal Rural","Warangal Urban","Yadadri Bhuvanagiri"];
   

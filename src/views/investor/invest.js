@@ -1,4 +1,4 @@
-import { CButton, CCard, CCardBody, CCardHeader, CForm, CFormInput, CFormLabel, CFormSelect,CInputGroup,CAlert, CCardTitle, CTable, CTableRow,CTableHeaderCell, CFormText, CInputGroupText, CFormTextarea, CModalBody, CModalHeader, CModalFooter, CModal } from '@coreui/react'
+import { CButton, CCard, CCardBody, CCardHeader, CForm, CFormInput, CFormLabel, CFormSelect,CInputGroup,CAlert, CCardTitle, CTable, CTableRow,CTableHeaderCell, CFormText, CInputGroupText, CFormTextarea, CModalBody, CModalHeader, CModalFooter, CModal, CTableDataCell } from '@coreui/react'
 import React,{useEffect, useState} from 'react'
 import FormControl from '../forms/form-control/FormControl'
 import axios from 'axios'
@@ -323,9 +323,26 @@ const Invest=()=>{
                     {formData.payment==='bank' &&
                     <>
                     <CFormLabel>Account Details</CFormLabel>
-                    <CFormTextarea rows={3} resize='none' disabled>
-                    {bank}
-                    </CFormTextarea>
+                    <CTable disabled>
+                      <CTableRow>
+                        <CTableDataCell scope='col'>Account Number</CTableDataCell>
+                        <CTableDataCell scope='col'>919020073403006</CTableDataCell>
+                        
+
+                      </CTableRow>
+                      <CTableRow>
+                        <CTableDataCell scope='col'>Bank Name</CTableDataCell>
+                        <CTableDataCell scope='col'>Axis Bank</CTableDataCell>
+                        
+
+                      </CTableRow>
+                      <CTableRow>
+                        <CTableDataCell scope='col'>IFSC Code</CTableDataCell>
+                        <CTableDataCell scope='col'>UTIB00020880</CTableDataCell>
+                        
+
+                      </CTableRow>
+                    </CTable>
                     </>
                     }
                     {formData.payment==='upi' &&
@@ -393,9 +410,26 @@ const Invest=()=>{
                     {formData.payment==='bank' &&
                     <>
                     <CFormLabel>Account Details</CFormLabel>
-                    <CFormTextarea rows={3} resize='none' disabled>
-                    {bank}
-                    </CFormTextarea>
+                    <CTable disabled>
+                      <CTableRow>
+                        <CTableDataCell scope='col'>Account Number</CTableDataCell>
+                        <CTableDataCell scope='col'>919020073403006</CTableDataCell>
+                        
+
+                      </CTableRow>
+                      <CTableRow>
+                        <CTableDataCell scope='col'>Bank Name</CTableDataCell>
+                        <CTableDataCell scope='col'>Axis Bank</CTableDataCell>
+                        
+
+                      </CTableRow>
+                      <CTableRow>
+                        <CTableDataCell scope='col'>IFSC Code</CTableDataCell>
+                        <CTableDataCell scope='col'>UTIB00020880</CTableDataCell>
+                        
+
+                      </CTableRow>
+                    </CTable>
                     </>
                     }
                     {formData.payment==='upi' &&

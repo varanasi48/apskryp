@@ -1,9 +1,11 @@
 import React,{useState,useEffect} from 'react'
 import {
+  CButton,
   CCard,
   CCardBody,
   CCardHeader,
   CCol,
+  CFormSelect,
   CRow,
   CTable,
   CTableBody,
@@ -28,12 +30,17 @@ const Select = () => {
   const [error, setError] = useState('')
   const [info,setinfo]=useState([])
   const [message, setMessage] = useState('')
+  const [status,setstatus]=useState(false)
 
   const nav=useNavigate()
 
   
   
+  const statusupdate=(event)=>{
+      
+    setstatus(event.target.value)
 
+  }
 
   const fetchUserData = async () => {
     try {
@@ -78,7 +85,7 @@ const Select = () => {
   const handleSubmit = async (event) => {
     event.preventDefault()
     const formSubmitted = {id:event.target.value,
-      status:true }
+      status:status }
 	
   
       const datapush=()=>{
@@ -161,14 +168,17 @@ const Select = () => {
                     <CTableHeaderCell scope="row">{e.userid}</CTableHeaderCell>
                     <CTableDataCell>{e.plan}</CTableDataCell>
                     <CTableDataCell>{e.investment}</CTableDataCell>
-                    <CTableDataCell>
-                      {e.status===false ?
-                    <button onClick={handleSubmit} value={e._id}>Click to aproove</button> :
-                    "Aprooved"
-                    }
-                      </CTableDataCell>
+                    <CTableDataCell>{e.status==='true' ? 'Active':
+                    
+                    <CFormSelect onChange={statusupdate}>
+                      <option value=''>Select action</option>
+                      <option value='true'>Activate</option>
+                      <option value='false'>Reject</option>
+                      </CFormSelect>}</CTableDataCell>
+                      <CButton onClick={handleSubmit} value={e._id}> Submit</CButton>
                     
                   </CTableRow>
+                  
                   )
       }
                 )}

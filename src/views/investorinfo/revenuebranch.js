@@ -288,7 +288,7 @@ if(k=="plan-a"){
                   return(
                 <CTableRow key={e.ObjectId}>
                       <CTableDataCell>no</CTableDataCell>   
-                      <CTableDataCell>{k}</CTableDataCell>
+                      <CTableDataCell>{k.toString().toUpperCase()}</CTableDataCell>
                       <CTableDataCell>{investment}</CTableDataCell>  
                       <CTableDataCell>{e}</CTableDataCell>  
                       <CTableDataCell>{r}</CTableDataCell> 

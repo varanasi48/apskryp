@@ -36,7 +36,7 @@ const Invest=()=>{
     let [visible, setVisible] = useState(false)
    
 
-    const bank="Account Number:919020073403006\nBank Name:Axis Bank\nIFSC:UTIB00020880\n"
+    //const bank="Account Number:919020073403006\nBank Name:Axis Bank\nIFSC:UTIB00020880\n"
 
   
       const [formData, setFormData] = useState({
@@ -210,16 +210,22 @@ const Invest=()=>{
 
     var upload = s3
     .putObject(params)
+    
     .on("httpUploadProgress", (evt) => {
       // File uploading progress
       console.log(
         "Uploading " + parseInt((evt.loaded * 100) / evt.total) + "%"
       );
     })
-    .promise();
+    .getUrl(params)
+       
+    .promise()
+    
+
 
   await upload.then((err, data) => {
     console.log(err);
+    
     // Fille successfully uploaded
    //alert("File uploaded successfully.");
    /* <CAlert color='secondary' dismissible visible={visible} onClose={onclose }>

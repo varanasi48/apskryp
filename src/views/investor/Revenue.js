@@ -298,12 +298,12 @@ if(k=="plan-a"){
                   return(
                 <CTableRow key={e.ObjectId}>
                       <CTableDataCell>{index+1}</CTableDataCell>   
-                      <CTableDataCell>{k}</CTableDataCell>
+                      <CTableDataCell>{k.toString().toUpperCase()}</CTableDataCell>
                       <CTableDataCell>{investment}</CTableDataCell>  
                       <CTableDataCell>{e}</CTableDataCell>  
                       <CTableDataCell>{r}</CTableDataCell> 
-                      <CTableDataCell>{m-index*r}</CTableDataCell> 
-                      <CTableDataCell>{index*r}</CTableDataCell> 
+                      <CTableDataCell>{parseInt(m-index*r)}</CTableDataCell> 
+                      <CTableDataCell>{parseInt(index*r)}</CTableDataCell> 
                        
                 </CTableRow>
           )})

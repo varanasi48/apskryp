@@ -163,7 +163,7 @@ const Investment=()=>{
       
         <CTable>
             
-                <CTableHead color='purple'>
+                <CTableHead style={{backgroundColor:'blueviolet'}}>
                 <CTableRow>
                     <CTableHeaderCell scope="col">S.no</CTableHeaderCell>
                     <CTableHeaderCell scope="col">Plan</CTableHeaderCell>

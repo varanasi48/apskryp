@@ -36,11 +36,14 @@ const AppSidebar = () => {
     <CSidebar
       position="fixed"
       unfoldable={unfoldable}
+      style={{backgroundColor:'blueviolet'}}
       visible={sidebarShow}
       onVisibleChange={(visible) => {
         dispatch({ type: 'set', sidebarShow: visible })
         
-      }}
+      }
+      
+    }
     >
       <CSidebarBrand className="d-none d-md-flex" to="/" style={{boxShadow: '0 0 40px 20px #8a2be2',backgroundColor:'blueviolet'}}>
        <h2 >LBF Kryptoz</h2>

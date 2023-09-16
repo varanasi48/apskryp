@@ -279,7 +279,7 @@ if(k=="plan-a"){
               <CTable className='md-3'  >
                
                 
-                <CTableHead color="dark">
+                <CTableHead color='danger'>
                   <CTableRow>
                     <CTableHeaderCell scope="col">S.no</CTableHeaderCell>
                     <CTableHeaderCell scope="col">Plan</CTableHeaderCell>

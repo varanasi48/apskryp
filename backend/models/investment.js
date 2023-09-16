@@ -6,19 +6,14 @@ const InvestSchema = new Schema(
   {
     userid: String,
     plan: String,
-   
-    status: { type: Boolean, default: false },
-   
+    iid:String,
+    url:String,
+    doi:String,   
+    status: String,
     investment:String,
-    referal:String
-    
-   //plan:String,
-
-    /*registeredBy: {
-      type: Schema.Types.ObjectId,
-      ref: 'User',
-      default: null,
-    },*/
+    referal:String,
+    aux:{ type: Boolean, default: false },
+  
   },
   {
     timestamps: true,

@@ -9,10 +9,13 @@ const UserSchema = new Schema(
     phoneno: { type: String, unique: true },
     email: { type: String, unique: true },
     password: String,
+    aadhar:String,
+    
+    ndo:String,
+    
     nominee: String,
-	  status: { type: Boolean, default: false },
-    plan:String,
-    investment:String,
+	  status: String,
+   
     bank:{ type: Boolean, default: false },
     state:String,
     district:String,

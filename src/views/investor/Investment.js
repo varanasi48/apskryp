@@ -137,7 +137,7 @@ const Investment=()=>{
                     <CTableRow>
                         <CTableHeaderCell><strong>Status</strong></CTableHeaderCell>
                         <CTableHeaderCell><strong>
-                          {e.status===false ? 'Pending': 'Aprooved'}
+                          {e.status}
                           </strong></CTableHeaderCell>
                     </CTableRow>
                     

@@ -14,6 +14,7 @@ const Bank = db.Bank
 
 const { Date, Math } = require("core-js");
 const { Navigate, redirect } = require('react-router-dom')
+const { RestoreRequestFilterSensitiveLog } = require('@aws-sdk/client-s3')
 
 
 const app = express()
@@ -89,10 +90,12 @@ app.post('/register', async (req, res) => {
         email: req.body.email,
         password: hashedPassword,
         usertype: req.body.usertype,
-        plan:req.body.plan,
-        investment:req.body.investment,
         state:req.body.state,
         district:req.body.district,
+        aux:req.body.aux, 
+        doj:req.body.doj,
+        ndo:req.body.ndo,
+        aadhar:req.body.aadhar,
       
         nominee: req.body.nominee,
       
@@ -146,10 +149,13 @@ app.post('/invest', async (req, res) => {
    
       const invest = new Investment({
         userid:req.body.userid,
-       
+        iid:req.body.iid,
+        doi:req.body.doi,
         plan:req.body.plan,
         investment:req.body.investment,
         status: req.body.status,
+        url:req.body.url,
+        aux:req.body.aux,
         referal:req.body.ref
         
       })

@@ -20,6 +20,9 @@ const API_URL = process.env.REACT_APP_API_URL
 let bname="lbfprofiles/"+dir
 
 const Invest=()=>{
+
+
+
     let revenue=''
     const navigate=useNavigate()
 
@@ -91,11 +94,15 @@ const Invest=()=>{
           const handleSubmit = async (event) => {
             event.preventDefault()
             const formSubmitted = { ...formData }
-            
+            let x=''
+            {formData.plan==='plan-a' ? x = "A":x="b"}
+
            
             {userData.usertype==='branch_manager' ? formSubmitted.userid = uid:formSubmitted.userid = userData.userid;}
-            formSubmitted.status = false;
-            formSubmitted.referal=userData.userid
+            formSubmitted.status = "pending";
+            formSubmitted.referal=userData.id
+            formSubmitted.iid="LBF-"+x+Math.random()*9000000
+            
             
             for (const key in formSubmitted) {
               if (
@@ -157,6 +164,7 @@ const Invest=()=>{
                   
                   plan:'',
                   investment:'',
+                  payment:''
                   
                   
                 })
@@ -176,7 +184,7 @@ const Invest=()=>{
           }
              
             //aws
-
+        const investa= async ()=>{
             bname=bname+uid
             // S3 Bucket Name
             const S3_BUCKET = bname;
@@ -217,7 +225,7 @@ const Invest=()=>{
         "Uploading " + parseInt((evt.loaded * 100) / evt.total) + "%"
       );
     })
-    .getUrl(params)
+   
        
     .promise()
     
@@ -241,8 +249,12 @@ const Invest=()=>{
 
 
           }
-          
-
+          {formSubmitted.payment==='cash' ?
+            invest():investa()
+            
+            } 
+        }
+       
               const dates=new Date()
               const date_a=format(new Date(addMonths(dates,36)),"dd-MMM-yyyy")
               const date_b=format(new Date(addMonths(dates,12)),"dd-MMM-yyyy")

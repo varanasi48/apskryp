@@ -27,7 +27,7 @@ const AppHeader = () => {
     : null
 
   return (
-    <CHeader position="sticky" className="mb-4">
+    <CHeader position="sticky" className="mb-4" style={{backgroundColor:"blueviolet"}}>
       <CContainer >
         <CHeaderToggler
           className="ps-1"
@@ -38,9 +38,9 @@ const AppHeader = () => {
         <CHeaderBrand className="mx-auto d-md-none" to="/">
         <strong>LBF Kryptoz</strong>
         </CHeaderBrand>
-        <CHeaderNav className="d-none d-md-flex me-auto">
+        <CHeaderNav className="d-none d-md-flex me-auto text-white">
           
-          <CNavItem>
+          <CNavItem >
            {userData.usertype==='investor' ? <CNavLink to="/dashboardi" component={NavLink}> </CNavLink> : <CNavLink to="/dashboard" component={NavLink}></CNavLink>} 
               Dashboard
             
@@ -48,22 +48,22 @@ const AppHeader = () => {
          
         </CHeaderNav>
 		
-        <CHeaderNav>
+        <CHeaderNav className='text-white'>
           <CNavItem>
             <strong>{userData.userid}</strong>
           </CNavItem>
         </CHeaderNav>
 		
-        <CHeaderNav>
+        <CHeaderNav className='text-white'>
           <CNavItem>
-            <CNavLink href="#">
+            <CNavLink href="#" className='text-white'>
               <CIcon icon={cilEnvelopeOpen} size="lg" />
               
             </CNavLink>
            
           </CNavItem>
           <CNavItem>
-          <CNavLink href="/#/profile">
+          <CNavLink href="/#/profile" className='text-white'>
               
               <strong >{userData.name}</strong>
             </CNavLink>

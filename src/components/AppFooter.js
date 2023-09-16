@@ -3,7 +3,7 @@ import { CFooter } from '@coreui/react'
 
 const AppFooter = () => {
   return (
-    <CFooter>
+    <CFooter style={{backgroundColor:'transparent'}}>
       <div>
         <a href="#" target="_blank" rel="noopener noreferrer">
           Developed by Apsire

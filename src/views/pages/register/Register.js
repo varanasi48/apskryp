@@ -87,7 +87,7 @@ var tg = ["Select District","Adilabad","Bhadradri Kothagudem","Hyderabad","Jagti
     } 
 	formSubmitted.userid = generateID();
   formSubmitted.bank = "false";
-  formSubmitted.name=formData.form1+formData.form2
+ 
   
   //formSubmitted.plan = "Plan-A";
 	

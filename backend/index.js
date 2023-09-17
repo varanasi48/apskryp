@@ -96,6 +96,7 @@ app.post('/register', async (req, res) => {
         doj:req.body.doj,
         ndo:req.body.ndo,
         aadhar:req.body.aadhar,
+        payment:req.body.payment,
       
         nominee: req.body.nominee,
       

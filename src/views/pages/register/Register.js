@@ -182,7 +182,7 @@ var tg = ["Select District","Adilabad","Bhadradri Kothagudem","Hyderabad","Jagti
           <MDBRow>
   
             <MDBCol md='6'>
-              <MDBInput wrapperClass='mb-4' label='First Name' size='lg' name='name' type='text' onChange={handleInputChange}
+              <MDBInput wrapperClass='mb-4' label='Full Name' size='lg' name='name' type='text' onChange={handleInputChange}
               value={formData.name}/>
             </MDBCol>
   
@@ -190,7 +190,7 @@ var tg = ["Select District","Adilabad","Bhadradri Kothagudem","Hyderabad","Jagti
   
           </MDBRow>
   
-          <MDBInput wrapperClass='mb-4' label='aadhar' size='lg' name='aadhar' type='number' onChange={handleInputChange}
+          <MDBInput wrapperClass='mb-4' label='Aadhar' size='lg' name='aadhar' type='number' onChange={handleInputChange}
           value={formData.aadhar}/>
   
           <MDBRow>

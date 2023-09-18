@@ -148,11 +148,13 @@ const fetch = async () => {
          
           
         }  
+
+        console.log(investment)
         let plan=[]
         let dati=[]
   //data filter
      //console.log(data)
-        {userData.usertype==='branch_manager' ? dati=data.filter(e=>{return  e.userid===uid  }) : dati=data.filter(e=>{return  e.userid===userData.userid  })}
+        {(userData.usertype==='branch_manager' || userData.usertype==='admin')  ? dati=data.filter(e=>{return  e.userid===uid  }) : dati=data.filter(e=>{return  e.userid===userData.userid  })}
       
       plan=dati.filter(e=>{return  e.investment===investment })
     
@@ -172,9 +174,11 @@ const fetch = async () => {
       
      }
      else{
-      {plan[0].status===false ? s='Pending': s='Aprooved'}
+      {plan[0].status==="active" ? s='Pending': s='Aprooved'}
       k=plan[0].plan
       p=plan[0].createdAt
+
+      console.log(plan[0].plan)
       
       
 if(k=="plan-a"){
@@ -213,6 +217,7 @@ if(k=="plan-a"){
                  }
 
                 }
+                
                         }
       
      

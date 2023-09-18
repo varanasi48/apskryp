@@ -89,6 +89,19 @@ const Investment_i=()=>{
       fetchinvestment();
     },[])
     
+    const info= udata.filter((e)=>{
+      return uid===e.userid
+       
+     })
+  
+     info.map((e)=>{
+       investorid=e.userid
+       investorname=e.name
+          status=e.status
+          
+       console.log(investorid)
+     })
+  
 
     let buid=data.filter((e)=>{return e.userid===uid})
     console.log(buid)
@@ -105,7 +118,7 @@ const Investment_i=()=>{
 
                         {buid.map((e)=>{
                           
-                          if(e.userid===userData.userid ){
+                         
                              let maturity_amount='' ;
                            let f_date_f='';
                            
@@ -190,7 +203,7 @@ const Investment_i=()=>{
         </CCard>
                                 
                             )
- } })}
+ } )}
 
     
 

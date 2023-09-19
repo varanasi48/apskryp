@@ -169,7 +169,7 @@ useEffect(()=>{
                     </CCol>
                     <CCol sm={6}>
                       <div className="border-start border-start-4 border-start-success py-1 px-3 mb-3">
-                        <div className="text-medium-emphasis small">Total Plan-b Investors</div>
+                        <div className="text-medium-emphasis small">Total Plan-B Investors</div>
                         <div className="fs-5 fw-semibold">planb.length</div>
                       </div>
                     </CCol>

@@ -256,7 +256,7 @@ if(k=="plan-a"){
       <>
 
 
-     <option key={e.ObjectId}  value={e.investment}>{e.investment}({e.plan})({e.userid})</option>
+     <option key={e.ObjectId}  value={e.investment}>{e.investment}({e.plan.toString().toUpperCase()})({e.userid})</option>
       </>
      )
     })}

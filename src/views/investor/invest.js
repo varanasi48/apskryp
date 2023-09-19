@@ -497,7 +497,7 @@ const Invest=()=>{
                 <CTable>
                 <CTableRow>
                         <CTableHeaderCell scope="col"><strong>Plan Selected</strong></CTableHeaderCell>
-                        <CTableHeaderCell scope="col">{formData.plan}</CTableHeaderCell>
+                        <CTableHeaderCell scope="col">{formData.plan.toUpperCase()}</CTableHeaderCell>
                     </CTableRow>
                     <CTableRow>
                         <CTableHeaderCell scope="col"><strong>Amount Invested</strong></CTableHeaderCell>

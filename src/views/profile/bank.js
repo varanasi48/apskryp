@@ -32,6 +32,7 @@ const Bank=()=>{
           account:'',
           bank:'',
           ifsc:'',
+          branch:'',
            
          
           //nomineedate:'',
@@ -198,9 +199,13 @@ const Bank=()=>{
                 <CFormInput  name="bank" onChange={handleInputChange}
                       value={formData.bank} placeholder='Enter Bank Name'></CFormInput>
 
-<CFormLabel>Account</CFormLabel>
+<CFormLabel>IFSC CODE</CFormLabel>
                 <CFormInput  name="ifsc" onChange={handleInputChange}
                       value={formData.ifsc} placeholder='Enter IFSC Code'></CFormInput>
+
+<CFormLabel>Bank Branch</CFormLabel>
+                <CFormInput  name="branch" onChange={handleInputChange}
+                      value={formData.branch} placeholder='Enter Branch Code'></CFormInput>
                   
                   <div className='mb-3'>
                  <CButton type='submit' onSubmit={handleSubmit}

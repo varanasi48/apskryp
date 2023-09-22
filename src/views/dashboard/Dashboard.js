@@ -294,7 +294,7 @@ const Dashboard = () => {
                 <CTableHead color="light">
                   <CTableRow>
                     <CTableHeaderCell className="text-center">
-                      <CIcon icon={cilPeople} />
+                     S.No
                     </CTableHeaderCell>
                     <CTableHeaderCell>User</CTableHeaderCell>
                     <CTableHeaderCell className="text-center">Investment Limit</CTableHeaderCell>
@@ -307,8 +307,9 @@ const Dashboard = () => {
                   {data.filter((item) => item.usertype==='branch_manager').map((item,index)=>
                   <CTableRow v-for="item in tableItems" key={index}>
                   <CTableDataCell className="text-center">
-                    <CAvatar size="md" src={''} status={''} />
+                    {item.index}
                   </CTableDataCell>
+                  
                   <CTableDataCell>
                     <div>{item.name}</div>
                     <div className="small text-medium-emphasis">

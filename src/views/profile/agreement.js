@@ -108,19 +108,25 @@ export class ComponentToPrint extends React.PureComponent {
        
     <CTableRow>
         <CTableDataCell></CTableDataCell>
-        <CTableDataCell scope='col'>Investment Amount</CTableDataCell>
+        <CTableDataCell scope='col'>Account Number</CTableDataCell>
         <CTableDataCell>1</CTableDataCell>
     
     </CTableRow>
     <CTableRow>
     <CTableDataCell></CTableDataCell>
-        <CTableHeaderCell>Plan</CTableHeaderCell>
+        <CTableHeaderCell>Bank Name</CTableHeaderCell>
         <CTableHeaderCell>1</CTableHeaderCell>
     
     </CTableRow>
     <CTableRow>
     <CTableDataCell></CTableDataCell>
-        <CTableHeaderCell>Date of Activation</CTableHeaderCell>
+        <CTableHeaderCell>IFSC CODE</CTableHeaderCell>
+        <CTableHeaderCell>1</CTableHeaderCell>
+    
+    </CTableRow>
+    <CTableRow>
+    <CTableDataCell></CTableDataCell>
+        <CTableHeaderCell>Branch</CTableHeaderCell>
         <CTableHeaderCell>1</CTableHeaderCell>
     
     </CTableRow>

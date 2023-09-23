@@ -157,7 +157,8 @@ app.post('/invest', async (req, res) => {
         status: req.body.status,
         url:req.body.url,
         aux:req.body.aux,
-        referal:req.body.ref
+        referal:req.body.ref,
+        
         
       })
     
@@ -370,6 +371,33 @@ app.post('/updateTwo', async (req, res) => {
     updatetwo.save()
 
     res.status(200).json(updatetwo)
+  } catch (error) {
+    if (error.name === 'TokenExpiredError' || error.name === 'JsonWebTokenError') {
+      return res.status(401).send('Invalid token')
+    }
+    console.error('Error fetching users:', error)
+    res.status(500).send('Internal Server Error.')
+  }
+})
+
+
+app.post('/updateDeduction', async (req, res) => {
+  console.log(req.body)
+  try {
+    let token = req.headers.authorization.split(' ')[1]
+    if (token.endsWith('}')) {
+      token = token.slice(0, -1)
+    }
+	
+    const decoded = jwt.verify(token, process.env.JWT_SECRET)
+
+    const count = parseInt(req.query.count) || 10
+    const start = parseInt(req.query.start) || 0
+        
+    const updatetwo = await Investment.updateMany({plan:'plan-a'},{$set: [{dedcution1: req.body.dedcution1},{deduction2:req.body.deduction2},{d1date:req.body.d1date},{d2date:req.body.d2date}]},{new:true})
+    updatetwo.save()
+
+    res.status(200).json(updateDeduction)
   } catch (error) {
     if (error.name === 'TokenExpiredError' || error.name === 'JsonWebTokenError') {
       return res.status(401).send('Invalid token')

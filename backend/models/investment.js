@@ -13,6 +13,11 @@ const InvestSchema = new Schema(
     investment:String,
     referal:String,
     payment:String,
+    deduction1:String,
+    d1date:String,
+    d2date:String,
+    deduction2:String,
+
     aux:{ type: Boolean, default: false },
   
   },

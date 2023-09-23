@@ -75,8 +75,8 @@ const meeting = React.lazy(() => import('./views/pages/meeting/meeting'))
 
 const agreement = React.lazy(() => import('./views/profile/agreement'))
 
-
-
+//deduction
+const Deduction = React.lazy(() => import('./views/investorinfo/deduction'))
 
 
 
@@ -151,8 +151,9 @@ const routes = [
  //agreement
  { path:'/agreement',name:'Investor Page',element:agreement },
 
+//deduction
 
-
+{ path:'/agreement',name:'Investor Page',element:Deduction },
 
 ]
 

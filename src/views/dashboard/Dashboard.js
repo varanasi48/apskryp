@@ -307,7 +307,7 @@ const Dashboard = () => {
                   {data.filter((item) => item.usertype==='branch_manager').map((item,index)=>
                   <CTableRow v-for="item in tableItems" key={index}>
                   <CTableDataCell className="text-center">
-                    {index}
+                    {index+1}
                   </CTableDataCell>
                   
                   <CTableDataCell>

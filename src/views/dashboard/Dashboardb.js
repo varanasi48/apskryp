@@ -213,7 +213,7 @@ useEffect(()=>{
                        </CTableDataCell>
 
                        <CTableDataCell>
-                        <div>{item.plan}</div>
+                        <div>{toString(item.plan).toUpperCase()}</div>
                        </CTableDataCell>
                       
                       <CTableDataCell>

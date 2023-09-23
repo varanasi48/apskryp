@@ -294,6 +294,7 @@ if(k=="plan-a"){
                    <CTableHeaderCell scope="col">Amount pending</CTableHeaderCell>
                    
                     <CTableHeaderCell scope="col">Amount Received</CTableHeaderCell>
+                    <CTableHeaderCell scope="col">Status</CTableHeaderCell>
                   </CTableRow>
                 </CTableHead>
                 <CTableBody>
@@ -309,6 +310,8 @@ if(k=="plan-a"){
                       <CTableDataCell>{r}</CTableDataCell> 
                       <CTableDataCell>{parseInt(m-index*r)}</CTableDataCell> 
                       <CTableDataCell>{parseInt(index*r)}</CTableDataCell> 
+                      <CTableDataCell>{e===new Date().getMonth() ? "Paid":"Pending"}</CTableDataCell> 
+
                        
                 </CTableRow>
           )})

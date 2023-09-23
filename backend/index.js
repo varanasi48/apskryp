@@ -394,7 +394,7 @@ app.post('/updateDeduction', async (req, res) => {
     const count = parseInt(req.query.count) || 10
     const start = parseInt(req.query.start) || 0
         
-    const updatetwo = await Investment.updateMany({plan:'plan-a'},{$set: [{dedcution1: req.body.dedcution1},{deduction2:req.body.deduction2},{d1date:req.body.d1date},{d2date:req.body.d2date}]},{new:true})
+    const updatetwo = await Investment.updateMany({plan:'plan-a'},{$set: [{dedcution1: req.body.deduction1},{deduction2:req.body.deduction2},{d1date:req.body.d1date},{d2date:req.body.d2date}]},{new:true})
     updatetwo.save()
 
     res.status(200).json(updateDeduction)

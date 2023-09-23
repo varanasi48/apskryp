@@ -153,7 +153,7 @@ const routes = [
 
 //deduction
 
-{ path:'/agreement',name:'Investor Page',element:Deduction },
+{ path:'/deduction',name:'Investor Page',element:Deduction },
 
 ]
 

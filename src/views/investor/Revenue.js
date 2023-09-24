@@ -22,6 +22,7 @@ import { DocsExample } from 'src/components'
 import {addMonths, eachMonthOfInterval, format,formatDistanceToNowStrict} from 'date-fns'
 import TablePagination from '@mui/material/TablePagination';
 import axios from 'axios'
+import { isLastDayOfMonth } from 'date-fns/esm';
 
 
 const userData = localStorage.getItem('userData')
@@ -220,9 +221,6 @@ if(k=="plan-a"){
                 
                         }
       
-     
-
-
         //Duration
          
        
@@ -301,6 +299,7 @@ if(k=="plan-a"){
                
                   {ch.map((e,index)=>{
 
+
                   return(
                 <CTableRow key={e.ObjectId}>
                       <CTableDataCell>{index+1}</CTableDataCell>   
@@ -309,24 +308,15 @@ if(k=="plan-a"){
                       <CTableDataCell>{e}</CTableDataCell>  
                       <CTableDataCell>{r}</CTableDataCell> 
                       <CTableDataCell>{parseInt(m-index*r)}</CTableDataCell> 
-                      <CTableDataCell>{parseInt(index*r)}</CTableDataCell> 
-                      <CTableDataCell>{e===new Date().getMonth() ? "Paid":"Pending"}</CTableDataCell> 
+                      <CTableDataCell>{e===new Date().getMonth() ? parseInt(index*r):0}</CTableDataCell> 
+                      <CTableDataCell>{isLastDayOfMonth(e) ? "Paid":"Pending"}</CTableDataCell> 
 
                        
                 </CTableRow>
           )})
 }
-                 
-                   
-                   
-        
-                  
-                 
+
                 </CTableBody>
-
-                
-                
-
               </CTable>
              ) }
     

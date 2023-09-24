@@ -122,9 +122,9 @@ useEffect(()=>{
   let plan=ch.filter((e)=>{return e.userid===userData.userid })
   
   let plana=ch.filter((e)=>{return  e.plan==='plan-a' })
-  let planb=ch.filter((e)=>{return  e.plan==='plan-b' && e.status===true})
-  let plana_uv=idata.filter((e)=>{return e.userid===userData.userid && e.plan==='plan-a' && e.status===true})
-  let planb_uv=idata.filter((e)=>{return e.userid===userData.userid && e.plan==='plan-b' && e.status===true})
+  let planb=ch.filter((e)=>{return  e.plan==='plan-b' })
+  let plana_uv=idata.filter((e)=>{return e.userid===userData.userid && e.plan==='plan-a' })
+  let planb_uv=idata.filter((e)=>{return e.userid===userData.userid && e.plan==='plan-b' })
   
   let amt_a=plana.reduce((a,v)=>a=a+parseInt(v.investment),0)
   

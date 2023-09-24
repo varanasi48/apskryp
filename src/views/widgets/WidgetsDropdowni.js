@@ -64,8 +64,8 @@ const WidgetsDropdown = () => {
 
   let plan=data.filter((e)=>{return e.userid===userData.userid })
   
-  let plana=data.filter((e)=>{return e.userid===userData.userid && e.plan==='plan-a' && e.status===true})
-  let planb=data.filter((e)=>{return e.userid===userData.userid && e.plan==='plan-b' && e.status===true})
+  let plana=data.filter((e)=>{return e.userid===userData.userid && e.plan==='plan-a' })
+  let planb=data.filter((e)=>{return e.userid===userData.userid && e.plan==='plan-b'})
   let plana_uv=data.filter((e)=>{return e.userid===userData.userid && e.plan==='plan-a' && e.status===false})
   let planb_uv=data.filter((e)=>{return e.userid===userData.userid && e.plan==='plan-b' && e.status===false})
   

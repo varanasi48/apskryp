@@ -289,9 +289,9 @@ if(k=="plan-a"){
                     <CTableHeaderCell scope="col">Amount Invested</CTableHeaderCell>
                     <CTableHeaderCell scope="col">Months</CTableHeaderCell>
                    <CTableHeaderCell scope="col">Revenue</CTableHeaderCell>
-                   <CTableHeaderCell scope="col">Amount pending</CTableHeaderCell>
+                   <CTableHeaderCell scope="col">Balance Amount</CTableHeaderCell>
                    
-                    <CTableHeaderCell scope="col">Amount Received</CTableHeaderCell>
+                    <CTableHeaderCell scope="col">Cum.  Amt. Received</CTableHeaderCell>
                     <CTableHeaderCell scope="col">Status</CTableHeaderCell>
                   </CTableRow>
                 </CTableHead>

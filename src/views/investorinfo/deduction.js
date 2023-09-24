@@ -19,7 +19,14 @@ const Deduction=()=>{
     let [date1,setd1d]=useState('')   
     let [date2,setd2d]=useState('')  
 
-    const formSubmimtted={}
+    let formSubmitted=useState({
+
+       deduction1:'',
+       deduction2:'',
+       date1:'',
+       date2:''
+
+    })
     
     
 
@@ -61,42 +68,42 @@ const Deduction=()=>{
     setd2=e.deduction2
     setd1d=e.d1date
     setd2d=e.d2date
-    
-
+    console.log(typeof(e.deduction1))
+ 
     if(e.plan=='plan-a'){
        
        
         damount=(e.investment*0.1)/2
 
-    
-   
-   
-       if(e.deduction1==""){
-        deduction1=deduction1
-        deduction2=damount
-        date2=date2
-        date1=new Date().toString()
+       if(!e.date1){
+        deduction1=damount
+        deduction2=''
+        date2=''
+        date1=new Date().toDateString()
 
        }
-
-       if(e.d2amount==''&& e.d1amount!=''){
-
-        deduction2=damount
+       else{
         deduction1=deduction1
+        deduction2=damount
+        date2=new Date().toDateString()
         date1=date1
-        date2=parse(new Date())
 
        }
+
+     
+
+    
     }
-    formSubmimtted={deduction1:deduction1,deduction2:deduction2,d1date:date1,d2date:date2}
+    console.log("info:"+deduction1,deduction2,date1,date2)
+    formSubmitted={deduction1:deduction1,deduction2:deduction2,d1date:date1,d2date:date2}
+
     }
     )
 
       try {
           // Send data to the register API with JWT token in header
           const data = await axios.post(
-            `${API_URL}/updateDeduction`,
-            formSubmimtted,
+            `${API_URL}/updateDeduction`,formSubmitted,
             {
               headers: {
                 Authorization: `Bearer ${userData.token}}`,

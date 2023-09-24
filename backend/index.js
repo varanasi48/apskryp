@@ -394,10 +394,10 @@ app.post('/updateDeduction', async (req, res) => {
     const count = parseInt(req.query.count) || 10
     const start = parseInt(req.query.start) || 0
         
-    const updatetwo = await Investment.updateMany({plan:'plan-a'},{$set: [{dedcution1: req.body.deduction1},{deduction2:req.body.deduction2},{d1date:req.body.d1date},{d2date:req.body.d2date}]},{new:true})
-    updatetwo.save()
+    const updatesf = await Investment.updateMany({plan:'plan-a'},{$set:{deduction1:req.body.deduction1,deduction2:req.body.deduction2,d1date:req.body.d1date,d2date:req.body.d2date}},{multi:true})
+  
 
-    res.status(200).json(updateDeduction)
+    res.status(200).json(updatesf)
   } catch (error) {
     if (error.name === 'TokenExpiredError' || error.name === 'JsonWebTokenError') {
       return res.status(401).send('Invalid token')

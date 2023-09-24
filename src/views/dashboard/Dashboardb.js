@@ -195,6 +195,7 @@ useEffect(()=>{
               <CTable align="middle" className="mb-0 border" hover responsive>
                 <CTableHead color="light">
                   <CTableRow>
+                  <CTableHeaderCell>S.No</CTableHeaderCell>
                   <CTableHeaderCell>User</CTableHeaderCell>
                   <CTableHeaderCell>Investment</CTableHeaderCell>
                   <CTableHeaderCell>Plan</CTableHeaderCell>
@@ -205,8 +206,12 @@ useEffect(()=>{
                   </CTableRow>
                 </CTableHead>
                 <CTableBody>
-                  {ch.map((item) => (
+                  {ch.map((item,index) => (
                     <CTableRow v-for="item in tableItems" key={item.ObjectId}>
+
+                      <CTableDataCell>
+                        <div>{index+1}</div>
+                       </CTableDataCell>
 
                       <CTableDataCell>
                         <div>{item.userid}</div>

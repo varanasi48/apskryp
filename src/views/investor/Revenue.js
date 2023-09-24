@@ -16,7 +16,8 @@ import {
   CTableHeaderCell,
   CTableRow,
   CFormInput,
-  CInputGroup
+  CInputGroup,
+  CHeaderText
 } from '@coreui/react'
 import { DocsExample } from 'src/components'
 import {addMonths, eachMonthOfInterval, format,formatDistanceToNowStrict} from 'date-fns'
@@ -281,7 +282,7 @@ if(k=="plan-a"){
           
               <CTable className='md-3'  >
                
-                
+               <CHeaderText>{investment}</CHeaderText>
                 <CTableHead color='danger'>
                   <CTableRow>
                     <CTableHeaderCell scope="col">S.no</CTableHeaderCell>

@@ -1,4 +1,4 @@
-import { CCard, CCardBody, CCardFooter, CCardHeader, CModal,CInputGroup, CModalFooter, CModalHeader,CTableDataCell, CModalTitle,CButton,CModalBody, CTable, CTableBody, CTableHeaderCell, CTableRow, CTableHead, CFormInput } from '@coreui/react'
+import { CCard, CCardBody, CCardFooter, CCardHeader, CModal,CInputGroup, CModalFooter, CModalHeader,CTableDataCell, CModalTitle,CButton,CModalBody, CTable, CTableBody, CTableHeaderCell, CTableRow, CTableHead, CFormInput, CHeaderText } from '@coreui/react'
 import React, {useState,useEffect} from 'react'
 import axios from 'axios'
 import {addMonths, eachMonthOfInterval, format,parseISO,parse,parseJSON} from 'date-fns'
@@ -155,6 +155,7 @@ const Investment_i=()=>{
             </CCardHeader> 
             <CCardBody>
                 <CTable>
+                  
                     <CTableBody >
                                 
                                 <CTableRow>
@@ -163,7 +164,7 @@ const Investment_i=()=>{
                     </CTableRow>
                     <CTableRow>
                         <CTableHeaderCell><strong>Plan</strong></CTableHeaderCell>
-                        <CTableHeaderCell>{e.plan}</CTableHeaderCell>
+                        <CTableHeaderCell>{JSON.stringify(e.plan).toUpperCase()}</CTableHeaderCell>
                     </CTableRow>
                     
                     

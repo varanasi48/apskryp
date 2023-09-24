@@ -16,7 +16,8 @@ import {
   CTableHeaderCell,
   CTableRow,
   CFormInput,
-  CInputGroup
+  CInputGroup,
+  CHeaderText
 } from '@coreui/react'
 import { DocsExample } from 'src/components'
 import {addMonths, eachMonthOfInterval, format,formatDistanceToNowStrict} from 'date-fns'
@@ -272,6 +273,7 @@ if(k=="plan-a"){
                
                 
                 <CTableHead color="dark">
+                <CHeaderText>{investment}</CHeaderText>
                   <CTableRow>
                     <CTableHeaderCell scope="col">S.no</CTableHeaderCell>
                     <CTableHeaderCell scope="col">Plan</CTableHeaderCell>
@@ -283,11 +285,11 @@ if(k=="plan-a"){
                 </CTableHead>
                 <CTableBody>
                
-                  {ch.map((e)=>{
+                  {ch.map((e,index)=>{
 
                   return(
                 <CTableRow key={e.ObjectId}>
-                      <CTableDataCell>no</CTableDataCell>   
+                      <CTableDataCell>{index+1}</CTableDataCell>   
                       <CTableDataCell>{k.toString().toUpperCase()}</CTableDataCell>
                       <CTableDataCell>{investment}</CTableDataCell>  
                       <CTableDataCell>{e}</CTableDataCell>  

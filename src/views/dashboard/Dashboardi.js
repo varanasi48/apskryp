@@ -248,8 +248,12 @@ r=investment*0.1
                   </CTableRow>
                 </CTableHead>
                 <CTableBody>
-                  {plan.map((item) => (
+                  {plan.map((item,index) => (
                     <CTableRow v-for="item in tableItems" key={item.ObjectId}>
+
+<CTableDataCell>
+                        <div>{index+1}</div>
+                       </CTableDataCell>
                       
                       <CTableDataCell>
                         <div>{item.investment}</div>

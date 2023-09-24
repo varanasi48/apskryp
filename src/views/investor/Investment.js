@@ -116,7 +116,7 @@ const Investment=()=>{
                     
                     <CTableRow>
                         <CTableHeaderCell><strong>Amount Invested</strong></CTableHeaderCell>
-                        <CTableHeaderCell>{e.investment}</CTableHeaderCell>
+                        <CTableHeaderCell>{JSON.stringify(e.investment).toUpperCase()}</CTableHeaderCell>
                     </CTableRow>
                     <CTableRow>
                         <CTableHeaderCell><strong>Amount On Maturity</strong></CTableHeaderCell>

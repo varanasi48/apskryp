@@ -1,4 +1,4 @@
-import { CCard, CCardBody, CCardFooter, CCardHeader, CModal,CInputGroup, CModalFooter, CModalHeader,CTableDataCell, CModalTitle,CButton,CModalBody, CTable, CTableBody, CTableHeaderCell, CTableRow, CTableHead, CFormInput, CHeaderText } from '@coreui/react'
+import { CCard, CCardBody, CCardFooter, CCardHeader, CModal,CInputGroup, CModalFooter, CModalHeader,CTableDataCell, CModalTitle,CButton,CModalBody, CTable, CTableBody, CTableHeaderCell, CTableRow, CTableHead, CFormInput, CHeaderText, CTableFoot } from '@coreui/react'
 import React, {useState,useEffect} from 'react'
 import axios from 'axios'
 import {addMonths, eachMonthOfInterval, format,parseISO,parse,parseJSON} from 'date-fns'
@@ -173,7 +173,7 @@ const Investment_i=()=>{
                         <CTableHeaderCell>{e.investment}</CTableHeaderCell>
                     </CTableRow>
                     <CTableRow>
-                        <CTableHeaderCell><strong>Amount On Maturity</strong></CTableHeaderCell>
+                        <CTableHeaderCell><strong>Total Revenue</strong></CTableHeaderCell>
                         <CTableHeaderCell><strong>{maturity_amount}</strong></CTableHeaderCell>
                     </CTableRow>
                     <CTableRow>
@@ -186,15 +186,15 @@ const Investment_i=()=>{
                     </CTableRow>
                     <CTableRow>
                         <CTableHeaderCell><strong>Pending Months</strong></CTableHeaderCell>
-                        <CTableHeaderCell><strong>{e.plan==='plan-a' ? "36 Months":"24 Months"}</strong></CTableHeaderCell>
+                        <CTableHeaderCell><strong>{e.plan==='plan-a' ? "36 Months":"12 Months"}</strong></CTableHeaderCell>
                     </CTableRow>
                     <CTableRow>
                         <CTableHeaderCell><strong>Status</strong></CTableHeaderCell>
                         <CTableHeaderCell><strong>
-                          {e.status===false ? 'Pending': 'Aprooved'}
+                          {e.status===false ? 'Pending': 'Approved'}
                           </strong></CTableHeaderCell>
                     </CTableRow>
-                    
+                    <CTableFoot style={{color:'red'}}>*Total return in Plan-A is paid on monthly basis for 36 Months</CTableFoot>
                     </CTableBody>
                 </CTable>
             </CCardBody>

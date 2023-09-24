@@ -166,7 +166,7 @@ const Select = () => {
                     <CTableRow key={e._id}>
                    
                     <CTableHeaderCell scope="row">{e.userid}</CTableHeaderCell>
-                    <CTableDataCell>{e.plan}</CTableDataCell>
+                    <CTableDataCell>{JSON.stringify(e.plan).toUpperCase}</CTableDataCell>
                     <CTableDataCell>{e.investment}</CTableDataCell>
                     <CTableDataCell>{e.status==='true' ? 'Active':
                     

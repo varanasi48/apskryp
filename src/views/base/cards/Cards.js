@@ -130,7 +130,7 @@ fetchUserData()
                    
                     <CTableHeaderCell scope="row">{e.userid}</CTableHeaderCell>
                     <CTableDataCell>{e.name}</CTableDataCell>
-                    <CTableDataCell>{e.usertype}</CTableDataCell>
+                    <CTableDataCell>{JSON.stringify(e.usertype).toUpperCase()}</CTableDataCell>
                     <CTableDataCell>{e.status==='true' ? 'Active':
                     
                     <CFormSelect onChange={statusupdate}>

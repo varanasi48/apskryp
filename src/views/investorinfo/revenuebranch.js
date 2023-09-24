@@ -244,7 +244,7 @@ if(k=="plan-a"){
       <>
 
 
-     <option key={e.ObjectId}  value={e.investment}>{e.investment}({e.plan})({e.userid})</option>
+     <option key={e.ObjectId}  value={e.investment}>{e.investment}({e.plan.toString().toUpperCase()})({e.userid})</option>
       </>
      )
     })}
@@ -270,10 +270,10 @@ if(k=="plan-a"){
 
           
               <CTable className='md-3'  >
-               
+               <CHeaderText>Investment:{investment}</CHeaderText>
                 
                 <CTableHead color="dark">
-                <CHeaderText>{investment}</CHeaderText>
+                
                   <CTableRow>
                     <CTableHeaderCell scope="col">S.no</CTableHeaderCell>
                     <CTableHeaderCell scope="col">Plan</CTableHeaderCell>

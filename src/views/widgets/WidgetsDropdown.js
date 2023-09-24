@@ -463,7 +463,7 @@ const WidgetsDropdown = () => {
              0
             </>
           }
-          title="Social FUnd"
+          title="Social Fund"
           
           chart={
             <CChartLine

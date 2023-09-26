@@ -219,7 +219,7 @@ r=investment*0.1
                     </CCol>
                     <CCol sm={6}>
                       <div className="border-start border-start-4 border-start-success py-1 px-3 mb-3">
-                        <div className="text-medium-emphasis small">Total Plan-b Investment</div>
+                        <div className="text-medium-emphasis small">Total Plan-B Investment</div>
                         <div className="fs-5 fw-semibold">{amt_b}</div>
                       </div>
                     </CCol>
@@ -229,7 +229,9 @@ r=investment*0.1
 
                   
 
-                  <div className="mb-5"></div>
+                  <div className="mb-5" style={{color:'red'}}>
+                    
+                  </div>
 
                 </CCol>
               </CRow>

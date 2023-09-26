@@ -110,7 +110,7 @@ const Investment=()=>{
                     </CTableRow>
                     <CTableRow>
                         <CTableHeaderCell><strong>Plan</strong></CTableHeaderCell>
-                        <CTableHeaderCell>{e.plan}</CTableHeaderCell>
+                        <CTableHeaderCell>{e.plan.toUpperCase()}</CTableHeaderCell>
                     </CTableRow>
                     
                     
@@ -119,7 +119,7 @@ const Investment=()=>{
                         <CTableHeaderCell>{JSON.stringify(e.investment).toUpperCase()}</CTableHeaderCell>
                     </CTableRow>
                     <CTableRow>
-                        <CTableHeaderCell><strong>Amount On Maturity</strong></CTableHeaderCell>
+                        <CTableHeaderCell><strong>Total Returns</strong></CTableHeaderCell>
                         <CTableHeaderCell><strong>{maturity_amount}</strong></CTableHeaderCell>
                     </CTableRow>
                     <CTableRow>
@@ -132,7 +132,7 @@ const Investment=()=>{
                     </CTableRow>
                     <CTableRow>
                         <CTableHeaderCell><strong>Pending Months</strong></CTableHeaderCell>
-                        <CTableHeaderCell><strong>{e.plan==='plan-a' ? "36 Months":"24 Months"}</strong></CTableHeaderCell>
+                        <CTableHeaderCell><strong>{e.plan==='plan-a' ? "36 Months":"12 Months"}</strong></CTableHeaderCell>
                     </CTableRow>
                     <CTableRow>
                         <CTableHeaderCell><strong>Status</strong></CTableHeaderCell>
@@ -140,7 +140,7 @@ const Investment=()=>{
                           {e.status}
                           </strong></CTableHeaderCell>
                     </CTableRow>
-                    
+                  <div style={{color:'red'}}> *Total Returns for Plan-A will be paid in equal installments in 36 months.</div>  
                     </CTableBody>
                 </CTable>
             </CCardBody>

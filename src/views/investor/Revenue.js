@@ -275,6 +275,8 @@ if(k=="plan-a"){
          
           <CCardBody>
             
+            <div><CHeaderText><strong>Investment:{investment}</strong></CHeaderText></div>
+            <div><CHeaderText><strong>Plan:{k.toUpperCase()}</strong></CHeaderText></div>
             
                          
           {userData  && (
@@ -282,12 +284,12 @@ if(k=="plan-a"){
           
               <CTable className='md-3'  >
                
-               <CHeaderText>{investment}</CHeaderText>
+               
                 <CTableHead color='danger'>
                   <CTableRow>
                     <CTableHeaderCell scope="col">S.no</CTableHeaderCell>
-                    <CTableHeaderCell scope="col">Plan</CTableHeaderCell>
-                    <CTableHeaderCell scope="col">Amount Invested</CTableHeaderCell>
+                  
+                   
                     <CTableHeaderCell scope="col">Months</CTableHeaderCell>
                    <CTableHeaderCell scope="col"> Monthly Revenue</CTableHeaderCell>
                    <CTableHeaderCell scope="col">Balance Amount</CTableHeaderCell>
@@ -304,8 +306,8 @@ if(k=="plan-a"){
                   return(
                 <CTableRow key={e.ObjectId}>
                       <CTableDataCell>{index+1}</CTableDataCell>   
-                      <CTableDataCell>{k.toString().toUpperCase()}</CTableDataCell>
-                      <CTableDataCell>{investment}</CTableDataCell>  
+                      
+                      
                       <CTableDataCell>{e}</CTableDataCell>  
                       <CTableDataCell>{r}</CTableDataCell> 
                       <CTableDataCell>{parseInt(m-index*r)}</CTableDataCell> 

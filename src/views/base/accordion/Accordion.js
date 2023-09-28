@@ -190,6 +190,8 @@ let amt_b=planb.reduce((a,v)=>a=a+parseInt(v.investment),0)
   <CFormInput placeholder="IFSC" aria-label="Server"/>
   <CInputGroupText>Bank</CInputGroupText>
   <CFormInput placeholder="Bank Name" aria-label="Server"/>
+  <CInputGroupText>Branch</CInputGroupText>
+  <CFormInput placeholder="Bank Name" aria-label="Server"/>
 </CInputGroup>
 
 

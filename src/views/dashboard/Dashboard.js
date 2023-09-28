@@ -334,7 +334,7 @@ const Dashboard = () => {
                     <CProgress thin color='red'  />
                   </CTableDataCell>
                   <CTableDataCell className="text-center">
-                   bank
+                   Bank
                   </CTableDataCell>
                   <CTableDataCell>
                     <div className="small text-medium-emphasis">Last login</div>

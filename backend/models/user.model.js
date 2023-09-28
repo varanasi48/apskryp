@@ -14,6 +14,9 @@ const UserSchema = new Schema(
     ndo:String,
     
     nominee: String,
+    nominee_aadhar:{type:String,unique:true},
+    nominee_dob:{type:String},
+
 	  status: String,
    
     bank:{ type: Boolean, default: false },

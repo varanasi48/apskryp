@@ -187,8 +187,6 @@ app.post('/bank', async (req, res) => {
     }
     const decoded = jwt.verify(token, process.env.JWT_SECRET)
 
-   
-
     const salt = await bcrypt.genSalt(10)
    
    
@@ -211,8 +209,40 @@ app.post('/bank', async (req, res) => {
       return res.status(401).send('Invalid token')
     }
 
-	
-	
+    res.status(500).send('Server error')
+  }
+})
+
+app.post('/offer', async (req, res) => {
+  console.log(req.body)
+  try {
+    let token = req.headers.authorization.split(' ')[1]
+    if (token.endsWith('}')) {
+      token = token.slice(0, -1)
+    }
+    const decoded = jwt.verify(token, process.env.JWT_SECRET)
+
+    const salt = await bcrypt.genSalt(10)
+   
+   
+      const bank = new Bank({
+        userid:req.body.userid,
+       
+        amount:req.body.amount,
+        name:req.body.name,
+        valid:req.body.valid
+
+      })
+    
+    await bank.save()
+    res.status(201).send('Plan registered successfully.')
+    
+    
+  } catch (err) {
+    if (err.name === 'TokenExpiredError' || err.name === 'JsonWebTokenError') {
+      return res.status(401).send('Invalid token')
+    }
+
     res.status(500).send('Server error')
   }
 })

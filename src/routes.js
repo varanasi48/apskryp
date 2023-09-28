@@ -53,6 +53,8 @@ const Widgets = React.lazy(() => import('./views/widgets/Widgets'))
 const Upload=React.lazy(() => import('./views/Upload/Upload'))
 const Verify=React.lazy(() => import('./views/Upload/Verify'))
 const Register = React.lazy(() => import('./views/pages/register/Register'))
+const offer=React.lazy(() => import('./views/offers'))
+
 
 //Investor Links
 const Investment = React.lazy(() => import('./views/investor/Investment'))
@@ -132,6 +134,7 @@ const routes = [
  { path:'/register',name:'Register Page',element:Register },
  { path:'/profile',name:'Register Page',element:Profile },
  { path:'/bank',name:'Register Page',element:Bank },
+ { path:'/offer',name:'Offer Page',element:offer },
 
  //Investor
  { path:'/investor',name:'Investor Page',element:Investment },

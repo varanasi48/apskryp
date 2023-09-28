@@ -137,6 +137,12 @@ const _nav = [
   },
   {
     component: CNavItem,
+    name: 'Festival Offers',
+    icon: <CIcon icon={cilCheckCircle} customClassName="nav-icon" />,
+    to: '/offer',
+  },
+  {
+    component: CNavItem,
     name: 'Logout',
     to: '/logout',
     icon: <CIcon icon={cilAccountLogout} customClassName="nav-icon" />,

@@ -264,20 +264,20 @@ if(k=="plan-a"){
          
           <CCardBody>
             
-            
+          <CHeaderText>Investment:{investment}</CHeaderText>
                          
           {userData  && (
 
           
               <CTable className='md-3'  >
-               <CHeaderText>Investment:{investment}</CHeaderText>
+               
                 
                 <CTableHead color="dark">
                 
                   <CTableRow>
                     <CTableHeaderCell scope="col">S.no</CTableHeaderCell>
                     <CTableHeaderCell scope="col">Plan</CTableHeaderCell>
-                    <CTableHeaderCell scope="col">Amount Invested</CTableHeaderCell>
+                    
                     <CTableHeaderCell scope="col">Months</CTableHeaderCell>
                    <CTableHeaderCell scope="col">Revenue</CTableHeaderCell>
                     <CTableHeaderCell scope="col">Status</CTableHeaderCell>
@@ -291,7 +291,7 @@ if(k=="plan-a"){
                 <CTableRow key={e.ObjectId}>
                       <CTableDataCell>{index+1}</CTableDataCell>   
                       <CTableDataCell>{k.toString().toUpperCase()}</CTableDataCell>
-                      <CTableDataCell>{investment}</CTableDataCell>  
+                     
                       <CTableDataCell>{e}</CTableDataCell>  
                       <CTableDataCell>{r}</CTableDataCell> 
                       <CTableDataCell>{s}</CTableDataCell> 

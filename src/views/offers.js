@@ -2,6 +2,13 @@ import { CButton, CCard, CCardBody, CCardHeader, CCardLink,CFormCheck,CFormInput
 import React from 'react'
 
 
+const API_URL = process.env.REACT_APP_API_URL
+  // Retrieve data from localStorage
+  const userData = localStorage.getItem('userData')
+    ? JSON.parse(localStorage.getItem('userData'))
+    : null
+
+
 const Offer=()=>{
 
   return(

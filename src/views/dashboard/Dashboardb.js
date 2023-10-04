@@ -141,7 +141,11 @@ useEffect(()=>{
     ) 
   console.log(info)
   console.log(ch)
+  let planu=info.filter(e=>e.plan='plan-a')
+  let planv=info.filter(e=>e.plan='plan-b')
   
+  
+
   
 
   return (
@@ -164,13 +168,13 @@ useEffect(()=>{
                     <CCol sm={6}>
                       <div className="border-start border-start-4 border-start-warning py-1 px-3 mb-3">
                         <div className="text-medium-emphasis small">Total Plan-A Investors</div>
-                        <div className="fs-5 fw-semibold">pa.length</div>
+                        <div className="fs-5 fw-semibold">{planu.lenght}</div>
                       </div>
                     </CCol>
                     <CCol sm={6}>
                       <div className="border-start border-start-4 border-start-success py-1 px-3 mb-3">
                         <div className="text-medium-emphasis small">Total Plan-B Investors</div>
-                        <div className="fs-5 fw-semibold">planb.length</div>
+                        <div className="fs-5 fw-semibold">{planu.lenght}</div>
                       </div>
                     </CCol>
                     <CCol sm={6}>

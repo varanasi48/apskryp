@@ -109,6 +109,7 @@ const handleInputChange = (event) => {
     formSubmitted.status = "pending";
     formSubmitted.ref=userData.id
     formSubmitted.iid="LBF-"+x+"-"+parseInt(Math.random()*9000000)
+    formSubmitted.aux="true"
     
     
     for (const key in formSubmitted) {
